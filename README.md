@@ -1,2 +1,0 @@
-# icon-generator
-Generator icon
