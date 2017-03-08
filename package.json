@@ -1,0 +1,33 @@
+{
+  "name": "icon-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Ahmed ZIANI",
+  "license": "ISC",
+  "devDependencies": {
+    "browserify": "*",
+    "flux": "*",
+    "gulp": "*",
+    "object-assign": "*",
+    "reactify": "*",
+    "vinyl-source-stream": "*",
+    "gulp-sass": "*",
+    "gulp-sourcemaps": "*",
+    "gulp-postcss": "*",
+    "postcss-csso": "*",
+    "gulp-csso": "*",
+    "browser-sync": "*",
+    "gulp-uglify": "*",
+    "react-component-width-mixin": "*",
+	"gulp-svgmin": "*"
+  },
+  "dependencies": {
+    "react": "*",
+    "react-color": "^2.2.2",
+    "react-dom": "*"
+  }
+}
