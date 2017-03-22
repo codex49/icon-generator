@@ -1,36 +1,37 @@
-var gulp        = require('gulp'),
-    sass        = require('gulp-sass'),
-    postcss     = require('gulp-postcss'),
-    sourcemaps  = require('gulp-sourcemaps'),
-    browserify  = require('browserify'),
-    reactify    = require('reactify'),
-    source      = require('vinyl-source-stream'),
-    browserSync = require('browser-sync').create(),
-    uglify      = require('gulp-uglify'),
-    svgmin      = require('gulp-svgmin');;
+import gulp from 'gulp';
+import sass from 'gulp-sass';
+import postcss from 'gulp-postcss';
+import sourcemaps from 'gulp-sourcemaps';
+import browserify from 'browserify';
+import reactify from 'reactify';
+import babelify from 'babelify';
+import source from 'vinyl-source-stream';
+import browserSync from 'browser-sync';
+import uglify from 'gulp-uglify';
+import svgmin from 'gulp-svgmin';
 
 function handleError(err) {
     console.log(err.toString());
     this.emit('end');
 }
 
-var processors = [
+const processors = [
     require('postcss-csso')
 ];
 
-gulp.task('sass', function() {
+gulp.task('sass', () => {
     return gulp.src("src/css/sass/**/*.scss", { sourcemaps: true })
         .pipe(sourcemaps.init())
         .pipe(sass())
         .pipe(postcss(processors))
         .pipe(sourcemaps.write('.'))
         .pipe(gulp.dest("dist/css"))
-        .pipe(browserSync.stream());
+        .pipe(browserSync.create().stream());
 });
 
-gulp.task('browserify', function () {
+gulp.task('browserify', () => {
     browserify('./src/js/main.js')
-        .transform('reactify')
+        .transform(babelify, {presets: ["es2015", "react"]})
         .bundle()
         .on('error', handleError)
         .pipe(source('main.js'))
@@ -38,7 +39,7 @@ gulp.task('browserify', function () {
         .pipe(gulp.dest('dist/js'));
 });
 
-gulp.task('copy', function () {
+gulp.task('copy', () => {
     gulp.src('src/index.html')   .pipe(gulp.dest('dist'));
     gulp.src('src/css/fonts/*.*').pipe(gulp.dest('dist/css/fonts'));
 
@@ -52,15 +53,14 @@ gulp.task('copy', function () {
         .pipe(gulp.dest('dist/img/svg'));
 });
 
-gulp.task('browser-sync', ['sass'], function() {
+gulp.task('browser-sync', ['sass'], () => {
     browserSync.init({
-        proxy: "http://localhost:8080/IconApp/dist/",
-        //proxy: "http://localhost/icon-App1/dist/",
+        proxy: "http://localhost/icon-generator/dist/",
         browser: "chrome"
     });
 });
 
 
-gulp.task('default', ['browserify', 'copy', 'sass', 'browser-sync'], function () {
+gulp.task('default', ['browserify', 'copy', 'sass', 'browser-sync'], () => {
     return gulp.watch('src/**/*.*', ['browserify', 'copy', 'sass']);
 });

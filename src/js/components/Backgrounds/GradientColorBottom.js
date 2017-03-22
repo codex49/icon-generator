@@ -1,7 +1,7 @@
-var React 	      = require('react'),
-	AppStore 	  = require('../../stores/AppStore'),
-	AppActions    = require('../../actions/AppActions')
-	SketchPicker  = require('react-color').default;
+import React from 'react';
+import AppStore from '../../stores/AppStore';
+// import SketchPicker  = require('react-color').default;
+import SketchPicker from 'react-color';
 
 function getAppState(){
 	return {

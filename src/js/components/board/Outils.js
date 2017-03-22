@@ -1,8 +1,9 @@
-var React         = require('react'),
-    AppStore      = require('../../stores/AppStore'),
-    AppActions    = require('../../actions/AppActions'),
-    BorderRadius  = require('./BorderRadius.js'),
-    SketchPicker  = require('react-color').default;;
+import React from 'react';
+import AppStore from '../../stores/AppStore';
+import AppActions from '../../actions/AppActions';
+import BorderRadius from './BorderRadius.js';
+import SketchPicker from 'react-color';
+// import SketchPicker from 'react-color').default;;
 
 function getAppState() {
     return {

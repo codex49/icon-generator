@@ -1,7 +1,6 @@
-var React    	 = require('react'),
-    AppStore     = require('../../stores/AppStore'),
-    AppActions   = require('../../actions/AppActions'),
-	ReactDOM 	 = require('react-dom');
+import React from 'react';
+import ReactDOM from 'react-dom';
+import AppStore from '../../stores/AppStore';
 
 var Download = React.createClass({
 	getInitialState: function(){
@@ -25,6 +24,7 @@ var Download = React.createClass({
 		$('.btns-size button').removeClass('btn-size');
 		$(ReactDOM.findDOMNode(this)).addClass('btn-size');
     },
+	
     fc_128: function(){
 		this.setState({ size: 128 });
 		$('.btns-size button').removeClass('btn-size');

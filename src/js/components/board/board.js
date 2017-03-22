@@ -1,7 +1,7 @@
-var React        = require('react'),
-    AppStore     = require('../../stores/AppStore'),
-    AppActions   = require('../../actions/AppActions'),
-    Outils       = require('./Outils.js');
+import React from 'react';
+import AppStore from '../../stores/AppStore';
+import AppActions from '../../actions/AppActions';
+import Outils from './Outils.js';
 
 function getAppState() {
   return {
@@ -9,11 +9,6 @@ function getAppState() {
   };
 }
 var Board = React.createClass({
-    getDefaultProps: function(){
-        return {
-
-        }
-    },
     getInitialState: function () {
         return getAppState();
     },
@@ -32,7 +27,9 @@ var Board = React.createClass({
                     $(this).append($(ui.draggable).addClass('svg-drag').clone()); 
                 }
                 $('.catagories .item').removeClass('svg-drag');
-                $item = $('.board-resultat .item');
+
+                const $item = $('.board-resultat .item');
+
                 $item.draggable({
                     drag: function(){
                         var id = $(this).find('svg').attr('id');

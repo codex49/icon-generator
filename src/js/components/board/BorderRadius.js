@@ -1,7 +1,7 @@
-var React      = require('react'),
-    AppStore   = require('../../stores/AppStore'),
-    AppActions = require('../../actions/AppActions'),
-    AppAPI     = require('../../utils/appAPI');
+import React from 'react';
+
+import AppActions from '../../actions/AppActions';
+import AppAPI from '../../utils/appAPI';
 
 var BorderRadius = React.createClass({
     emitChange: function () {
@@ -12,6 +12,10 @@ var BorderRadius = React.createClass({
     },
     removeChangeListener: function (callback) {
         this.removeListener('change', callback);
+    },
+    getValueBorder: function(e){
+        var BorderRadius = e.target.value;
+        AppActions.changeBorder(BorderRadius);
     },
     render: function() {
         var nbrRaduis = AppAPI.getNumberBorderRadius();
@@ -26,13 +30,6 @@ var BorderRadius = React.createClass({
             </select>
         );
     },
-    _onChange: function() {
-        this.setState(getAppState());
-    },
-    getValueBorder: function(e){
-        var BorderRadius = e.target.value;
-        AppActions.changeBorder(BorderRadius);
-    }
 });
 
 module.exports = BorderRadius;

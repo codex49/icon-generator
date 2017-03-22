@@ -1,8 +1,7 @@
-var React = require('react'),
-	AppStore 	  = require('../../stores/AppStore'),
-	AppActions    = require('../../actions/AppActions'),
-	GradientColorTop = require('./GradientColorTop'),
-	GradientColorBottom = require('./GradientColorBottom');
+import React, { Component } from 'react';
+import AppStore from '../../stores/AppStore';
+import GradientColorTop from './GradientColorTop';
+import GradientColorBottom from './GradientColorBottom';
 
 function getAppState(){
 	return {

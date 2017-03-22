@@ -1,6 +1,7 @@
-var React      = require('react'),
-    AppActions = require('../../actions/AppActions'),
-    Icon       = require('./Icon');
+import React, { Component } from 'react';
+
+import AppActions from '../../actions/AppActions';
+import Icon from './Icon';
 
 var IconUpload = React.createClass({
     getDefaultProps: function(){

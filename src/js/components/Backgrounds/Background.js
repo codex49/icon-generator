@@ -1,6 +1,6 @@
-var React      = require('react'),
-    ReactDOM   = require('react-dom'),
-    AppActions = require('../../actions/AppActions');
+import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
+import AppActions from '../../actions/AppActions';
 
 var Background = React.createClass({
     change: function(){

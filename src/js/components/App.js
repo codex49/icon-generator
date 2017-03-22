@@ -1,52 +1,31 @@
-var React       = require('react'),
-    AppActions  = require('../actions/AppActions'),
-    AppStore    = require('../stores/AppStore'),
-    AppAPI      = require('../utils/appAPI'),
-    Header      = require('./Header'),
-    Icons       = require('./icons/Icons'),
-    Board       = require('./board/Board'),
-    Backgrounds = require('./backgrounds/Backgrounds'),
-    Footer      = require('./Footer'),
-    Popup       = require('./download/Download');
+import React, { Component } from 'react';
 
-var MenuItems       = AppAPI.getMenuItems(),
-    ListIcons       = AppAPI.getIcons(),
-    ListBackgrounds = AppAPI.getBackgrounds(),
-    SocialsMedia    = AppAPI.getSocialsMedia();
+import AppAPI from '../utils/appAPI';
+import Header from './Header';
+import Icons from './icons/Icons';
+import Board from './board/Board';
+import Backgrounds from './backgrounds/Backgrounds';
+import Footer from './Footer';
+import Popup from './download/Download';
 
-function getAppState() {
-  return {
-   
-  };
-}
+const MenuItems = AppAPI.getMenuItems();
+const ListIcons = AppAPI.getIcons();
+const ListBackgrounds = AppAPI.getBackgrounds();
+const SocialsMedia = AppAPI.getSocialsMedia();
 
-var App = React.createClass({
-    getInitialState: function () {
-        return getAppState();
-    },
-    componentWillUnmount: function() {
-        console.log('componentWillUnmount');
-    },
-    componentDidMount: function() {
-
-    },
-    render: function(){
+export default class App extends Component {
+    render (){
         return (
             <div className="content">
-              <Header  Menu={MenuItems}/>
-              <main className="main">
-                    <Icons listCategories={ListIcons}/> 
+                <Header menu={MenuItems}/>
+                <main className="main">
+                    <Icons listCategories={ListIcons}/>
                     <Board />
                     <Backgrounds listCategories={ListBackgrounds}/>
-              </main>
-              <Footer />
-              <Popup SocialsMedia={SocialsMedia}/>
-           </div>
+                </main>
+                <Footer />
+                <Popup SocialsMedia={SocialsMedia}/>
+            </div>
         );
-    },
-    _onChange: function() {
-        this.setState(getAppState());
     }
-});
-
-module.exports = App;
+}
