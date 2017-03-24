@@ -14,7 +14,6 @@ var BackgroundUpload = React.createClass({
     changeBackgournd: function(){
         var bgImg = $(ReactDOM.findDOMNode(this)).find('.up-bg').attr('src');
         AppActions.changeBackground(bgImg);
-        console.log(bgImg);
     },
     render: function(){
         return (

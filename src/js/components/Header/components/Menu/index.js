@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 
 export default class Menu extends Component {
-    getMenu = (item) => {
+    /* getMenu = (item) => {
         return (
             <li className='link'>
                 <a key={item.item}
@@ -12,12 +12,16 @@ export default class Menu extends Component {
         );
     }
 
-    renderMenu = () => (this.props.products.map(this.getMenu));
+    renderMenu = () => (this.props.products.map(this.getMenu)); */
 
     render (){
         return (
             <ul className='useful-links'>
-                {this.renderMenu}
+                {
+                    /* this.props.menu.map(function(menu){
+                        return <Menu key={menu.item} url={menu.url}>{menu.item}</Menu>
+                    })*/
+                }
             </ul>
         );
     }

@@ -17,12 +17,6 @@ var IconUpload = React.createClass({
     uploadIcon: function(e){
         var link = e.target;
         AppActions.uploadIcon(link);
-        /*var fReader = new FileReader();
-        fReader.readAsDataURL(input.files[0]);
-        $(fReader).on('loadend', function(){
-            var img = $('.upload-elment img')[0];
-            img.src = event.target.result;
-        });*/
     },
     render: function(){
         return (
