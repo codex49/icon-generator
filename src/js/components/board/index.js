@@ -1,30 +1,28 @@
-import React from 'react';
+import React, { Component } from 'react';
 import AppStore from '../../stores/AppStore';
 import AppActions from '../../actions/AppActions';
-import Outils from './Outils.js';
+import Outils from './components/Outils';
+import Grid from './components//Grid';
+import Border from './components//Border';
 
-function getAppState() {
-  return {
-        showGrid: AppStore.getStatGrid()
-  };
-}
-var Board = React.createClass({
-    getInitialState: function () {
-        return getAppState();
-    },
-    componentWillUnmount: function() {
-        AppStore.removeChangeListener(this._onChange);
-    },
-    componentDidMount: function() {
-        AppStore.addChangeListener(this._onChange);
+export default class Board extends Component {
+    constructor() {
+        super();
+
+        this.state = {
+            showGrid: AppStore.getStatGrid(),
+        };
+    }
+
+    componentDidMount () {
         $('.board li').click(function(){
             alert("The paragraph was clicked.");
         });
-        var that = this;
+
         $('.board-resultat').droppable({
-            drop: function(event, ui) {  
+            drop: function(event, ui) {
                 if(!$(ui.draggable).hasClass('svg-drag')){
-                    $(this).append($(ui.draggable).addClass('svg-drag').clone()); 
+                    $(this).append($(ui.draggable).addClass('svg-drag').clone());
                 }
                 $('.catagories .item').removeClass('svg-drag');
 
@@ -32,62 +30,32 @@ var Board = React.createClass({
 
                 $item.draggable({
                     drag: function(){
-                        var id = $(this).find('svg').attr('id');
+                        const id = $(this).find('svg').attr('id');
                         AppActions.iconChecked(id);
-                    }/*,
-                    containment: '.board-resultat', */
-                    //cursor: 'move', 
+                    }
                 });
                 $item.resizable();
             }
         });
-    },
-    render: function() {
-       var style = {
-            borderRadius: AppStore.getBorderRaduis()+'px'/*,
-            backgroundImage: 'url(' + AppStore.getBackground() + ')',*/
+    }
+
+    render () {
+        const style = {
+            borderRadius: AppStore.getBorderRaduis()+'px'
         };
+
         return (
             <div className="board">
-            	<Border />
-                    <p>Artboard <span className="text-regular">1024 x 1024 px (50%)</span></p>
-                    <div className="parent-board">
-                        <div style={style} className="board-resultat" id="board">
-                            { this.state.showGrid ? <Grid /> : null }
-                        </div>                        
+                <Border />
+                <p>Artboard <span className="text-regular">1024 x 1024 px (50%)</span></p>
+                <div className="parent-board">
+                    <div style={style} className="board-resultat" id="board">
+                        { this.state.showGrid ? <Grid /> : null }
                     </div>
+                </div>
 
-                    <Outils />
-            </div>
-        );
-    },
-    _onChange: function() {
-        this.setState(getAppState());
-    },
-});
-
-var Border = React.createClass({
-    render: function(){
-        return (
-            <div>
-                <span className="border top-left"></span>
-                <span className="border top-right"></span>
-                <span className="border bottom-right"></span>
-                <span className="border bottom-left"></span> 
+                <Outils />
             </div>
         );
     }
-});
-
-var Grid = React.createClass({
-    render: function() {
-        return (
-            <div className="lines-grid">
-                <hr className="verticale"/>
-                <hr className="horizontale"/>
-            </div>
-        );
-    }
-});
-
-module.exports = Board;
+}
