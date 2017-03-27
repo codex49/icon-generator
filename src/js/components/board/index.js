@@ -43,7 +43,6 @@ export default class Board extends Component {
     }
 
     handleShowGrid (showGrid) {
-        console.log('handleShowGrid', this.state.showGrid);
         this.setState({
             showGrid,
         });

@@ -11,6 +11,7 @@ export default class Outils extends Component {
         super(props);
 
         this.state = {
+            displayGrid: props.showGrid,
             displayColorPicker: false,
             iconChecked: AppStore.getIdIconCheked(),
         };
@@ -37,9 +38,9 @@ export default class Outils extends Component {
     }
 
     handleShowGrid () {
-        // this.setState({ displayGrid: !this.props.displayGrid });
+        this.setState({ displayGrid: !this.state.displayGrid });
         // AppActions.showGrid(!this.state.displayGrid);
-        this.props.handleShowGrid(!this.props.showGrid);
+        this.props.handleShowGrid(!this.state.displayGrid);
     }
 
     handleRemoveIcon (e) {
