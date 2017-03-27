@@ -4,35 +4,32 @@ import AppActions from '../../../../../../actions/AppActions';
 import AppAPI from '../../../../../../utils/appAPI';
 
 export default class BorderRadius extends Component {
-    emitChange () {
-        this.emit(CHANGE_EVENT);
+    constructor() {
+        super();
+
+        this.hangeChangeBorder = this.hangeChangeBorder.bind(this);
+    }
+    hangeChangeBorder (e){
+        const BorderRadius = e.target.value;
+        // AppActions.changeBorder(BorderRadius);
+        this.props.hangeChangeBorder(BorderRadius);
     }
 
-    addChangeListener (callback) {
-        this.on('change', callback);
-    }
+    renderValuesBorder () {
+      var nbrRaduis = AppAPI.getNumberBorderRadius();
+      var ops = [];
 
-    removeChangeListener (callback) {
-        this.removeListener('change', callback);
-    }
-
-    getValueBorder (e){
-        var BorderRadius = e.target.value;
-        AppActions.changeBorder(BorderRadius);
+      for(var i=0; i<nbrRaduis; i+=20){
+          ops.push(<option key={i}>{i}</option>);
+      }
+      return ops;
     }
 
     render () {
-        var nbrRaduis = AppAPI.getNumberBorderRadius();
-        var ops = [];
-
-        for(var i=0; i<nbrRaduis; i+=20){
-            ops.push(<option key={i}>{i}</option>);
-        }
-
         return (
-            <select onChange={this.getValueBorder}>
+            <select onChange={this.hangeChangeBorder}>
                 <option>Radius</option>
-                {ops}
+                {this.renderValuesBorder()}
             </select>
         );
     }

@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import AppStore from '../../stores/AppStore';
 import AppActions from '../../actions/AppActions';
 import Outils from './components/Outils';
-import Grid from './components//Grid';
 import Border from './components//Border';
 
 export default class Board extends Component {
@@ -10,8 +9,12 @@ export default class Board extends Component {
         super();
 
         this.state = {
-            showGrid: AppStore.getStatGrid(),
+            showGrid: false,
+            valueBorder: 0,
         };
+
+        this.hangeChangeBorder = this.hangeChangeBorder.bind(this);
+        this.handleShowGrid = this.handleShowGrid.bind(this);
     }
 
     componentDidMount () {
@@ -39,9 +42,34 @@ export default class Board extends Component {
         });
     }
 
+    handleShowGrid (showGrid) {
+        console.log('handleShowGrid', this.state.showGrid);
+        this.setState({
+            showGrid,
+        });
+    }
+
+    hangeChangeBorder (valueBorder) {
+        this.setState({
+            valueBorder,
+        });
+    };
+
+    renderGrid () {
+        if (!this.state.showGrid) return null;
+
+        return (
+            <div className="lines-grid">
+                <hr className="verticale"/>
+                <hr className="horizontale"/>
+            </div>
+        );
+    }
+
     render () {
         const style = {
-            borderRadius: AppStore.getBorderRaduis()+'px'
+            // borderRadius: AppStore.getBorderRaduis()+'px'
+            borderRadius: this.state.valueBorder+'px',
         };
 
         return (
@@ -50,11 +78,13 @@ export default class Board extends Component {
                 <p>Artboard <span className="text-regular">1024 x 1024 px (50%)</span></p>
                 <div className="parent-board">
                     <div style={style} className="board-resultat" id="board">
-                        { this.state.showGrid ? <Grid /> : null }
+                        {this.renderGrid()}
                     </div>
                 </div>
-
-                <Outils />
+                <Outils
+                    handleShowGrid={this.handleShowGrid}
+                    hangeChangeBorder={this.hangeChangeBorder}
+                />
             </div>
         );
     }

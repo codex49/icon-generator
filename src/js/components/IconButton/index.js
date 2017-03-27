@@ -46,7 +46,7 @@ class IconButton extends Component {
 
   render () {
       return (
-          { this.renderTypeButton() }
+          this.renderTypeButton()
       );
   }
 }
