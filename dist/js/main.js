@@ -840,6 +840,7 @@ function focusNode(node) {
 
 module.exports = focusNode;
 },{}],12:[function(require,module,exports){
+(function (global){
 'use strict';
 
 /**
@@ -866,7 +867,7 @@ module.exports = focusNode;
  * @return {?DOMElement}
  */
 function getActiveElement(doc) /*?DOMElement*/{
-  doc = doc || document;
+  doc = doc || global.document;
   if (typeof doc === 'undefined') {
     return null;
   }
@@ -878,6 +879,7 @@ function getActiveElement(doc) /*?DOMElement*/{
 }
 
 module.exports = getActiveElement;
+}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 },{}],13:[function(require,module,exports){
 (function (process){
 'use strict';
@@ -36747,7 +36749,7 @@ var AppActions = {
 
 module.exports = AppActions;
 
-},{"../constants/Constants":429,"../dispatcher/Dispatcher":430}],411:[function(require,module,exports){
+},{"../constants/Constants":433,"../dispatcher/Dispatcher":434}],411:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -36772,7 +36774,7 @@ var _Icons = require('./icons/Icons');
 
 var _Icons2 = _interopRequireDefault(_Icons);
 
-var _Board = require('./board/Board');
+var _Board = require('./Board');
 
 var _Board2 = _interopRequireDefault(_Board);
 
@@ -36835,7 +36837,435 @@ var App = function (_Component) {
 
 exports.default = App;
 
-},{"../utils/appAPI":433,"./Footer":412,"./Header":414,"./backgrounds/Backgrounds":417,"./board/Board":421,"./download/Download":424,"./icons/Icons":427,"react":402}],412:[function(require,module,exports){
+},{"../utils/appAPI":437,"./Board":415,"./Footer":416,"./Header":418,"./backgrounds/Backgrounds":421,"./download/Download":425,"./icons/Icons":431,"react":402}],412:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = require("react");
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Border = function (_Component) {
+    _inherits(Border, _Component);
+
+    function Border() {
+        _classCallCheck(this, Border);
+
+        return _possibleConstructorReturn(this, (Border.__proto__ || Object.getPrototypeOf(Border)).apply(this, arguments));
+    }
+
+    _createClass(Border, [{
+        key: "render",
+        value: function render() {
+            return _react2.default.createElement(
+                "div",
+                null,
+                _react2.default.createElement("span", { className: "border top-left" }),
+                _react2.default.createElement("span", { className: "border top-right" }),
+                _react2.default.createElement("span", { className: "border bottom-right" }),
+                _react2.default.createElement("span", { className: "border bottom-left" })
+            );
+        }
+    }]);
+
+    return Border;
+}(_react.Component);
+
+exports.default = Border;
+
+},{"react":402}],413:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _AppActions = require('../../../../../../actions/AppActions');
+
+var _AppActions2 = _interopRequireDefault(_AppActions);
+
+var _appAPI = require('../../../../../../utils/appAPI');
+
+var _appAPI2 = _interopRequireDefault(_appAPI);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var BorderRadius = function (_Component) {
+    _inherits(BorderRadius, _Component);
+
+    function BorderRadius() {
+        _classCallCheck(this, BorderRadius);
+
+        var _this = _possibleConstructorReturn(this, (BorderRadius.__proto__ || Object.getPrototypeOf(BorderRadius)).call(this));
+
+        _this.hangeChangeBorder = _this.hangeChangeBorder.bind(_this);
+        return _this;
+    }
+
+    _createClass(BorderRadius, [{
+        key: 'hangeChangeBorder',
+        value: function hangeChangeBorder(e) {
+            var BorderRadius = e.target.value;
+            // AppActions.changeBorder(BorderRadius);
+            this.props.hangeChangeBorder(BorderRadius);
+        }
+    }, {
+        key: 'renderValuesBorder',
+        value: function renderValuesBorder() {
+            var nbrRaduis = _appAPI2.default.getNumberBorderRadius();
+            var ops = [];
+
+            for (var i = 0; i < nbrRaduis; i += 20) {
+                ops.push(_react2.default.createElement(
+                    'option',
+                    { key: i },
+                    i
+                ));
+            }
+            return ops;
+        }
+    }, {
+        key: 'render',
+        value: function render() {
+            return _react2.default.createElement(
+                'select',
+                { onChange: this.hangeChangeBorder },
+                _react2.default.createElement(
+                    'option',
+                    null,
+                    'Radius'
+                ),
+                this.renderValuesBorder()
+            );
+        }
+    }]);
+
+    return BorderRadius;
+}(_react.Component);
+
+exports.default = BorderRadius;
+
+},{"../../../../../../actions/AppActions":410,"../../../../../../utils/appAPI":437,"react":402}],414:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _AppStore = require('../../../../stores/AppStore');
+
+var _AppStore2 = _interopRequireDefault(_AppStore);
+
+var _BorderRadius = require('./components/BorderRadius');
+
+var _BorderRadius2 = _interopRequireDefault(_BorderRadius);
+
+var _reactColor = require('react-color');
+
+var _reactColor2 = _interopRequireDefault(_reactColor);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Outils = function (_Component) {
+    _inherits(Outils, _Component);
+
+    function Outils(props) {
+        _classCallCheck(this, Outils);
+
+        var _this = _possibleConstructorReturn(this, (Outils.__proto__ || Object.getPrototypeOf(Outils)).call(this, props));
+
+        _this.state = {
+            displayGrid: props.showGrid,
+            displayColorPicker: false,
+            iconChecked: _AppStore2.default.getIdIconCheked()
+        };
+
+        _this.handleOpenSketchPicker = _this.handleOpenSketchPicker.bind(_this);
+        _this.handleClose = _this.handleClose.bind(_this);
+        _this.handleShowGrid = _this.handleShowGrid.bind(_this);
+        _this.handleChangeColor = _this.handleChangeColor.bind(_this);
+        _this.handleRemoveIcon = _this.handleRemoveIcon.bind(_this);
+        return _this;
+    }
+
+    _createClass(Outils, [{
+        key: 'handleOpenSketchPicker',
+        value: function handleOpenSketchPicker() {
+            var _this2 = this;
+
+            this.setState(function () {
+                return { displayColorPicker: !_this2.state.displayColorPicker };
+            });
+        }
+    }, {
+        key: 'handleClose',
+        value: function handleClose() {
+            this.setState({ displayColorPicker: false });
+        }
+    }, {
+        key: 'handleChangeColor',
+        value: function handleChangeColor(color) {
+            var idIconCheked = $('.board #' + this.state.iconChecked + ' path');
+            var c = color.rgb;
+            idIconCheked.css('fill', 'rgba(' + c.r + ', ' + c.g + ', ' + c.b + ',' + c.a + ')');
+        }
+    }, {
+        key: 'handleShowGrid',
+        value: function handleShowGrid() {
+            this.setState({ displayGrid: !this.state.displayGrid });
+            // AppActions.showGrid(!this.state.displayGrid);
+            this.props.handleShowGrid(!this.state.displayGrid);
+        }
+    }, {
+        key: 'handleRemoveIcon',
+        value: function handleRemoveIcon(e) {
+            e.preventDefault();
+            var idIconCheked = this.state.iconChecked;
+            $('.board #' + idIconCheked).parent('li').fadeOut(100);
+        }
+    }, {
+        key: 'renderBlockColor',
+        value: function renderBlockColor() {
+            if (!this.state.displayColorPicker) return null;
+
+            return _react2.default.createElement(
+                'div',
+                { className: 'popover' },
+                _react2.default.createElement('div', { className: 'cover', onClick: this.handleClose }),
+                _react2.default.createElement(_reactColor2.default, { onChange: this.handleChangeColor })
+            );
+        }
+    }, {
+        key: 'render',
+        value: function render() {
+            return _react2.default.createElement(
+                'div',
+                { className: 'outils' },
+                _react2.default.createElement(
+                    'div',
+                    { className: 'left' },
+                    _react2.default.createElement(
+                        'a',
+                        { onClick: this.handleOpenSketchPicker, className: 'color btn-green' },
+                        _react2.default.createElement('i', { className: 'color-icon' }),
+                        'Color'
+                    ),
+                    this.renderBlockColor(),
+                    _react2.default.createElement(
+                        'button',
+                        { onClick: this.handleRemoveIcon, className: 'delete' },
+                        _react2.default.createElement('i', { className: 'delete-icons' })
+                    )
+                ),
+                _react2.default.createElement(
+                    'div',
+                    { className: 'right' },
+                    _react2.default.createElement('i', { className: 'icons-radius' }),
+                    _react2.default.createElement(_BorderRadius2.default, { hangeChangeBorder: this.props.hangeChangeBorder }),
+                    _react2.default.createElement(
+                        'button',
+                        { onClick: this.handleShowGrid, className: 'grid' },
+                        _react2.default.createElement('i', { className: 'lignes' })
+                    )
+                )
+            );
+        }
+    }]);
+
+    return Outils;
+}(_react.Component);
+
+exports.default = Outils;
+
+},{"../../../../stores/AppStore":436,"./components/BorderRadius":413,"react":402,"react-color":243}],415:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _AppStore = require('../../stores/AppStore');
+
+var _AppStore2 = _interopRequireDefault(_AppStore);
+
+var _AppActions = require('../../actions/AppActions');
+
+var _AppActions2 = _interopRequireDefault(_AppActions);
+
+var _Outils = require('./components/Outils');
+
+var _Outils2 = _interopRequireDefault(_Outils);
+
+var _Border = require('./components//Border');
+
+var _Border2 = _interopRequireDefault(_Border);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Board = function (_Component) {
+    _inherits(Board, _Component);
+
+    function Board() {
+        _classCallCheck(this, Board);
+
+        var _this = _possibleConstructorReturn(this, (Board.__proto__ || Object.getPrototypeOf(Board)).call(this));
+
+        _this.state = {
+            showGrid: false,
+            valueBorder: 0
+        };
+
+        _this.hangeChangeBorder = _this.hangeChangeBorder.bind(_this);
+        _this.handleShowGrid = _this.handleShowGrid.bind(_this);
+        return _this;
+    }
+
+    _createClass(Board, [{
+        key: 'componentDidMount',
+        value: function componentDidMount() {
+            $('.board li').click(function () {
+                alert("The paragraph was clicked.");
+            });
+
+            $('.board-resultat').droppable({
+                drop: function drop(event, ui) {
+                    if (!$(ui.draggable).hasClass('svg-drag')) {
+                        $(this).append($(ui.draggable).addClass('svg-drag').clone());
+                    }
+                    $('.catagories .item').removeClass('svg-drag');
+
+                    var $item = $('.board-resultat .item');
+
+                    $item.draggable({
+                        drag: function drag() {
+                            var id = $(this).find('svg').attr('id');
+                            _AppActions2.default.iconChecked(id);
+                        }
+                    });
+                    $item.resizable();
+                }
+            });
+        }
+    }, {
+        key: 'handleShowGrid',
+        value: function handleShowGrid(showGrid) {
+            this.setState({
+                showGrid: showGrid
+            });
+        }
+    }, {
+        key: 'hangeChangeBorder',
+        value: function hangeChangeBorder(valueBorder) {
+            this.setState({
+                valueBorder: valueBorder
+            });
+        }
+    }, {
+        key: 'renderGrid',
+        value: function renderGrid() {
+            if (!this.state.showGrid) return null;
+
+            return _react2.default.createElement(
+                'div',
+                { className: 'lines-grid' },
+                _react2.default.createElement('hr', { className: 'verticale' }),
+                _react2.default.createElement('hr', { className: 'horizontale' })
+            );
+        }
+    }, {
+        key: 'render',
+        value: function render() {
+            var style = {
+                // borderRadius: AppStore.getBorderRaduis()+'px'
+                borderRadius: this.state.valueBorder + 'px'
+            };
+
+            return _react2.default.createElement(
+                'div',
+                { className: 'board' },
+                _react2.default.createElement(_Border2.default, null),
+                _react2.default.createElement(
+                    'p',
+                    null,
+                    'Artboard ',
+                    _react2.default.createElement(
+                        'span',
+                        { className: 'text-regular' },
+                        '1024 x 1024 px (50%)'
+                    )
+                ),
+                _react2.default.createElement(
+                    'div',
+                    { className: 'parent-board' },
+                    _react2.default.createElement(
+                        'div',
+                        { style: style, className: 'board-resultat', id: 'board' },
+                        this.renderGrid()
+                    )
+                ),
+                _react2.default.createElement(_Outils2.default, {
+                    handleShowGrid: this.handleShowGrid,
+                    hangeChangeBorder: this.hangeChangeBorder
+                })
+            );
+        }
+    }]);
+
+    return Board;
+}(_react.Component);
+
+exports.default = Board;
+
+},{"../../actions/AppActions":410,"../../stores/AppStore":436,"./components//Border":412,"./components/Outils":414,"react":402}],416:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -36916,7 +37346,7 @@ var Footer = function (_Component) {
 
 exports.default = Footer;
 
-},{"../actions/AppActions":410,"html2canvas":27,"react":402}],413:[function(require,module,exports){
+},{"../actions/AppActions":410,"html2canvas":27,"react":402}],417:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -36947,32 +37377,22 @@ var Menu = function (_Component) {
     }
 
     _createClass(Menu, [{
-        key: 'getMenu',
-        value: function getMenu(item) {
-            return _react2.default.createElement(
-                'li',
-                { className: 'link' },
-                _react2.default.createElement(
-                    'a',
-                    { key: item.item,
-                        href: item.url },
-                    item.item
-                )
-            );
-        }
-    }, {
-        key: 'renderMenu',
-        value: function renderMenu() {
-            return this.props.menu(this.getMenu);
-        }
-    }, {
         key: 'render',
-        value: function render() {
-            return _react2.default.createElement(
-                'ul',
-                { className: 'useful-links' },
-                this.renderMenu
+
+        /* getMenu = (item) => {
+            return (
+                <li className='link'>
+                    <a key={item.item}
+                       href={item.url}>
+                        {item.item}
+                    </a>
+                </li>
             );
+        }
+          renderMenu = () => (this.props.products.map(this.getMenu)); */
+
+        value: function render() {
+            return _react2.default.createElement('ul', { className: 'useful-links' });
         }
     }]);
 
@@ -36981,7 +37401,7 @@ var Menu = function (_Component) {
 
 exports.default = Menu;
 
-},{"react":402}],414:[function(require,module,exports){
+},{"react":402}],418:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -37051,7 +37471,7 @@ var Header = function (_Component) {
 
 exports.default = Header;
 
-},{"./components/Menu":413,"react":402}],415:[function(require,module,exports){
+},{"./components/Menu":417,"react":402}],419:[function(require,module,exports){
 'use strict';
 
 var _react = require('react');
@@ -37062,10 +37482,6 @@ var _reactDom = require('react-dom');
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
-var _AppActions = require('../../actions/AppActions');
-
-var _AppActions2 = _interopRequireDefault(_AppActions);
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var Background = _react2.default.createClass({
@@ -37073,7 +37489,6 @@ var Background = _react2.default.createClass({
 
     change: function change() {
         var bgImg = $(_reactDom2.default.findDOMNode(this)).find('img').attr('src');
-        //AppActions.changeBackground(bgImg);
         $('.board-resultat').css('background-color', 'transparent');
         $('.board-resultat').css({ 'background': 'url(' + bgImg + ') center center', 'background-size': 'cover' });
     },
@@ -37088,7 +37503,7 @@ var Background = _react2.default.createClass({
 
 module.exports = Background;
 
-},{"../../actions/AppActions":410,"react":402,"react-dom":251}],416:[function(require,module,exports){
+},{"react":402,"react-dom":251}],420:[function(require,module,exports){
 'use strict';
 
 var _react = require('react');
@@ -37116,7 +37531,6 @@ var BackgroundUpload = _react2.default.createClass({
     changeBackgournd: function changeBackgournd() {
         var bgImg = $(ReactDOM.findDOMNode(this)).find('.up-bg').attr('src');
         _AppActions2.default.changeBackground(bgImg);
-        console.log(bgImg);
     },
     render: function render() {
         return _react2.default.createElement(
@@ -37157,7 +37571,7 @@ var BackgroundUpload = _react2.default.createClass({
 
 module.exports = BackgroundUpload;
 
-},{"../../actions/AppActions":410,"react":402}],417:[function(require,module,exports){
+},{"../../actions/AppActions":410,"react":402}],421:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -37256,7 +37670,7 @@ var Backgrounds = function (_Component) {
 
 exports.default = Backgrounds;
 
-},{"../icons/TitleCategori":428,"./Background":415,"./BackgroundUpload":416,"./CustomGradient":418,"react":402}],418:[function(require,module,exports){
+},{"../icons/TitleCategori":432,"./Background":419,"./BackgroundUpload":420,"./CustomGradient":422,"react":402}],422:[function(require,module,exports){
 'use strict';
 
 var _react = require('react');
@@ -37330,7 +37744,7 @@ var CustomGradient = _react2.default.createClass({
 
 module.exports = CustomGradient;
 
-},{"../../stores/AppStore":432,"./GradientColorBottom":419,"./GradientColorTop":420,"react":402}],419:[function(require,module,exports){
+},{"../../stores/AppStore":436,"./GradientColorBottom":423,"./GradientColorTop":424,"react":402}],423:[function(require,module,exports){
 'use strict';
 
 var _react = require('react');
@@ -37409,7 +37823,7 @@ var GradientColor = _react2.default.createClass({
 
 module.exports = GradientColor;
 
-},{"../../stores/AppStore":432,"react":402,"react-color":243}],420:[function(require,module,exports){
+},{"../../stores/AppStore":436,"react":402,"react-color":243}],424:[function(require,module,exports){
 'use strict';
 
 var React = require('react'),
@@ -37477,578 +37891,412 @@ var GradientColor = React.createClass({
 
 module.exports = GradientColor;
 
-},{"../../actions/AppActions":410,"../../stores/AppStore":432,"react":402,"react-color":243}],421:[function(require,module,exports){
+},{"../../actions/AppActions":410,"../../stores/AppStore":436,"react":402,"react-color":243}],425:[function(require,module,exports){
 'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
+var _SocialMedia = require('./components/SocialMedia');
+
+var _SocialMedia2 = _interopRequireDefault(_SocialMedia);
+
+var _DownloadMobile = require('./components/DownloadMobile');
+
+var _DownloadMobile2 = _interopRequireDefault(_DownloadMobile);
+
+var _FooterPopUp = require('./components/FooterPopUp');
+
+var _FooterPopUp2 = _interopRequireDefault(_FooterPopUp);
+
 var _AppStore = require('../../stores/AppStore');
 
 var _AppStore2 = _interopRequireDefault(_AppStore);
 
-var _AppActions = require('../../actions/AppActions');
-
-var _AppActions2 = _interopRequireDefault(_AppActions);
-
-var _Outils = require('./Outils.js');
-
-var _Outils2 = _interopRequireDefault(_Outils);
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function getAppState() {
-    return {
-        showGrid: _AppStore2.default.getStatGrid()
-    };
-}
-var Board = _react2.default.createClass({
-    displayName: 'Board',
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-    getInitialState: function getInitialState() {
-        return getAppState();
-    },
-    componentWillUnmount: function componentWillUnmount() {
-        _AppStore2.default.removeChangeListener(this._onChange);
-    },
-    componentDidMount: function componentDidMount() {
-        _AppStore2.default.addChangeListener(this._onChange);
-        $('.board li').click(function () {
-            alert("The paragraph was clicked.");
-        });
-        var that = this;
-        $('.board-resultat').droppable({
-            drop: function drop(event, ui) {
-                if (!$(ui.draggable).hasClass('svg-drag')) {
-                    $(this).append($(ui.draggable).addClass('svg-drag').clone());
-                }
-                $('.catagories .item').removeClass('svg-drag');
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
-                var $item = $('.board-resultat .item');
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-                $item.draggable({
-                    drag: function drag() {
-                        var id = $(this).find('svg').attr('id');
-                        _AppActions2.default.iconChecked(id);
-                    } /*,
-                      containment: '.board-resultat', */
-                    //cursor: 'move', 
-                });
-                $item.resizable();
-            }
-        });
-    },
-    render: function render() {
-        var style = {
-            borderRadius: _AppStore2.default.getBorderRaduis() + 'px' /*,
-                                                                      backgroundImage: 'url(' + AppStore.getBackground() + ')',*/
+var Download = function (_Component) {
+    _inherits(Download, _Component);
+
+    function Download() {
+        _classCallCheck(this, Download);
+
+        var _this = _possibleConstructorReturn(this, (Download.__proto__ || Object.getPrototypeOf(Download)).call(this));
+
+        _this.state = {
+            size: 1024,
+            stl_1024: true,
+            stl_512: false
         };
-        return _react2.default.createElement(
-            'div',
-            { className: 'board' },
-            _react2.default.createElement(Border, null),
-            _react2.default.createElement(
-                'p',
-                null,
-                'Artboard ',
-                _react2.default.createElement(
-                    'span',
-                    { className: 'text-regular' },
-                    '1024 x 1024 px (50%)'
-                )
-            ),
-            _react2.default.createElement(
+
+        _this.fc_1024 = _this.fc_1024.bind(_this);
+        _this.fc_512 = _this.fc_512.bind(_this);
+        _this.handleDownload = _this.handleDownload.bind(_this);
+        return _this;
+    }
+
+    _createClass(Download, [{
+        key: 'socialMedia',
+        value: function socialMedia(social, i) {
+            return _react2.default.createElement(
+                _SocialMedia2.default,
+                {
+                    key: i,
+                    link: social.url },
+                social.children
+            );
+        }
+    }, {
+        key: 'fc_1024',
+        value: function fc_1024() {
+            this.setState({
+                size: 1024,
+                stl_1024: true,
+                stl_512: false
+            });
+        }
+    }, {
+        key: 'fc_512',
+        value: function fc_512() {
+            this.setState({
+                size: 512,
+                stl_1024: false,
+                stl_512: true
+            });
+        }
+    }, {
+        key: 'handleDownload',
+        value: function handleDownload(e) {
+            e.preventDefault();
+            var canvas = _AppStore2.default.getCanvas();
+
+            var size = this.state.size;
+
+            var ctx = canvas.getContext('2d');
+            ctx.webkitImageSmoothingEnabled = false;
+            ctx.mozImageSmoothingEnabled = false;
+            ctx.imageSmoothingEnabled = false;
+            var extra_canvas = document.createElement("canvas");
+            extra_canvas.setAttribute('width', size);
+            extra_canvas.setAttribute('height', size);
+            var ctx = extra_canvas.getContext('2d');
+            ctx.drawImage(canvas, 0, 0, canvas.width, canvas.height, 0, 0, size, size);
+
+            var imgageData = extra_canvas.toDataURL("image/png");
+            var newData = imgageData.replace(/^data:image\/png/, "data:application/octet-stream");
+
+            $("#icon-download").attr("download", "icon-generate.png").attr("href", newData);
+        }
+    }, {
+        key: 'renderSendIcon',
+        value: function renderSendIcon() {
+            return _react2.default.createElement(
                 'div',
-                { className: 'parent-board' },
+                { className: 'send-icon' },
+                _react2.default.createElement(
+                    'form',
+                    null,
+                    _react2.default.createElement('input', { type: 'text', className: 'text', rel: 'email', placeholder: 'Write your email to recive the icons' }),
+                    _react2.default.createElement('input', { type: 'submit', className: 'btn-green', value: 'Send' })
+                )
+            );
+        }
+    }, {
+        key: 'renderMobileIcon',
+        value: function renderMobileIcon() {
+            return _react2.default.createElement(
+                'ul',
+                { className: 'download-mobile' },
+                _react2.default.createElement(
+                    'li',
+                    { className: 'android' },
+                    _react2.default.createElement(
+                        'a',
+                        { href: '' },
+                        _react2.default.createElement('img', { src: 'img/icons/android.png' })
+                    )
+                ),
+                _react2.default.createElement(
+                    'li',
+                    { className: 'ios' },
+                    _react2.default.createElement(
+                        'a',
+                        { href: '' },
+                        _react2.default.createElement('img', { src: 'img/icons/ios.png' })
+                    )
+                )
+            );
+        }
+    }, {
+        key: 'render',
+        value: function render() {
+            return _react2.default.createElement(
+                'div',
+                { className: 'popup' },
                 _react2.default.createElement(
                     'div',
-                    { style: style, className: 'board-resultat', id: 'board' },
-                    this.state.showGrid ? _react2.default.createElement(Grid, null) : null
+                    { className: 'block-download' },
+                    _react2.default.createElement(
+                        'h1',
+                        { className: 'title-popup' },
+                        'Thank you!'
+                    ),
+                    _react2.default.createElement(
+                        'p',
+                        { className: 'description' },
+                        'Now it\'s time to brag about your new icon'
+                    ),
+                    _react2.default.createElement(
+                        'ul',
+                        { className: 'slink' },
+                        this.props.SocialsMedia.map(this.socialMedia)
+                    ),
+                    _react2.default.createElement(
+                        'div',
+                        { className: 'icon', id: 'icon-result' },
+                        _react2.default.createElement('img', { src: 'img/icons/pdf.png' })
+                    ),
+                    _react2.default.createElement(
+                        'div',
+                        { className: 'btns-size' },
+                        _react2.default.createElement(
+                            'button',
+                            { className: 'btn-size', onClick: this.fc_1024 },
+                            '1024px'
+                        ),
+                        _react2.default.createElement(
+                            'button',
+                            { className: '', onClick: this.fc_512 },
+                            '512px'
+                        )
+                    ),
+                    _react2.default.createElement(
+                        'a',
+                        { href: '', id: 'icon-download', onClick: this.handleDownload, className: 'btn-download btn-green' },
+                        'Download icon',
+                        _react2.default.createElement(
+                            'em',
+                            null,
+                            this.state.size,
+                            ' x ',
+                            this.state.size,
+                            ' px'
+                        )
+                    ),
+                    _react2.default.createElement('hr', { className: 'ligne' }),
+                    _react2.default.createElement(
+                        'p',
+                        { className: 'description' },
+                        'Download the necessary sizes for Android and iOS'
+                    ),
+                    this.renderMobileIcon(),
+                    _react2.default.createElement(
+                        'div',
+                        { className: 'block-mobile' },
+                        _react2.default.createElement(_DownloadMobile2.default, null),
+                        this.renderSendIcon()
+                    ),
+                    _react2.default.createElement(_FooterPopUp2.default, null)
                 )
-            ),
-            _react2.default.createElement(_Outils2.default, null)
-        );
-    },
-    _onChange: function _onChange() {
-        this.setState(getAppState());
-    }
-});
-
-var Border = _react2.default.createClass({
-    displayName: 'Border',
-
-    render: function render() {
-        return _react2.default.createElement(
-            'div',
-            null,
-            _react2.default.createElement('span', { className: 'border top-left' }),
-            _react2.default.createElement('span', { className: 'border top-right' }),
-            _react2.default.createElement('span', { className: 'border bottom-right' }),
-            _react2.default.createElement('span', { className: 'border bottom-left' })
-        );
-    }
-});
-
-var Grid = _react2.default.createClass({
-    displayName: 'Grid',
-
-    render: function render() {
-        return _react2.default.createElement(
-            'div',
-            { className: 'lines-grid' },
-            _react2.default.createElement('hr', { className: 'verticale' }),
-            _react2.default.createElement('hr', { className: 'horizontale' })
-        );
-    }
-});
-
-module.exports = Board;
-
-},{"../../actions/AppActions":410,"../../stores/AppStore":432,"./Outils.js":423,"react":402}],422:[function(require,module,exports){
-'use strict';
-
-var _react = require('react');
-
-var _react2 = _interopRequireDefault(_react);
-
-var _AppActions = require('../../actions/AppActions');
-
-var _AppActions2 = _interopRequireDefault(_AppActions);
-
-var _appAPI = require('../../utils/appAPI');
-
-var _appAPI2 = _interopRequireDefault(_appAPI);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var BorderRadius = _react2.default.createClass({
-    displayName: 'BorderRadius',
-
-    emitChange: function emitChange() {
-        this.emit(CHANGE_EVENT);
-    },
-    addChangeListener: function addChangeListener(callback) {
-        this.on('change', callback);
-    },
-    removeChangeListener: function removeChangeListener(callback) {
-        this.removeListener('change', callback);
-    },
-    getValueBorder: function getValueBorder(e) {
-        var BorderRadius = e.target.value;
-        _AppActions2.default.changeBorder(BorderRadius);
-    },
-    render: function render() {
-        var nbrRaduis = _appAPI2.default.getNumberBorderRadius();
-        var ops = [];
-        for (var i = 0; i < nbrRaduis; i += 20) {
-            ops.push(_react2.default.createElement(
-                'option',
-                { key: i },
-                i
-            ));
+            );
         }
-        return _react2.default.createElement(
-            'select',
-            { onChange: this.getValueBorder },
-            _react2.default.createElement(
-                'option',
-                null,
-                'Radius'
-            ),
-            ops
-        );
-    }
+    }]);
+
+    return Download;
+}(_react.Component);
+
+exports.default = Download;
+
+},{"../../stores/AppStore":436,"./components/DownloadMobile":426,"./components/FooterPopUp":427,"./components/SocialMedia":428,"react":402}],426:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
 });
 
-module.exports = BorderRadius;
-
-},{"../../actions/AppActions":410,"../../utils/appAPI":433,"react":402}],423:[function(require,module,exports){
-'use strict';
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
-var _AppStore = require('../../stores/AppStore');
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var _AppStore2 = _interopRequireDefault(_AppStore);
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var _AppActions = require('../../actions/AppActions');
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
-var _AppActions2 = _interopRequireDefault(_AppActions);
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var _BorderRadius = require('./BorderRadius.js');
+var DownloadMobile = function (_Component) {
+    _inherits(DownloadMobile, _Component);
 
-var _BorderRadius2 = _interopRequireDefault(_BorderRadius);
+    function DownloadMobile() {
+        _classCallCheck(this, DownloadMobile);
 
-var _reactColor = require('react-color');
+        return _possibleConstructorReturn(this, (DownloadMobile.__proto__ || Object.getPrototypeOf(DownloadMobile)).apply(this, arguments));
+    }
 
-var _reactColor2 = _interopRequireDefault(_reactColor);
+    _createClass(DownloadMobile, [{
+        key: 'send',
+        value: function send(e) {
+            e.preventDefault();
+            var that = $(ReactDOM.findDOMNode(this));
+            that.fadeOut(60);
+            var sendIcons = $('.send-icon');
+            sendIcons.fadeIn(300);
+        }
+    }, {
+        key: 'render',
+        value: function render() {
+            return _react2.default.createElement(
+                'a',
+                { href: '', className: 'btn-download-mobile', onClick: this.send },
+                'For iOS & Android',
+                _react2.default.createElement(
+                    'em',
+                    null,
+                    'All the necessary sizes'
+                )
+            );
+        }
+    }]);
+
+    return DownloadMobile;
+}(_react.Component);
+
+exports.default = DownloadMobile;
+
+},{"react":402}],427:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-// import SketchPicker from 'react-color').default;;
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-function getAppState() {
-    return {
-        showGrid: false,
-        displayColorPicker: false,
-        iconChecked: _AppStore2.default.getIdIconCheked()
-    };
-}
-var Outils = _react2.default.createClass({
-    displayName: 'Outils',
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
-    getInitialState: function getInitialState() {
-        return {
-            displayGrid: false,
-            displayColorPicker: false,
-            iconChecked: _AppStore2.default.getIdIconCheked()
-        };
-    },
-    componentDidMount: function componentDidMount() {
-        _AppStore2.default.addChangeListener(this._onChange);
-    },
-    componentWillUnmount: function componentWillUnmount() {
-        _AppStore2.default.removeChangeListener(this._onChange);
-    },
-    render: function render() {
-        return _react2.default.createElement(
-            'div',
-            { className: 'outils' },
-            _react2.default.createElement(
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var FooterPopUp = function (_Component) {
+    _inherits(FooterPopUp, _Component);
+
+    function FooterPopUp() {
+        _classCallCheck(this, FooterPopUp);
+
+        return _possibleConstructorReturn(this, (FooterPopUp.__proto__ || Object.getPrototypeOf(FooterPopUp)).apply(this, arguments));
+    }
+
+    _createClass(FooterPopUp, [{
+        key: 'handleClosePopUp',
+        value: function handleClosePopUp(e) {
+            var popUp = $('.popup');
+            e.preventDefault();
+            popUp.fadeOut(500);
+        }
+    }, {
+        key: 'render',
+        value: function render() {
+            return _react2.default.createElement(
                 'div',
-                { className: 'left' },
+                { className: 'footer' },
                 _react2.default.createElement(
                     'a',
-                    { onClick: this.handleClick, className: 'color btn-green' },
-                    _react2.default.createElement('i', { className: 'color-icon' }),
-                    'Color'
+                    { href: '', className: 'like-fb' },
+                    _react2.default.createElement('img', { className: 'btn-like', src: 'img/icons/fb-like.png' }),
+                    '54,222 people like this. Be the first of your friends.'
                 ),
-                this.state.displayColorPicker ? _react2.default.createElement(
-                    'div',
-                    { className: 'popover' },
-                    _react2.default.createElement('div', { className: 'cover', onClick: this.handleClose }),
-                    _react2.default.createElement(_reactColor2.default, { onChange: this.handleChange })
-                ) : null,
                 _react2.default.createElement(
-                    'button',
-                    { onClick: this.remove, className: 'delete' },
-                    _react2.default.createElement('i', { className: 'delete-icons' })
+                    'a',
+                    { href: '', className: 'close', onClick: this.handleClosePopUp },
+                    'Build another? Click here'
                 )
-            ),
-            _react2.default.createElement(
-                'div',
-                { className: 'right' },
-                _react2.default.createElement('i', { className: 'icons-radius' }),
-                _react2.default.createElement(_BorderRadius2.default, null),
-                _react2.default.createElement(
-                    'button',
-                    { onClick: this.grid, className: 'grid' },
-                    _react2.default.createElement('i', { className: 'lignes' })
-                )
-            )
-        );
-    },
-    _onChange: function _onChange() {
-        this.setState(getAppState());
-    },
-    handleClick: function handleClick() {
-        this.setState({ displayColorPicker: !this.state.displayColorPicker });
-    },
-    handleClose: function handleClose() {
-        this.setState({ displayColorPicker: false });
-    },
-    handleChange: function handleChange(color) {
-        var idIconCheked = $('.board #' + this.state.iconChecked + ' path');
-        var c = color.rgb;
-        idIconCheked.css('fill', 'rgba(' + c.r + ', ' + c.g + ', ' + c.b + ',' + c.a + ')');
-    },
-    grid: function grid(e) {
-        e.preventDefault();
-        //var statGrid = !this.state.showGrid;
+            );
+        }
+    }]);
 
+    return FooterPopUp;
+}(_react.Component);
 
-        this.setState({ displayGrid: !this.state.displayGrid });
-        _AppActions2.default.showGrid(!this.state.displayGrid);
-        console.log('t : ' + this.state.displayGrid);
-    },
-    remove: function remove(e) {
-        e.preventDefault();
-        var idIconCheked = this.state.iconChecked;
-        $('.board #' + idIconCheked).parent('li').fadeOut(100);
-    }
+exports.default = FooterPopUp;
+
+},{"react":402}],428:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
 });
 
-module.exports = Outils;
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-},{"../../actions/AppActions":410,"../../stores/AppStore":432,"./BorderRadius.js":422,"react":402,"react-color":243}],424:[function(require,module,exports){
-'use strict';
-
-var _react = require('react');
+var _react = require("react");
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactDom = require('react-dom');
-
-var _reactDom2 = _interopRequireDefault(_reactDom);
-
-var _AppStore = require('../../stores/AppStore');
-
-var _AppStore2 = _interopRequireDefault(_AppStore);
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var Download = _react2.default.createClass({
-	displayName: 'Download',
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-	getInitialState: function getInitialState() {
-		return {
-			size: 1024,
-			stl_1024: true,
-			stl_512: false
-		};
-	},
-	socialMedia: function socialMedia(social, i) {
-		return _react2.default.createElement(
-			SocialMedia,
-			{ key: i, link: social.url },
-			social.children
-		);
-	},
-	fc_1024: function fc_1024() {
-		this.setState({ size: 1024, stl_1024: true, stl_512: false });
-	},
-	fc_512: function fc_512() {
-		this.setState({ size: 512, stl_1024: false, stl_512: true });
-	},
-	fc_256: function fc_256() {
-		this.setState({ size: 256 });
-		$('.btns-size button').removeClass('btn-size');
-		$(_reactDom2.default.findDOMNode(this)).addClass('btn-size');
-	},
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
-	fc_128: function fc_128() {
-		this.setState({ size: 128 });
-		$('.btns-size button').removeClass('btn-size');
-		$(_reactDom2.default.findDOMNode(this)).addClass('btn-size');
-	},
-	fc_64: function fc_64() {
-		this.setState({ size: 64 });
-		$('.btns-size button').removeClass('btn-size');
-		$(_reactDom2.default.findDOMNode(this)).addClass('btn-size');
-	},
-	download: function download(e) {
-		//e.preventDefault();
-		var canvas = _AppStore2.default.getCanvas();
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-		//Get size buttons
-		var size = this.state.size;
+var SocialMedia = function (_Component) {
+    _inherits(SocialMedia, _Component);
 
-		var ctx = canvas.getContext('2d');
-		ctx.webkitImageSmoothingEnabled = false;
-		ctx.mozImageSmoothingEnabled = false;
-		ctx.imageSmoothingEnabled = false;
-		var extra_canvas = document.createElement("canvas");
-		extra_canvas.setAttribute('width', size);
-		extra_canvas.setAttribute('height', size);
-		var ctx = extra_canvas.getContext('2d');
-		ctx.drawImage(canvas, 0, 0, canvas.width, canvas.height, 0, 0, size, size);
+    function SocialMedia() {
+        _classCallCheck(this, SocialMedia);
 
-		var imgageData = extra_canvas.toDataURL("image/png");
-		var newData = imgageData.replace(/^data:image\/png/, "data:application/octet-stream");
-		$("#icon-download").attr("download", "icon-generate.png").attr("href", newData);
-	},
-	render: function render() {
-		return _react2.default.createElement(
-			'div',
-			{ className: 'popup' },
-			_react2.default.createElement(
-				'div',
-				{ className: 'block-download' },
-				_react2.default.createElement(
-					'h1',
-					{ className: 'title-popup' },
-					'Thank you!'
-				),
-				_react2.default.createElement(
-					'p',
-					{ className: 'description' },
-					'Now it\'s time to brag about your new icon'
-				),
-				_react2.default.createElement(
-					'ul',
-					{ className: 'slink' },
-					this.props.SocialsMedia.map(this.socialMedia)
-				),
-				_react2.default.createElement(
-					'div',
-					{ className: 'icon', id: 'icon-result' },
-					_react2.default.createElement('img', { src: 'img/icons/pdf.png' })
-				),
-				_react2.default.createElement(
-					'div',
-					{ className: 'btns-size' },
-					_react2.default.createElement(
-						'button',
-						{ className: this.state.stl_1024 == true ? "btn-size" : "", onClick: this.fc_1024 },
-						'1024px'
-					),
-					_react2.default.createElement(
-						'button',
-						{ className: this.state.stl_512 == true ? "btn-size" : "", onClick: this.fc_512 },
-						'512px'
-					)
-				),
-				_react2.default.createElement(
-					'a',
-					{ href: '', id: 'icon-download', onClick: this.download, className: 'btn-download btn-green' },
-					'Download icon',
-					_react2.default.createElement(
-						'em',
-						null,
-						this.state.size,
-						' x ',
-						this.state.size,
-						' px'
-					)
-				),
-				_react2.default.createElement('hr', { className: 'ligne' }),
-				_react2.default.createElement(
-					'p',
-					{ className: 'description' },
-					'Download the necessary sizes for Android and iOS'
-				),
-				_react2.default.createElement(MobileIcon, null),
-				_react2.default.createElement(
-					'div',
-					{ className: 'block-mobile' },
-					_react2.default.createElement(DownloadMobile, null),
-					_react2.default.createElement(SendIcon, null)
-				),
-				_react2.default.createElement(FooterPopUp, null)
-			)
-		);
-	}
-});
+        return _possibleConstructorReturn(this, (SocialMedia.__proto__ || Object.getPrototypeOf(SocialMedia)).apply(this, arguments));
+    }
 
-var SocialMedia = _react2.default.createClass({
-	displayName: 'SocialMedia',
+    _createClass(SocialMedia, [{
+        key: "render",
+        value: function render() {
+            return _react2.default.createElement(
+                "li",
+                { className: "social-media" },
+                _react2.default.createElement(
+                    "a",
+                    { href: "" },
+                    _react2.default.createElement("img", {
+                        src: this.props.link,
+                        alt: this.props.children
+                    })
+                )
+            );
+        }
+    }]);
 
-	render: function render() {
-		return _react2.default.createElement(
-			'li',
-			{ className: 'social-media' },
-			_react2.default.createElement(
-				'a',
-				{ href: '' },
-				_react2.default.createElement('img', { src: this.props.link, alt: this.props.children })
-			)
-		);
-	}
-});
+    return SocialMedia;
+}(_react.Component);
 
-var DownloadMobile = _react2.default.createClass({
-	displayName: 'DownloadMobile',
+exports.default = SocialMedia;
 
-	send: function send(e) {
-		e.preventDefault();
-		var that = $(_reactDom2.default.findDOMNode(this));
-		that.fadeOut(60);
-		var sendIcons = $('.send-icon');
-		sendIcons.fadeIn(300);
-	},
-	render: function render() {
-		return _react2.default.createElement(
-			'a',
-			{ href: '', className: 'btn-download-mobile', onClick: this.send },
-			'For iOS & Android',
-			_react2.default.createElement(
-				'em',
-				null,
-				'All the necessary sizes'
-			)
-		);
-	}
-});
-
-var SendIcon = _react2.default.createClass({
-	displayName: 'SendIcon',
-
-	render: function render() {
-		return _react2.default.createElement(
-			'div',
-			{ className: 'send-icon' },
-			_react2.default.createElement(
-				'form',
-				null,
-				_react2.default.createElement('input', { type: 'text', className: 'text', rel: 'email', placeholder: 'Write your email to recive the icons' }),
-				_react2.default.createElement('input', { type: 'submit', className: 'btn-green', value: 'Send' })
-			)
-		);
-	}
-});
-
-var MobileIcon = _react2.default.createClass({
-	displayName: 'MobileIcon',
-
-	render: function render() {
-		return _react2.default.createElement(
-			'ul',
-			{ className: 'download-mobile' },
-			_react2.default.createElement(
-				'li',
-				{ className: 'android' },
-				_react2.default.createElement(
-					'a',
-					{ href: '' },
-					_react2.default.createElement('img', { src: 'img/icons/android.png' })
-				)
-			),
-			_react2.default.createElement(
-				'li',
-				{ className: 'ios' },
-				_react2.default.createElement(
-					'a',
-					{ href: '' },
-					_react2.default.createElement('img', { src: 'img/icons/ios.png' })
-				)
-			)
-		);
-	}
-});
-
-var FooterPopUp = _react2.default.createClass({
-	displayName: 'FooterPopUp',
-
-	close: function close(e) {
-		var popUp = $('.popup');
-		e.preventDefault();
-		popUp.fadeOut(500);
-	},
-	render: function render() {
-		return _react2.default.createElement(
-			'div',
-			{ className: 'footer' },
-			_react2.default.createElement(
-				'a',
-				{ href: '', className: 'like-fb' },
-				_react2.default.createElement('img', { className: 'btn-like', src: 'img/icons/fb-like.png' }),
-				'54,222 people like this. Be the first of your friends.'
-			),
-			_react2.default.createElement(
-				'a',
-				{ href: '', className: 'close', onClick: this.close },
-				'Build another? Click here'
-			)
-		);
-	}
-});
-
-module.exports = Download;
-
-},{"../../stores/AppStore":432,"react":402,"react-dom":251}],425:[function(require,module,exports){
+},{"react":402}],429:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -38111,7 +38359,7 @@ var Icon = function (_Component) {
 
 exports.default = Icon;
 
-},{"react":402,"react-dom":251}],426:[function(require,module,exports){
+},{"react":402,"react-dom":251}],430:[function(require,module,exports){
 'use strict';
 
 var _react = require('react');
@@ -38142,12 +38390,6 @@ var IconUpload = _react2.default.createClass({
     uploadIcon: function uploadIcon(e) {
         var link = e.target;
         _AppActions2.default.uploadIcon(link);
-        /*var fReader = new FileReader();
-        fReader.readAsDataURL(input.files[0]);
-        $(fReader).on('loadend', function(){
-            var img = $('.upload-elment img')[0];
-            img.src = event.target.result;
-        });*/
     },
     render: function render() {
         return _react2.default.createElement(
@@ -38188,7 +38430,7 @@ var IconUpload = _react2.default.createClass({
 
 module.exports = IconUpload;
 
-},{"../../actions/AppActions":410,"./Icon":425,"react":402}],427:[function(require,module,exports){
+},{"../../actions/AppActions":410,"./Icon":429,"react":402}],431:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -38304,7 +38546,7 @@ var Icons = function (_Component) {
 
 exports.default = Icons;
 
-},{"./Icon":425,"./IconUpload":426,"./TitleCategori":428,"react":402}],428:[function(require,module,exports){
+},{"./Icon":429,"./IconUpload":430,"./TitleCategori":432,"react":402}],432:[function(require,module,exports){
 'use strict';
 
 var _react = require('react');
@@ -38353,7 +38595,7 @@ var TitleCategori = _react2.default.createClass({
 
 module.exports = TitleCategori;
 
-},{"react":402,"react-dom":251}],429:[function(require,module,exports){
+},{"react":402,"react-dom":251}],433:[function(require,module,exports){
 'use strict';
 
 module.exports = {
@@ -38368,7 +38610,7 @@ module.exports = {
 	GET_ICON_TO_DOWNLOAD: 'GET_ICON_TO_DOWNLOAD'
 };
 
-},{}],430:[function(require,module,exports){
+},{}],434:[function(require,module,exports){
 'use strict';
 
 var Dispatcher = require('flux').Dispatcher;
@@ -38386,7 +38628,7 @@ var Dispatcher = assign(new Dispatcher(), {
 
 module.exports = Dispatcher;
 
-},{"flux":25,"object-assign":193}],431:[function(require,module,exports){
+},{"flux":25,"object-assign":193}],435:[function(require,module,exports){
 'use strict';
 
 var _react = require('react');
@@ -38405,7 +38647,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 _reactDom2.default.render(_react2.default.createElement(_App2.default, null), document.getElementById('app'));
 
-},{"./components/App":411,"react":402,"react-dom":251}],432:[function(require,module,exports){
+},{"./components/App":411,"react":402,"react-dom":251}],436:[function(require,module,exports){
 'use strict';
 
 var Dispatcher = require('../dispatcher/Dispatcher'),
@@ -38539,7 +38781,7 @@ Dispatcher.register(function (payload) {
 
 module.exports = AppStore;
 
-},{"../constants/Constants":429,"../dispatcher/Dispatcher":430,"../utils/appAPI":433,"events":1,"object-assign":193}],433:[function(require,module,exports){
+},{"../constants/Constants":433,"../dispatcher/Dispatcher":434,"../utils/appAPI":437,"events":1,"object-assign":193}],437:[function(require,module,exports){
 'use strict';
 
 var AppActions = require('../actions/AppActions');
@@ -38590,4 +38832,4 @@ module.exports = {
     }
 };
 
-},{"../actions/AppActions":410}]},{},[431]);
+},{"../actions/AppActions":410}]},{},[435]);

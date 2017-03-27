@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 
 import AppStore from '../../../../stores/AppStore';
-import AppActions from '../../../../actions/AppActions';
-
 import BorderRadius from './components/BorderRadius';
 import SketchPicker from 'react-color';
 
