@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 
-import BackgroundUpload from './BackgroundUpload';
-import Background from './Background';
-import CustomGradient from './CustomGradient';
+import Background from './components/Background/Background';
+import BackgroundUpload from './components/BackgroundUpload/BackgroundUpload';
+import CustomGradient from './components/CustomGradient/CustomGradient';
 import TitleCategori from '../icons/TitleCategori';
 
 export default class Backgrounds extends Component{
@@ -21,14 +21,14 @@ export default class Backgrounds extends Component{
                                 }
                                 background.push(<Background key={f} link={item}/>);
                                 return background;
-                            }.bind(this));
+                            });
                             return (
                                 <li key={i} className="catagorie">
                                     <TitleCategori link={catagorie.iconCat}>{catagorie.name}</TitleCategori>
                                     <ul className="items">{items}</ul>
                                 </li>
                             );
-                        }.bind(this))
+                        })
                     }
                 </ul>
             </div>

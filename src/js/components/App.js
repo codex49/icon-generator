@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 
 import AppAPI from '../utils/appAPI';
 import Header from './Header';
-import Icons from './icons/Icons';
+import Icons from './Icons';
 import Board from './Board';
-import Backgrounds from './backgrounds/Backgrounds';
+import Backgrounds from './Backgrounds';
 import Footer from './Footer';
-import Popup from './download/Download';
+import Popup from './Download';
 
 const MenuItems = AppAPI.getMenuItems();
 const ListIcons = AppAPI.getIcons();
@@ -24,7 +24,7 @@ export default class App extends Component {
                     <Backgrounds listCategories={ListBackgrounds}/>
                 </main>
                 <Footer />
-                <Popup SocialsMedia={SocialsMedia}/>
+                <Popup socialsMedia={SocialsMedia}/>
             </div>
         );
     }

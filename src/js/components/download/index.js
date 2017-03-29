@@ -18,7 +18,7 @@ export default class Download extends Component {
 
         this.fc_1024 = this.fc_1024.bind(this);
         this.fc_512 = this.fc_512.bind(this);
-        this.handleDownload = this.handleDownload.bind(this);
+        this.handleDownloadIcon = this.handleDownloadIcon.bind(this);
     }
 
     socialMedia (social, i) {
@@ -47,7 +47,7 @@ export default class Download extends Component {
         });
     }
 
-    handleDownload (e) {
+    handleDownloadIcon (e) {
         e.preventDefault();
         var canvas = AppStore.getCanvas();
 
@@ -63,8 +63,8 @@ export default class Download extends Component {
         var ctx = extra_canvas.getContext('2d');
         ctx.drawImage(canvas,0,0,canvas.width, canvas.height,0,0,size,size);
 
-        const imgageData = extra_canvas.toDataURL("image/png");
-        const newData = imgageData.replace(/^data:image\/png/, "data:application/octet-stream");
+        var imgageData = extra_canvas.toDataURL("image/png");
+        var newData = imgageData.replace(/^data:image\/png/, "data:application/octet-stream");
 
         $("#icon-download").attr("download", "icon-generate.png").attr("href", newData);
     }
@@ -89,6 +89,18 @@ export default class Download extends Component {
         );
     }
 
+    renderButtonsSize () {
+        const sizeBig = this.state.stl_1024 ? 'btn-size' : null;
+        const sizeSmall = this.state.stl_512 ? 'btn-size' : null;
+
+        return (
+            <div className="btns-size">
+                <button className={sizeBig} onClick={this.fc_1024}>1024px</button>
+                <button className={sizeSmall} onClick={this.fc_512}>512px</button>
+            </div>
+        );
+    }
+
     render () {
         return (
 			<div className="popup">
@@ -96,16 +108,13 @@ export default class Download extends Component {
 					<h1 className="title-popup">Thank you!</h1>
 					<p className="description">Now it's time to brag about your new icon</p>
 					<ul className="slink">
-                        { this.props.SocialsMedia.map(this.socialMedia) }
+                        { this.props.socialsMedia.map(this.socialMedia) }
 					</ul>
 					<div className="icon" id="icon-result">
 						<img src="img/icons/pdf.png"/>
 					</div>
-					<div className="btns-size">
-						<button className="btn-size" onClick={this.fc_1024}>1024px</button>
-						<button className="" onClick={this.fc_512}>512px</button>
-					</div>
-					<a href="" id="icon-download" onClick={this.handleDownload} className="btn-download btn-green">Download icon
+                    {this.renderButtonsSize()}
+					<a href="" id="icon-download" onClick={this.handleDownloadIcon} className="btn-download btn-green">Download icon
 						<em>{this.state.size} x {this.state.size} px</em>
 					</a>
 					<hr className="ligne"/>

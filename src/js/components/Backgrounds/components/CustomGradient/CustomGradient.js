@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import AppStore from '../../stores/AppStore';
-import GradientColorTop from './GradientColorTop';
-import GradientColorBottom from './GradientColorBottom';
+import AppStore from '../../../../stores/AppStore';
+import GradientColorTop from '../../GradientColorTop';
+import GradientColorBottom from '../../GradientColorBottom';
 
 function getAppState(){
 	return {

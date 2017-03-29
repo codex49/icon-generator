@@ -1,24 +1,15 @@
 import React, { Component } from 'react';
 
 import AppActions from '../../actions/AppActions';
-import Icon from './Icon';
+import Icon from '../icons/components/Icon';
 
-var IconUpload = React.createClass({
-    getDefaultProps: function(){
-        return {
-            url: 'img/icons/star.png'
-        };
-    },
-    getInitialState: function(){
-        return {
-
-        };
-    },
-    uploadIcon: function(e){
-        var link = e.target;
+export default class Upload extends Component {
+    uploadIcon (e) {
+        const link = e.target;
         AppActions.uploadIcon(link);
-    },
-    render: function(){
+    }
+
+    render (){
         return (
             <div className="upload-block">
                 <a className={"title-catagorie " + this.props.active}>
@@ -37,6 +28,4 @@ var IconUpload = React.createClass({
             </div>
         );
     }
-});
-
-module.exports = IconUpload;
+}

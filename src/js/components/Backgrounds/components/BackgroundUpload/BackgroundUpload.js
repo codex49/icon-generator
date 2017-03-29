@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import AppActions from '../../actions/AppActions';
+import AppActions from '../../../../actions/AppActions';
 
 var BackgroundUpload = React.createClass({
     getDefaultProps: function(){
