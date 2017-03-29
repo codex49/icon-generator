@@ -1,31 +1,24 @@
 import React, { Component } from 'react';
 import AppStore from '../../../../stores/AppStore';
-import GradientColorTop from '../../GradientColorTop';
-import GradientColorBottom from '../../GradientColorBottom';
+import GradientColorTop from './components/GradientColorTop';
+import GradientColorBottom from './components/GradientColorBottom';
 
-function getAppState(){
-	return {
-		topColor: AppStore.getColorGradientTop(),
-		bottomColor: 'green'//AppStore.getColorGradientBottom()
-	}
-}
-var CustomGradient = React.createClass({
-	getInitialState: function(){
-		return getAppState();
-	},
-	componentWillUnmount: function() {
-        AppStore.removeChangeListener(this._onChange);
-    },
-    componentDidMount: function() {
-		AppStore.addChangeListener(this._onChange);
-    },
-	render: function() {
-		//console.log(AppStore.getColorGradientTop());
-		var backgroundGradient = {
-			background: this.state.topColor,
-			background: 'linear-gradient('+this.state.topColor+', '+this.state.bottomColor+')'
-		};
-		return (
+export default class CustomGradient extends Component {
+    constructor() {
+        super();
+
+        this.state = {
+            topColor: AppStore.getColorGradientTop(),
+            bottomColor: 'green',
+        };
+    }
+
+    render () {
+        const backgroundGradient = {
+            background: this.state.topColor,
+            background: 'linear-gradient('+this.state.topColor+', '+this.state.bottomColor+')'
+        };
+        return (
 			<div className="gradient">
 				<h3>Custom gradient</h3>
 				<div className="box" onClick={this.change}>
@@ -36,11 +29,6 @@ var CustomGradient = React.createClass({
 					</div>
 				</div>
 			</div>
-		);
-	},
-	_onChange: function() {
-        this.setState(getAppState());
+        );
     }
-});
-
-module.exports = CustomGradient;
+}

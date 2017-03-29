@@ -1,15 +1,15 @@
-var React 	      = require('react'),
-	AppStore 	  = require('../../stores/AppStore'),
-	AppActions    = require('../../actions/AppActions'),
-	SketchPicker  = require('react-color').default;
+import React from 'react';
+import AppStore from '../../../../../../stores/AppStore';
+// import SketchPicker  = require('react-color').default;
+import SketchPicker from 'react-color';
 
 function getAppState(){
 	return {
 		displayColorPicker: false,
 		color: {
-	      r: '207',
-	      g: '206',
-	      b: '206',
+	      r: '179',
+	      g: '179',
+	      b: '179',
 	      a: '1'
 	    }
 	}
@@ -23,6 +23,19 @@ var GradientColor = React.createClass({
     },
     componentDidMount: function() {
 		AppStore.addChangeListener(this._onChange);
+    },
+    handleClick: function(){
+        this.setState({ displayColorPicker: !this.state.displayColorPicker });
+    },
+    handleChange: function(color){
+        this.setState({ color: color.rgb });
+        //AppActions.changeColorGradientBottom(color.rgb);
+    },
+    handleClose: function(){
+        this.setState({ displayColorPicker: false });
+    },
+    _onChange: function() {
+        this.setState(getAppState());
     },
 	render: function() {
 		var background = {
@@ -43,19 +56,6 @@ var GradientColor = React.createClass({
 	      </div>
 		);
 	},
-	handleClick: function(){
-		this.setState({ displayColorPicker: !this.state.displayColorPicker });
-	},
-	handleChange: function(color){
-		this.setState({ color: color.rgb });
-		AppActions.changeColorGradientTop(color.rgb);
-  	},
-	handleClose: function(){
-		this.setState({ displayColorPicker: false });
-	},
-	_onChange: function() {
-        this.setState(getAppState());
-    }
 });
 
 module.exports = GradientColor;
