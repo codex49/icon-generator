@@ -1,0 +1,33 @@
+html{
+  height: 100%;
+}
+
+body{
+  background: url('../img/icons/bg.png') 100% center;
+  height: 100%;
+}
+
+.content{
+  height: 100%;
+}
+
+.text-regular{
+  font-family: $SanFranciscoTextRegular;
+}
+
+main{
+  height: 91.6%;
+}
+
+.btn-green{
+  background: #bcfa00;
+  display: inline-block;
+  text-decoration: none;
+  color: #25441a;
+  border: 1px solid #a9e000;
+  text-align: center;
+}
+
+.green{
+  color: $green;
+}

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import AppStore from '../../stores/AppStore';
+
 import AppActions from '../../actions/AppActions';
 import Outils from './components/Outils';
 import Border from './components//Border';

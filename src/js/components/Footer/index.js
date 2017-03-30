@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import AppActions from '../actions/AppActions';
+import AppActions from '../../actions/AppActions';
 import html2canvas from 'html2canvas';
 
 export default class Footer extends Component {

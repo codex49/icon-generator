@@ -3,27 +3,18 @@ import AppStore from '../../../../../../stores/AppStore';
 // import SketchPicker  = require('react-color').default;
 import SketchPicker from 'react-color';
 
-function getAppState(){
-	return {
-		displayColorPicker: false,
-		color: {
-	      r: '179',
-	      g: '179',
-	      b: '179',
-	      a: '1'
-	    }
-	}
-}
 var GradientColor = React.createClass({
 	getInitialState: function(){
-		return getAppState();
+        return {
+            displayColorPicker: false,
+            color: {
+                r: '179',
+                g: '179',
+                b: '179',
+                a: '1'
+            }
+        }
 	},
-	componentWillUnmount: function() {
-        AppStore.removeChangeListener(this._onChange);
-    },
-    componentDidMount: function() {
-		AppStore.addChangeListener(this._onChange);
-    },
     handleClick: function(){
         this.setState({ displayColorPicker: !this.state.displayColorPicker });
     },
@@ -33,9 +24,6 @@ var GradientColor = React.createClass({
     },
     handleClose: function(){
         this.setState({ displayColorPicker: false });
-    },
-    _onChange: function() {
-        this.setState(getAppState());
     },
 	render: function() {
 		var background = {

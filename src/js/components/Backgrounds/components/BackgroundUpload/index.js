@@ -2,11 +2,6 @@ import React, { Component } from 'react';
 import AppActions from '../../../../actions/AppActions';
 
 var BackgroundUpload = React.createClass({
-    getDefaultProps: function(){
-        return {
-            url: 'img/bg/bg-up.png'
-        };
-    },
     uploadBackground: function(e){
         var link = e.target;
         AppActions.uploadBackground(link);

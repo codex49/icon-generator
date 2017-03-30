@@ -20,7 +20,7 @@ const processors = [
 ];
 
 gulp.task('sass', () => {
-    return gulp.src("src/css/sass/**/*.scss", { sourcemaps: true })
+    return gulp.src("src/**/*.scss", { sourcemaps: true })
         .pipe(sourcemaps.init())
         .pipe(sass())
         .pipe(postcss(processors))
