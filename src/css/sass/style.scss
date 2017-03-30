@@ -1,7 +1,6 @@
 @import 'normalize';
 @import 'variables';
 @import 'jquery-ui';
-/*@import 'sprite';*/
 @import 'header';
 @import 'icons';
 @import 'backgrounds';
@@ -14,7 +13,6 @@ html{
 }
 body{
 	background: url('../img/icons/bg.png') 100% center;
-	//@include sprite('bg.png');
 	height: 100%;
 }
 .content{
