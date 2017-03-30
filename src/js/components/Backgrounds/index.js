@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 
 import Background from './components/Background/Background';
-import BackgroundUpload from './components/BackgroundUpload/BackgroundUpload';
-import CustomGradient from './components/CustomGradient/CustomGradient';
-import TitleCategori from '../icons/TitleCategori';
+import BackgroundUpload from './components/BackgroundUpload';
+import CustomGradient from './components/CustomGradient';
+import TitleCategori from '../TitleCategorie';
 
 export default class Backgrounds extends Component{
     render (){
