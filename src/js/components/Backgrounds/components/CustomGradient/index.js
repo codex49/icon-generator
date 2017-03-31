@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import AppStore from '../../../../stores/AppStore';
-import GradientColorTop from './components/GradientColorTop';
-import GradientColorBottom from './components/GradientColorBottom';
+import GradientColor from './components/GradientColor';
 
 export default class CustomGradient extends Component {
     constructor() {
@@ -24,8 +23,8 @@ export default class CustomGradient extends Component {
 				<div className="box" onClick={this.change}>
 					<div className="result" style={backgroundGradient}></div>
 					<div className="inputs">
-						<GradientColorTop/>
-						<GradientColorBottom class="MT-44"/>
+                        <GradientColor/>
+						<GradientColor class="MT-44"/>
 					</div>
 				</div>
 			</div>
