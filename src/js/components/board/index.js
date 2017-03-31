@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import AppActions from '../../actions/AppActions';
 import Outils from './components/Outils';
-import Border from './components//Border';
+import Border from './components/Border';
 
 export default class Board extends Component {
     constructor() {

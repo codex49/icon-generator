@@ -14,6 +14,19 @@ const ListBackgrounds = AppAPI.getBackgrounds();
 const SocialsMedia = AppAPI.getSocialsMedia();
 
 export default class App extends Component {
+    constructor() {
+        super();
+
+        this.state = {
+            BgBorderTop: false,
+            BgBorderBottom: '#b3b3b3'
+        };
+
+    }
+
+    handleChangeBgBorderTop () {
+
+    }
     render (){
         return (
             <div className="content">
@@ -21,7 +34,11 @@ export default class App extends Component {
                 <main className="main">
                     <Icons listCategories={ListIcons}/>
                     <Board />
-                    <Backgrounds listCategories={ListBackgrounds}/>
+                    <Backgrounds
+                        bgGolorTop={this.props.bgGolorTop}
+                        bgGolorBottom={this.props.bgGolorBottom}
+                        listCategories={ListBackgrounds}
+                    />
                 </main>
                 <Footer />
                 <Popup socialsMedia={SocialsMedia}/>

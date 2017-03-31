@@ -7,9 +7,22 @@ export default class CustomGradient extends Component {
         super();
 
         this.state = {
-            topColor: AppStore.getColorGradientTop(),
-            bottomColor: 'green',
+            topColor: '#b3b3b3',
+            bottomColor: '#b3b3b3',
         };
+
+        this.handleChangeColorTop = this.handleChangeColorTop.bind(this);
+        this.handleChangeColorBottom = this.handleChangeColorBottom.bind(this);
+    }
+
+    handleChangeColorTop (color) {
+        this.setState({ topColor: color });
+        this.props.handleChangeBgTop(color);
+    }
+
+    handleChangeColorBottom (color) {
+        this.setState({ bottomColor: color });
+        this.props.handleChangeBgBottom(color);
     }
 
     render () {
@@ -23,8 +36,8 @@ export default class CustomGradient extends Component {
 				<div className="box" onClick={this.change}>
 					<div className="result" style={backgroundGradient}></div>
 					<div className="inputs">
-                        <GradientColor/>
-						<GradientColor class="MT-44"/>
+                        <GradientColor handleChangeColor={this.handleChangeColorTop}/>
+						<GradientColor handleChangeColor={this.handleChangeColorBottom} class="MT-44"/>
 					</div>
 				</div>
 			</div>

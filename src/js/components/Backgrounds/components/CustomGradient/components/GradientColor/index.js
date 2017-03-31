@@ -8,12 +8,7 @@ export default class extends Component {
 
         this.state = {
             displayColorPicker: false,
-            color: {
-                r: '179',
-                g: '179',
-                b: '179',
-                a: '1',
-            }
+            color: '#b3b3b3'
         };
 
         this.handleClick = this.handleClick.bind(this);
@@ -26,7 +21,8 @@ export default class extends Component {
     }
 
     handleChangeColor (color) {
-        this.setState({ color: color.rgb });
+        this.setState({ color: color.hex });
+        this.props.handleChangeColor(color.hex);
     }
 
     handleCloseColorPicker (){
@@ -46,7 +42,7 @@ export default class extends Component {
 
     render () {
         const  background = {
-            background: 'rgba('+this.state.color.r +', '+this.state.color.g +', '+this.state.color.b +', '+this.state.color.a +')',
+            background: this.state.color,
         };
 
         return (

@@ -17,7 +17,11 @@ export default class Backgrounds extends Component{
                             var items = catagorie.items.map(function(item, f){
                                 var background = [];
                                 if(catagorie.name == 'Gradients' && f == 0){
-                                    background.push(<CustomGradient />);
+                                    background.push(
+                                        <CustomGradient
+                                            handleChangeBgTop={this.props.bgGolorTop}
+                                            handleChangeBgGBottom={this.props.bgGolorBottom}
+                                        />);
                                 }
                                 background.push(<Background key={f} link={item}/>);
                                 return background;
