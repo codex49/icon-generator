@@ -1,13 +1,11 @@
 import gulp from 'gulp';
+import webserver from 'gulp-webserver';
 import sass from 'gulp-sass';
 import postcss from 'gulp-postcss';
 import sourcemaps from 'gulp-sourcemaps';
 import browserify from 'browserify';
-import reactify from 'reactify';
 import babelify from 'babelify';
 import source from 'vinyl-source-stream';
-import browserSync from 'browser-sync';
-import uglify from 'gulp-uglify';
 import svgmin from 'gulp-svgmin';
 
 function handleError(err) {
@@ -25,8 +23,7 @@ gulp.task('sass', () => {
         .pipe(sass())
         .pipe(postcss(processors))
         .pipe(sourcemaps.write('.'))
-        .pipe(gulp.dest("dist/css"))
-        .pipe(browserSync.create().stream());
+        .pipe(gulp.dest("dist/css"));
 });
 
 gulp.task('browserify', () => {
@@ -35,7 +32,6 @@ gulp.task('browserify', () => {
         .bundle()
         .on('error', handleError)
         .pipe(source('main.js'))
-        //.pipe(uglify())
         .pipe(gulp.dest('dist/js'));
 });
 
@@ -53,14 +49,16 @@ gulp.task('copy', () => {
         .pipe(gulp.dest('dist/img/svg'));
 });
 
-gulp.task('browser-sync', ['sass'], () => {
-    browserSync.init({
-        proxy: "http://localhost/icon-generator/dist/",
-        browser: "chrome"
-    });
+
+gulp.task('webserver', function() {
+    gulp.src('dist')
+        .pipe(webserver({
+            port:'9090',
+            livereload: true,
+            open: true
+        }));
 });
 
-
-gulp.task('default', ['browserify', 'copy', 'sass', 'browser-sync'], () => {
+gulp.task('default', ['browserify', 'copy', 'webserver', 'sass'], () => {
     return gulp.watch('src/**/*.*', ['browserify', 'copy', 'sass']);
 });
