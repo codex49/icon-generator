@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import AppStore from '../../../../stores/AppStore';
 import GradientColor from './components/GradientColor';
 
 export default class CustomGradient extends Component {
@@ -15,21 +14,26 @@ export default class CustomGradient extends Component {
         this.handleChangeColorBottom = this.handleChangeColorBottom.bind(this);
     }
 
-    handleChangeColorTop (color) {
-        this.setState({ topColor: color });
-        this.props.handleChangeBgTop(color);
+    handleChangeColorTop (topColor) {
+        console.log('handleChangeColorTop', color);
+        this.setState({
+            topColor,
+        });
+        this.props.handleChangeBgColorTop(color);
     }
 
-    handleChangeColorBottom (color) {
-        this.setState({ bottomColor: color });
+    handleChangeColorBottom (bottomColor) {
+        this.setState({
+            bottomColor
+        });
         this.props.handleChangeBgBottom(color);
     }
 
     render () {
         const backgroundGradient = {
-            background: this.state.topColor,
             background: 'linear-gradient('+this.state.topColor+', '+this.state.bottomColor+')'
         };
+
         return (
 			<div className="gradient">
 				<h3>Custom gradient</h3>

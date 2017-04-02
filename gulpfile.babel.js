@@ -18,7 +18,7 @@ const processors = [
 ];
 
 gulp.task('sass', () => {
-    return gulp.src("src/**/*.scss", { sourcemaps: true })
+    return gulp.src("src/css/sass/**/*.scss", { sourcemaps: true })
         .pipe(sourcemaps.init())
         .pipe(sass())
         .pipe(postcss(processors))
@@ -36,11 +36,11 @@ gulp.task('browserify', () => {
 });
 
 gulp.task('copy', () => {
-    gulp.src('src/index.html')   .pipe(gulp.dest('dist'));
+    gulp.src('src/index.html').pipe(gulp.dest('dist'));
     gulp.src('src/css/fonts/*.*').pipe(gulp.dest('dist/css/fonts'));
 
     gulp.src('src/img/icons/*.*').pipe(gulp.dest('dist/img/icons'));
-    gulp.src('src/img/bg/*.*')   .pipe(gulp.dest('dist/img/bg'));
+    gulp.src('src/img/bg/*.*').pipe(gulp.dest('dist/img/bg'));
 
     gulp.src('src/js/vendors/*.*').pipe(gulp.dest('dist/js'));
 
@@ -53,7 +53,7 @@ gulp.task('copy', () => {
 gulp.task('webserver', function() {
     gulp.src('dist')
         .pipe(webserver({
-            port:'9090',
+            port:'8081',
             livereload: true,
             open: true
         }));

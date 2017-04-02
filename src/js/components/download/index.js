@@ -49,24 +49,29 @@ export default class Download extends Component {
 
     handleDownloadIcon (e) {
         e.preventDefault();
-        var canvas = AppStore.getCanvas();
+        const canvas = AppStore.getCanvas();
 
-        var size = this.state.size;
+        const size = this.state.size;
 
-        var ctx = canvas.getContext('2d');
+        /*const ctx = canvas.getContext('2d');
         ctx.webkitImageSmoothingEnabled = false;
         ctx.mozImageSmoothingEnabled = false;
-        ctx.imageSmoothingEnabled = false;
-        var extra_canvas = document.createElement("canvas");
+        ctx.imageSmoothingEnabled = false;*/
+
+        const extra_canvas = document.createElement("canvas");
         extra_canvas.setAttribute('width',size);
         extra_canvas.setAttribute('height',size);
-        var ctx = extra_canvas.getContext('2d');
+
+        const ctx = extra_canvas.getContext('2d');
         ctx.drawImage(canvas,0,0,canvas.width, canvas.height,0,0,size,size);
 
-        var imgageData = extra_canvas.toDataURL("image/png");
-        var newData = imgageData.replace(/^data:image\/png/, "data:application/octet-stream");
+        const imgageData = extra_canvas.toDataURL("image/png");
+        const newData = imgageData.replace(/^data:image\/png/, "data:application/octet-stream");
+
+
 
         $("#icon-download").attr("download", "icon-generate.png").attr("href", newData);
+        console.log($("#icon-download"));
     }
 
     renderSendIcon () {

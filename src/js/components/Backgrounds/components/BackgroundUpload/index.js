@@ -1,16 +1,31 @@
 import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
+
 import AppActions from '../../../../actions/AppActions';
 
-var BackgroundUpload = React.createClass({
-    uploadBackground: function(e){
-        var link = e.target;
+export default class BackgroundUpload extends Component {
+    constructor() {
+        super();
+
+        this.uploadBackground = this.uploadBackground.bind(this);
+        this.handleChangeBackgournd = this.handleChangeBackgournd.bind(this);
+    }
+
+    uploadBackground (e){
+        const link = e.target;
         AppActions.uploadBackground(link);
-    },
-    changeBackgournd: function(){
-        var bgImg = $(ReactDOM.findDOMNode(this)).find('.up-bg').attr('src');
+    }
+
+    handleChangeBackgournd (){
+        const bgImg = $(ReactDOM.findDOMNode(this)).find('.up-bg').attr('src');
         AppActions.changeBackground(bgImg);
-    },
-    render: function(){
+
+        this.props.handleChangeBackgournd(bgImg);
+
+        console.log('bgImg', bgImg);
+    }
+
+    render (){
         return (
             <div className="upload-block">
                 <a className={"title-catagorie " + this.props.active}>
@@ -18,7 +33,7 @@ var BackgroundUpload = React.createClass({
                     <span className="label">{this.props.children}</span>
                 </a>
                 <div className="upload-elment">
-                    <div className="icon-upload upload-bg" onClick={this.changeBackgournd}>
+                    <div className="icon-upload upload-bg" onClick={this.handleChangeBackgournd}>
                         <img className="up-bg background" src="" alt=""/>
                     </div>
                     <p>Use your own background</p>
@@ -29,6 +44,4 @@ var BackgroundUpload = React.createClass({
             </div>
         );
     }
-});
-
-module.exports = BackgroundUpload;
+}

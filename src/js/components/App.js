@@ -18,15 +18,25 @@ export default class App extends Component {
         super();
 
         this.state = {
-            BgBorderTop: false,
-            BgBorderBottom: '#b3b3b3'
+            BgBorderTop: '#b3b3b3',
+            BgBorderBottom: '#b3b3b3',
         };
-
+        this.handleChangeBgTop = this.handleChangeBgTop.bind(this);
+        this.handleChangeBgBottom = this.handleChangeBgBottom.bind(this);
     }
 
-    handleChangeBgBorderTop () {
-
+    handleChangeBgTop (BgBorderTop) {
+        this.setState({
+            BgBorderTop,
+        });
     }
+
+    handleChangeBgBottom (BgBorderBottom) {
+        this.setState({
+            BgBorderBottom,
+        });
+    }
+
     render (){
         return (
             <div className="content">
@@ -35,8 +45,8 @@ export default class App extends Component {
                     <Icons listCategories={ListIcons}/>
                     <Board />
                     <Backgrounds
-                        bgGolorTop={this.props.bgGolorTop}
-                        bgGolorBottom={this.props.bgGolorBottom}
+                        handleChangeColorTop={this.handleChangeBgTop}
+                        handleChangeBgBottom={this.handleChangeBgBottom}
                         listCategories={ListBackgrounds}
                     />
                 </main>
