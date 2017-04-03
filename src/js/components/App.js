@@ -18,22 +18,22 @@ export default class App extends Component {
         super();
 
         this.state = {
-            BgBorderTop: '#b3b3b3',
-            BgBorderBottom: '#b3b3b3',
+            bgBoardTop: '#b3b3b3',
+            bgBoardBottom: '#b3b3b3',
         };
         this.handleChangeBgTop = this.handleChangeBgTop.bind(this);
         this.handleChangeBgBottom = this.handleChangeBgBottom.bind(this);
     }
 
-    handleChangeBgTop (BgBorderTop) {
+    handleChangeBgTop (bgBoardTop) {
         this.setState({
-            BgBorderTop,
+            bgBoardTop,
         });
     }
 
-    handleChangeBgBottom (BgBorderBottom) {
+    handleChangeBgBottom (bgBoardBottom) {
         this.setState({
-            BgBorderBottom,
+            bgBoardBottom,
         });
     }
 
@@ -43,9 +43,12 @@ export default class App extends Component {
                 <Header menu={MenuItems}/>
                 <main className="main">
                     <Icons listCategories={ListIcons}/>
-                    <Board />
+                    <Board
+                        bgBoardTop={this.state.bgBoardTop}
+                        bgBoardBottom={this.state.bgBoardBottom}
+                    />
                     <Backgrounds
-                        handleChangeColorTop={this.handleChangeBgTop}
+                        handleChangeBgTop={this.handleChangeBgTop}
                         handleChangeBgBottom={this.handleChangeBgBottom}
                         listCategories={ListBackgrounds}
                     />

@@ -10,23 +10,22 @@ export default class CustomGradient extends Component {
             bottomColor: '#b3b3b3',
         };
 
-        this.handleChangeColorTop = this.handleChangeColorTop.bind(this);
+        this.handleChangeBgTop = this.handleChangeBgTop.bind(this);
         this.handleChangeColorBottom = this.handleChangeColorBottom.bind(this);
     }
 
-    handleChangeColorTop (topColor) {
-        console.log('handleChangeColorTop', color);
+    handleChangeBgTop (topColor) {
         this.setState({
             topColor,
         });
-        this.props.handleChangeBgColorTop(color);
+        this.props.handleChangeBgTop(topColor);
     }
 
     handleChangeColorBottom (bottomColor) {
         this.setState({
             bottomColor
         });
-        this.props.handleChangeBgBottom(color);
+        this.props.handleChangeBgBottom(bottomColor);
     }
 
     render () {
@@ -40,7 +39,7 @@ export default class CustomGradient extends Component {
 				<div className="box" onClick={this.change}>
 					<div className="result" style={backgroundGradient}></div>
 					<div className="inputs">
-                        <GradientColor handleChangeColor={this.handleChangeColorTop}/>
+                        <GradientColor handleChangeColor={this.handleChangeBgTop}/>
 						<GradientColor handleChangeColor={this.handleChangeColorBottom} class="MT-44"/>
 					</div>
 				</div>

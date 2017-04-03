@@ -6,16 +6,11 @@ import CustomGradient from './components/CustomGradient';
 import TitleCategori from '../TitleCategorie';
 
 export default class Backgrounds extends Component {
-    constructor() {
-        super();
-
-    }
-
-    handleChangeBgTop () {
-
-    }
-
     renderListCategorie () {
+        const renderCustomGradient = <CustomGradient
+            handleChangeBgTop={this.props.handleChangeBgTop}
+            handleChangeBgBottom={this.props.handleChangeBgBottom}
+        />;
         return (
             this.props.listCategories.map(function(catagorie, i){
                 const items = catagorie.items.map(function(item, f){
@@ -23,8 +18,7 @@ export default class Backgrounds extends Component {
 
                     if(catagorie.name === 'Gradients' && f == 0){
                          background.push(
-                             <CustomGradient
-                             />
+                             renderCustomGradient
                          );
                      }
                     background.push(<Background key={f} link={item}/>);
@@ -36,7 +30,7 @@ export default class Backgrounds extends Component {
                         <ul className="items">{items}</ul>
                     </li>
                 );
-            })
+            }.bind(this))
         );
     }
     render (){

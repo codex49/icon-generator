@@ -18,10 +18,6 @@ export default class Board extends Component {
     }
 
     componentDidMount () {
-        $('.board li').click(function(){
-            alert("The paragraph was clicked.");
-        });
-
         $('.board-resultat').droppable({
             drop: function(event, ui) {
                 if(!$(ui.draggable).hasClass('svg-drag')){
@@ -67,7 +63,7 @@ export default class Board extends Component {
 
     render () {
         const style = {
-            // borderRadius: AppStore.getBorderRaduis()+'px'
+            background: 'linear-gradient('+this.props.bgBoardTop+', '+this.props.bgBoardBottom+')',
             borderRadius: this.state.valueBorder+'px',
         };
 
