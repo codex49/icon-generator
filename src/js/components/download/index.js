@@ -65,13 +65,15 @@ export default class Download extends Component {
         const ctx = extra_canvas.getContext('2d');
         ctx.drawImage(canvas,0,0,canvas.width, canvas.height,0,0,size,size);
 
-        const imgageData = extra_canvas.toDataURL("image/png");
-        const newData = imgageData.replace(/^data:image\/png/, "data:application/octet-stream");
+        const image = extra_canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");
+        //document.write('<img src="'+image+'"/>');
+        //window.location.href=image;
 
+        const link = document.getElementById("icon-download");
 
+        link.href = image;
 
-        $("#icon-download").attr("download", "icon-generate.png").attr("href", newData);
-        console.log($("#icon-download"));
+        // $("#icon-download").attr("download", "icon-generate.png").attr("href", image);
     }
 
     renderSendIcon () {
@@ -119,7 +121,12 @@ export default class Download extends Component {
 						<img src="img/icons/pdf.png"/>
 					</div>
                     {this.renderButtonsSize()}
-					<a href="" id="icon-download" onClick={this.handleDownloadIcon} className="btn-download btn-green">Download icon
+					<a href=""
+                       id="icon-download"
+                       onClick={this.handleDownloadIcon}
+                       className="btn-download btn-green"
+                       download='icon.png'>
+                        Download icon
 						<em>{this.state.size} x {this.state.size} px</em>
 					</a>
 					<hr className="ligne"/>
