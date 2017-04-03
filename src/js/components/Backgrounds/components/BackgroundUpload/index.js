@@ -7,6 +7,10 @@ export default class BackgroundUpload extends Component {
     constructor() {
         super();
 
+        this.state = {
+            linkBg: null,
+        }
+
         this.uploadBackground = this.uploadBackground.bind(this);
         this.handleChangeBackgournd = this.handleChangeBackgournd.bind(this);
     }
@@ -14,6 +18,7 @@ export default class BackgroundUpload extends Component {
     uploadBackground (e){
         const link = e.target;
         AppActions.uploadBackground(link);
+        console.log(link);
     }
 
     handleChangeBackgournd (){
@@ -22,7 +27,7 @@ export default class BackgroundUpload extends Component {
 
         this.props.handleChangeBackgournd(bgImg);
 
-        console.log('bgImg', bgImg);
+        //console.log('bgImg', bgImg);
     }
 
     render (){

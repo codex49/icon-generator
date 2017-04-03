@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, propTypes  } from 'react';
 
 import SketchPicker from 'react-color';
 
@@ -17,16 +17,22 @@ export default class extends Component {
     }
 
     handleClick () {
-        this.setState({ displayColorPicker: !this.state.displayColorPicker });
+        this.setState({
+            displayColorPicker: !this.state.displayColorPicker
+        });
     }
 
     handleChangeColor (color) {
-        this.setState({ color: color.hex });
+        this.setState({
+            color: color.hex
+        });
         this.props.handleChangeColor(color.hex);
     }
 
-    handleCloseColorPicker (){
-        this.setState({ displayColorPicker: false });
+    handleCloseColorPicker () {
+        this.setState({
+            displayColorPicker: false
+        });
     }
 
     renderColorPicker () {

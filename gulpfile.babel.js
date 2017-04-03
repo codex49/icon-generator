@@ -28,7 +28,7 @@ gulp.task('sass', () => {
 
 gulp.task('browserify', () => {
     browserify('./src/js/main.js')
-        .transform(babelify, {presets: ["es2016", "react"]})
+        .transform(babelify, {presets: ["es2017", "react"]})
         .bundle()
         .on('error', handleError)
         .pipe(source('main.js'))

@@ -30,7 +30,7 @@ export default class Backgrounds extends Component {
                         <ul className="items">{items}</ul>
                     </li>
                 );
-            }.bind(this))
+            })
         );
     }
     render (){
@@ -40,7 +40,9 @@ export default class Backgrounds extends Component {
                 <ul className="catagories">
                     <BackgroundUpload
                         active='active'
-                        link="img/icons/upload.png">
+                        link="img/icons/upload.png"
+                        handleChangeBackgournd={this.props.handleChangeBackgournd}
+                    >
                         Upload
                     </BackgroundUpload>
                     {this.renderListCategorie()}

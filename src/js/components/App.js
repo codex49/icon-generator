@@ -20,9 +20,12 @@ export default class App extends Component {
         this.state = {
             bgBoardTop: '#b3b3b3',
             bgBoardBottom: '#b3b3b3',
+            bgImage: false,
         };
+
         this.handleChangeBgTop = this.handleChangeBgTop.bind(this);
         this.handleChangeBgBottom = this.handleChangeBgBottom.bind(this);
+        this.handleChangeBackgournd = this.handleChangeBackgournd.bind(this);
     }
 
     handleChangeBgTop (bgBoardTop) {
@@ -37,6 +40,12 @@ export default class App extends Component {
         });
     }
 
+    handleChangeBackgournd (bgImg) {
+        this.setState({
+            bgImg,
+        });
+    }
+
     render (){
         return (
             <div className="content">
@@ -46,10 +55,12 @@ export default class App extends Component {
                     <Board
                         bgBoardTop={this.state.bgBoardTop}
                         bgBoardBottom={this.state.bgBoardBottom}
+                        bgImage={this.state.bgImage}
                     />
                     <Backgrounds
                         handleChangeBgTop={this.handleChangeBgTop}
                         handleChangeBgBottom={this.handleChangeBgBottom}
+                        handleChangeBackgournd={this.handleChangeBackgournd}
                         listCategories={ListBackgrounds}
                     />
                 </main>

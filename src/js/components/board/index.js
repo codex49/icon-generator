@@ -61,9 +61,20 @@ export default class Board extends Component {
         );
     }
 
+    getBackGroundBoad () {
+        let background = 'linear-gradient('+this.props.bgBoardTop+', '+this.props.bgBoardBottom+')';
+
+        if (this.props.bgImage) {
+            background = 'url('+this.props.bgImage+')';
+        }
+
+        return background;
+    }
+
     render () {
+        console.log(this.props.bgImage);
         const style = {
-            background: 'linear-gradient('+this.props.bgBoardTop+', '+this.props.bgBoardBottom+')',
+            background: 'url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAANIAAACiCAYAAAA0u5ODAAAAGXRFW…gSuJFAkQA3EigSuJHAIAEGCQwS5NfXv+YZYM7z+/9a9xNgALSOuEdzIRucAAAAAElFTkSuQmCC)',
             borderRadius: this.state.valueBorder+'px',
         };
 
