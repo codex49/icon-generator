@@ -63,11 +63,10 @@
 		/*@include gradient(#ff0000, #c20000);*/
 		background-size: cover;
 		background-repeat: no-repeat;
-		background-attachment: fixed;
+		// background-attachment: fixed;
 		background-position: top left;
 		text-align: center;
 		overflow: hidden;
-		/*background-size: 100% 113%;*/
 		.lines-grid{
 			opacity: 0.25;
 			.verticale{

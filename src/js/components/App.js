@@ -40,9 +40,9 @@ export default class App extends Component {
         });
     }
 
-    handleChangeBackgournd (bgImg) {
+    handleChangeBackgournd (bgImage) {
         this.setState({
-            bgImg,
+            bgImage,
         });
     }
 

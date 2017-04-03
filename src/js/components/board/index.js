@@ -64,16 +64,14 @@ export default class Board extends Component {
     getBackGroundBoad () {
         let background = 'linear-gradient('+this.props.bgBoardTop+', '+this.props.bgBoardBottom+')';
 
-        if (this.props.bgImage) {
-            background = 'url('+this.props.bgImage+')';
-        }
+        if (this.props.bgImage) background = 'url('+this.props.bgImage+')';
 
         return background;
     }
 
     render () {
         const style = {
-            background: this.getBackGroundBoad(),
+            backgroundImage: this.getBackGroundBoad(),
             borderRadius: this.state.valueBorder+'px',
         };
 

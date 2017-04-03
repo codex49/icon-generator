@@ -11,18 +11,18 @@ export default class BackgroundUpload extends Component {
             linkBg: null,
         }
 
-        this.uploadBackground = this.uploadBackground.bind(this);
+        this.handleUploadBackground = this.handleUploadBackground.bind(this);
         this.handleChangeBackgournd = this.handleChangeBackgournd.bind(this);
     }
 
-    uploadBackground (e){
+    handleUploadBackground (e) {
         const link = e.target;
         AppActions.uploadBackground(link);
     }
 
     handleChangeBackgournd (){
         const bgImg = $(ReactDOM.findDOMNode(this)).find('.up-bg').attr('src');
-        AppActions.changeBackground(bgImg);
+        // AppActions.changeBackground(bgImg);
 
         this.props.handleChangeBackgournd(bgImg);
     }
@@ -40,7 +40,7 @@ export default class BackgroundUpload extends Component {
                     </div>
                     <p>Use your own background</p>
                     <form ref="uploadForm" className="uploader" encType="multipart/form-data">
-                        <input ref="file" type="file" onChange={this.uploadBackground} className="btn-upload" />
+                        <input ref="file" type="file" onChange={this.handleUploadBackground} className="btn-upload" />
                     </form>
                 </div>
             </div>
