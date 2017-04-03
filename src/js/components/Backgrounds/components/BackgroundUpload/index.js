@@ -18,7 +18,6 @@ export default class BackgroundUpload extends Component {
     uploadBackground (e){
         const link = e.target;
         AppActions.uploadBackground(link);
-        console.log(link);
     }
 
     handleChangeBackgournd (){
@@ -26,8 +25,6 @@ export default class BackgroundUpload extends Component {
         AppActions.changeBackground(bgImg);
 
         this.props.handleChangeBackgournd(bgImg);
-
-        //console.log('bgImg', bgImg);
     }
 
     render (){

@@ -72,9 +72,8 @@ export default class Board extends Component {
     }
 
     render () {
-        console.log(this.props.bgImage);
         const style = {
-            background: 'url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAANIAAACiCAYAAAA0u5ODAAAAGXRFW…gSuJFAkQA3EigSuJHAIAEGCQwS5NfXv+YZYM7z+/9a9xNgALSOuEdzIRucAAAAAElFTkSuQmCC)',
+            background: this.getBackGroundBoad(),
             borderRadius: this.state.valueBorder+'px',
         };
 
