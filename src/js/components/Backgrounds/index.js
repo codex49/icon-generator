@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import Background from './components/Background/Background';
+import Background from './components/Background';
 import BackgroundUpload from './components/BackgroundUpload';
 import CustomGradient from './components/CustomGradient';
 import TitleCategori from '../TitleCategorie';
@@ -11,6 +11,7 @@ export default class Backgrounds extends Component {
             handleChangeBgTop={this.props.handleChangeBgTop}
             handleChangeBgBottom={this.props.handleChangeBgBottom}
         />;
+
         return (
             this.props.listCategories.map(function(catagorie, i){
                 const items = catagorie.items.map(function(item, f){
@@ -42,9 +43,7 @@ export default class Backgrounds extends Component {
                         active='active'
                         link="img/icons/upload.png"
                         handleChangeBackgournd={this.props.handleChangeBackgournd}
-                    >
-                        Upload
-                    </BackgroundUpload>
+                    />
                     {this.renderListCategorie()}
                 </ul>
             </div>

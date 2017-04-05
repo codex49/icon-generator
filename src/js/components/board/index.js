@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 
-import AppActions from '../../actions/AppActions';
 import Outils from './components/Outils';
-import Border from './components/Border';
 
 export default class Board extends Component {
     constructor() {
@@ -74,6 +72,17 @@ export default class Board extends Component {
         return background;
     }
 
+    renderBorderStyle () {
+        return (
+            <div>
+                <span className="border top-left"></span>
+                <span className="border top-right"></span>
+                <span className="border bottom-right"></span>
+                <span className="border bottom-left"></span>
+            </div>
+        );
+    }
+
     render () {
         const style = {
             backgroundImage: this.getBackGroundBoad(),
@@ -82,7 +91,7 @@ export default class Board extends Component {
 
         return (
             <div className="board">
-                <Border />
+                {this.renderBorderStyle()}
                 <p>Artboard <span className="text-regular">1024 x 1024 px (50%)</span></p>
                 <div className="parent-board">
                     <div style={style} className="board-resultat" id="board">

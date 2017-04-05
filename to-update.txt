@@ -1,0 +1,9 @@
+TitleCategorie
+Upload
+Icon  (drag & drop)
+Icons (replace image with svg)
+Menu (all)
+Footer (downloas canvas)
+DownloadMobile (css animation )
+FooterPopUp (css animation )
+Download (download lib)

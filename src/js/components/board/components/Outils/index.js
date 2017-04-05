@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 
-import AppStore from '../../../../stores/AppStore';
 import BorderRadius from './components/BorderRadius';
 import SketchPicker from 'react-color';
 
@@ -11,7 +10,6 @@ export default class Outils extends Component {
         this.state = {
             displayGrid: props.showGrid,
             displayColorPicker: false,
-            iconChecked: AppStore.getIdIconCheked(),
         };
 
         this.handleOpenSketchPicker = this.handleOpenSketchPicker.bind(this);
@@ -37,12 +35,12 @@ export default class Outils extends Component {
 
     handleShowGrid () {
         this.setState({ displayGrid: !this.state.displayGrid });
-        // AppActions.showGrid(!this.state.displayGrid);
         this.props.handleShowGrid(!this.state.displayGrid);
     }
 
-    handleRemoveIcon (e) {
-        e.preventDefault();
+    handleRemoveIcon (event) {
+        event.preventDefault();
+
         const idIconCheked = $(".board").find(this.props.getIconDroped);
         idIconCheked.fadeOut(100);
     }
