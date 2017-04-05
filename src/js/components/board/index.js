@@ -11,6 +11,7 @@ export default class Board extends Component {
         this.state = {
             showGrid: false,
             valueBorder: 0,
+            iconDroped: false,
         };
 
         this.hangeChangeBorder = this.hangeChangeBorder.bind(this);
@@ -18,6 +19,7 @@ export default class Board extends Component {
     }
 
     componentDidMount () {
+        const that = this;
         $('.board-resultat').droppable({
             drop: function(event, ui) {
                 if(!$(ui.draggable).hasClass('svg-drag')){
@@ -28,9 +30,12 @@ export default class Board extends Component {
                 const $item = $('.board-resultat .item');
 
                 $item.draggable({
-                    drag: function(){
-                        const id = $(this).find('svg').attr('id');
-                        AppActions.iconChecked(id);
+                    drag: function(e){
+                        // const id = $(this).find('svg').attr('id');
+                        // AppActions.iconChecked(id);
+                        that.setState({
+                            iconDroped: e.target,
+                        });
                     }
                 });
                 $item.resizable();
@@ -87,6 +92,7 @@ export default class Board extends Component {
                 <Outils
                     handleShowGrid={this.handleShowGrid}
                     hangeChangeBorder={this.hangeChangeBorder}
+                    getIconDroped={this.state.iconDroped}
                 />
             </div>
         );

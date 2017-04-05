@@ -30,7 +30,7 @@ export default class Outils extends Component {
     }
 
     handleChangeColor (color) {
-        const idIconCheked = $('.board #'+this.state.iconChecked+' path');
+        const idIconCheked = $(".board").find(this.props.getIconDroped).find('path');
         const c = color.rgb;
         idIconCheked.css('fill', 'rgba('+c.r+', '+c.g+', '+c.b+','+c.a+')');
     }
@@ -43,8 +43,8 @@ export default class Outils extends Component {
 
     handleRemoveIcon (e) {
         e.preventDefault();
-        const idIconCheked = this.state.iconChecked;
-        $('.board #'+idIconCheked).parent('li').fadeOut(100);
+        const idIconCheked = $(".board").find(this.props.getIconDroped);
+        idIconCheked.fadeOut(100);
     }
 
     renderBlockColor () {
