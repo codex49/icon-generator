@@ -23,30 +23,30 @@ gulp.task('sass', () => {
         .pipe(sass())
         .pipe(postcss(processors))
         .pipe(sourcemaps.write('.'))
-        .pipe(gulp.dest("../dist/css"));
+        .pipe(gulp.dest("dist/css"));
 });
 
 gulp.task('browserify', () => {
-    browserify('./app/components/main.js')
+    browserify('./app/main')
         .transform(babelify, {presets: ["es2017", "react"]})
         .bundle()
         .on('error', handleError)
-        .pipe(source('main.js'))
-        .pipe(gulp.dest('../dist/js'));
+        .pipe(source('index.js'))
+        .pipe(gulp.dest('dist/js'));
 });
 
 gulp.task('copy', () => {
-    gulp.src('app/public/index.html').pipe(gulp.dest('../dist'));
-    gulp.src('app/public/fonts/*.*').pipe(gulp.dest('../dist/css/fonts'));
+    gulp.src('app/public/index.html').pipe(gulp.dest('dist'));
+    gulp.src('app/public/fonts/*.*').pipe(gulp.dest('dist/css/fonts'));
 
-    gulp.src('app/public/img/icons/*.*').pipe(gulp.dest('../dist/img/icons'));
-    gulp.src('app/public/img/bg/*.*').pipe(gulp.dest('../dist/img/bg'));
+    gulp.src('app/public/img/icons/*.*').pipe(gulp.dest('dist/img/icons'));
+    gulp.src('app/public/img/bg/*.*').pipe(gulp.dest('dist/img/bg'));
 
-    gulp.src('app/lib*.*').pipe(gulp.dest('../dist/js'));
+    gulp.src('app/lib*.*').pipe(gulp.dest('dist/js'));
 
     gulp.src('app/public/img/svg/*.*')
         .pipe(svgmin())
-        .pipe(gulp.dest('../dist/img/svg'));
+        .pipe(gulp.dest('dist/img/svg'));
 });
 
 

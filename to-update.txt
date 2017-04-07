@@ -1,9 +1,12 @@
-TitleCategorie
-Upload
-Icon  (drag & drop)
-Icons (replace image with svg)
+BackgroundUpload & Upload (gros refacto lib)
+TitleCategorie (lib)
+Icon  (lib)
+Icons (lib)
 Menu (all)
-Footer (downloas canvas)
+Download (lib refacto)
 DownloadMobile (css animation )
+Footer (lib)
 FooterPopUp (css animation )
 Download (download lib)
+Background (lib)
+Backgrounds (data)

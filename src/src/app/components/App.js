@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import AppAPI from '../utils/appAPI';
+import AppAPI from '../main/mocks/appAPI';
 import Header from './Header';
 import Icons from './Icons';
 import Board from './Board';

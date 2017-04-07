@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { downloadFile } from '../../vendors/download'
+import { downloadFile } from '../../../lib/download'
 
 import SocialMedia from './components/SocialMedia';
 import DownloadMobile from './components/DownloadMobile';
