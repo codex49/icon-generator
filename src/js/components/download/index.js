@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { downloadFile } from '../../vendors/download'
 
 import SocialMedia from './components/SocialMedia';
 import DownloadMobile from './components/DownloadMobile';
@@ -50,14 +51,7 @@ export default class Download extends Component {
     handleDownloadIcon (e) {
         e.preventDefault();
         const canvas = AppStore.getCanvas();
-
         const size = this.state.size;
-
-        /*const ctx = canvas.getContext('2d');
-        ctx.webkitImageSmoothingEnabled = false;
-        ctx.mozImageSmoothingEnabled = false;
-        ctx.imageSmoothingEnabled = false;*/
-
         const extra_canvas = document.createElement("canvas");
         extra_canvas.setAttribute('width',size);
         extra_canvas.setAttribute('height',size);
@@ -65,15 +59,11 @@ export default class Download extends Component {
         const ctx = extra_canvas.getContext('2d');
         ctx.drawImage(canvas,0,0,canvas.width, canvas.height,0,0,size,size);
 
-        const image = extra_canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");
-        //document.write('<img src="'+image+'"/>');
-        //window.location.href=image;
+        const image = extra_canvas.toDataURL("image/octet-stream");
+        //const image = extra_canvas.toDataURL("image/octet-stream").replace("image/png", "image/octet-stream");
 
-        const link = document.getElementById("icon-download");
-
-        link.href = image;
-
-        // $("#icon-download").attr("download", "icon-generate.png").attr("href", image);
+        downloadFile(image, 'icon.png');
+        //$("#icon-download").attr("download", "icon-generate.png").attr("href", image);
     }
 
     renderSendIcon () {
@@ -97,13 +87,21 @@ export default class Download extends Component {
     }
 
     renderButtonsSize () {
-        const sizeBig = this.state.stl_1024 ? 'btn-size' : null;
-        const sizeSmall = this.state.stl_512 ? 'btn-size' : null;
+        const sizeBig = this.state.stl_1024 && 'btn-size';
+        const sizeSmall = this.state.stl_512 && 'btn-size';
 
         return (
             <div className="btns-size">
-                <button className={sizeBig} onClick={this.fc_1024}>1024px</button>
-                <button className={sizeSmall} onClick={this.fc_512}>512px</button>
+                <button
+                    className={sizeBig}
+                    onClick={this.fc_1024}>
+                    1024px
+                </button>
+                <button
+                    className={sizeSmall}
+                    onClick={this.fc_512}>
+                    512px
+                </button>
             </div>
         );
     }
@@ -121,11 +119,8 @@ export default class Download extends Component {
 						<img src="img/icons/pdf.png"/>
 					</div>
                     {this.renderButtonsSize()}
-					<a href=""
-                       id="icon-download"
-                       onClick={this.handleDownloadIcon}
-                       className="btn-download btn-green"
-                       download='icon.png'>
+					<a onClick={this.handleDownloadIcon}
+                       className="btn-download btn-green">
                         Download icon
 						<em>{this.state.size} x {this.state.size} px</em>
 					</a>
