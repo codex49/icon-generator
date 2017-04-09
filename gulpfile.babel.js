@@ -1,12 +1,12 @@
-import gulp from 'gulp';
-import webserver from 'gulp-webserver';
-import sass from 'gulp-sass';
-import postcss from 'gulp-postcss';
-import sourcemaps from 'gulp-sourcemaps';
-import browserify from 'browserify';
 import babelify from 'babelify';
+import browserify from 'browserify';
+import gulp from 'gulp';
+import postcss from 'gulp-postcss';
+import sass from 'gulp-sass';
 import source from 'vinyl-source-stream';
+import sourcemaps from 'gulp-sourcemaps';
 import svgmin from 'gulp-svgmin';
+import webserver from 'gulp-webserver';
 
 function handleError(err) {
     console.log(err.toString());
@@ -18,7 +18,7 @@ const processors = [
 ];
 
 gulp.task('sass', () => {
-    return gulp.src("src/css/sass/**/*.scss", { sourcemaps: true })
+    return gulp.src("app/styles/**/*.scss", { sourcemaps: true })
         .pipe(sourcemaps.init())
         .pipe(sass())
         .pipe(postcss(processors))
@@ -27,7 +27,7 @@ gulp.task('sass', () => {
 });
 
 gulp.task('browserify', () => {
-    browserify('./src/js/main.js')
+    browserify('./app/main')
         .transform(babelify, {presets: ["es2017", "react"]})
         .bundle()
         .on('error', handleError)
@@ -36,15 +36,15 @@ gulp.task('browserify', () => {
 });
 
 gulp.task('copy', () => {
-    gulp.src('src/index.html').pipe(gulp.dest('dist'));
-    gulp.src('src/css/fonts/*.*').pipe(gulp.dest('dist/css/fonts'));
+    gulp.src('app/public/index.html').pipe(gulp.dest('dist'));
+    gulp.src('app/public/fonts/*.*').pipe(gulp.dest('dist/css/fonts'));
 
-    gulp.src('src/img/icons/*.*').pipe(gulp.dest('dist/img/icons'));
-    gulp.src('src/img/bg/*.*').pipe(gulp.dest('dist/img/bg'));
+    gulp.src('app/public/img/icons/*.*').pipe(gulp.dest('dist/img/icons'));
+    gulp.src('app/public/img/bg/*.*').pipe(gulp.dest('dist/img/bg'));
 
-    gulp.src('src/js/vendors/*.*').pipe(gulp.dest('dist/js'));
+    gulp.src('lib/vendors/*.*').pipe(gulp.dest('dist/js'));
 
-    gulp.src('src/img/svg/*.*')
+    gulp.src('app/public/img/svg/*.*')
         .pipe(svgmin())
         .pipe(gulp.dest('dist/img/svg'));
 });
@@ -60,5 +60,5 @@ gulp.task('webserver', function() {
 });
 
 gulp.task('default', ['browserify', 'copy', 'webserver', 'sass'], () => {
-    return gulp.watch('src/**/*.*', ['browserify', 'copy', 'sass']);
+    return gulp.watch('app/**/*.*', ['browserify', 'copy', 'sass']);
 });
