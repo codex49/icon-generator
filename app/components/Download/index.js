@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { downloadFile } from '../../../lib/download'
-
+import downloadIcon from '../../../lib/canvas-to-image';
 import SocialMedia from './components/SocialMedia';
 import DownloadMobile from './components/DownloadMobile';
 import FooterPopUp from './components/FooterPopUp';
@@ -48,20 +47,11 @@ export default class Download extends Component {
 
     handleDownloadIcon (e) {
         e.preventDefault();
+
         const canvas = this.props.canvas;
         const size = this.state.size;
-        const extra_canvas = document.createElement("canvas");
-        extra_canvas.setAttribute('width',size);
-        extra_canvas.setAttribute('height',size);
 
-        const ctx = extra_canvas.getContext('2d');
-        ctx.drawImage(canvas,0,0,canvas.width, canvas.height,0,0,size,size);
-
-        const image = extra_canvas.toDataURL("image/octet-stream");
-        //const image = extra_canvas.toDataURL("image/octet-stream").replace("image/png", "image/octet-stream");
-
-        downloadFile(image, 'icon.png');
-        //$("#icon-download").attr("download", "icon-generate.png").attr("href", image);
+        downloadIcon(canvas, size);
     }
 
     renderSendIcon () {
