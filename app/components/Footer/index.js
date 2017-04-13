@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-// import $ from 'jquery';
-import html2canvas from 'html2canvas';
+import html2canvas from '../../../lib/html2canvas';
 
 export default class Footer extends Component {
     constructor() {
@@ -12,19 +11,9 @@ export default class Footer extends Component {
         event.preventDefault();
 
         const popUp = $('.popup');
-        const that = this;
-        let getCanvas = null;
         popUp.fadeIn(500);
 
-        html2canvas($(".board-resultat"), {
-            useCORS: true,
-            allowTaint: true,
-            letterRendering: true,
-            onrendered: function(canvas) {
-                that.props.getCanvasToDownload(canvas);
-                $('#icon-result').html(canvas);
-            }
-        });
+        html2canvas(this.props);
     }
 
     render () {

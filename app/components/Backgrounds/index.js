@@ -42,7 +42,7 @@ export default class Backgrounds extends Component {
                     <BackgroundUpload
                         active='active'
                         link="img/icons/upload.png"
-                        handleChangeBackgournd={this.props.handleChangeBackgournd}
+                        handleChangeBackground={this.props.handleChangeBackground}
                     />
                     {this.renderListCategorie()}
                 </ul>

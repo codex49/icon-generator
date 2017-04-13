@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import upload from '../../../../../lib/Upload';
-// import $ from 'jquery';
+// import $ from '$uery';
 
 export default class BackgroundUpload extends Component {
     constructor() {
@@ -12,7 +12,7 @@ export default class BackgroundUpload extends Component {
         };
 
         this.handleUploadBackground = this.handleUploadBackground.bind(this);
-        this.handleChangeBackgournd = this.handleChangeBackgournd.bind(this);
+        this.handleChangeBackground = this.handleChangeBackground.bind(this);
     }
 
     handleUploadBackground (e) {
@@ -21,9 +21,9 @@ export default class BackgroundUpload extends Component {
         upload(link, elem);
     }
 
-    handleChangeBackgournd (){
+    handleChangeBackground (){
         const bgImg = $(ReactDOM.findDOMNode(this)).find('.up-bg').attr('src');
-        this.props.handleChangeBackgournd(bgImg);
+        this.props.handleChangeBackground(bgImg);
     }
 
     render (){
@@ -34,7 +34,7 @@ export default class BackgroundUpload extends Component {
                     <span className="label">Upload</span>
                 </a>
                 <div className="upload-elment">
-                    <div className="icon-upload upload-bg" onClick={this.handleChangeBackgournd}>
+                    <div className="icon-upload upload-bg" onClick={this.handleChangeBackground}>
                         <img className="up-bg background" src="" alt=""/>
                     </div>
                     <p>Use your own background</p>

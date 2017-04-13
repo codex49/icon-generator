@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
-// import $ from 'jquery';
+import $ from 'jquery';
 
 export default class TitleCategorie extends Component {
     constructor() {
@@ -16,7 +15,7 @@ export default class TitleCategorie extends Component {
     showMenu (event) {
         event.preventDefault();
 
-        const that = $(ReactDOM.findDOMNode(this));
+        const that = $(event.target);
         const isOpenMenu = this.state.isOpenMenu;
 
         if(isOpenMenu != -1 && !that.is(isOpenMenu)){

@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-// import $ from 'jquery';
 
 import BorderRadius from './components/BorderRadius';
 import SketchPicker from 'react-color';

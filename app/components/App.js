@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import drawSvgIcons from '../../lib/draw-svg';
 
 import AppAPI from '../main/mocks/appAPI';
 import Header from './Header';
@@ -26,8 +27,12 @@ export default class App extends Component {
 
         this.handleChangeBgTop = this.handleChangeBgTop.bind(this);
         this.handleChangeBgBottom = this.handleChangeBgBottom.bind(this);
-        this.handleChangeBackgournd = this.handleChangeBackgournd.bind(this);
+        this.handleChangeBackground = this.handleChangeBackground.bind(this);
         this.getCanvasToDownload = this.getCanvasToDownload.bind(this);
+    }
+
+    componentDidMount () {
+        drawSvgIcons();
     }
 
     handleChangeBgTop (bgBoardTop) {
@@ -42,7 +47,7 @@ export default class App extends Component {
         });
     }
 
-    handleChangeBackgournd (bgImage) {
+    handleChangeBackground (bgImage) {
         this.setState({
             bgImage,
         });
@@ -68,7 +73,7 @@ export default class App extends Component {
                     <Backgrounds
                         handleChangeBgTop={this.handleChangeBgTop}
                         handleChangeBgBottom={this.handleChangeBgBottom}
-                        handleChangeBackgournd={this.handleChangeBackgournd}
+                        handleChangeBackground={this.handleChangeBackground}
                         listCategories={ListBackgrounds}
                     />
                 </main>

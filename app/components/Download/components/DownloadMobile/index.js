@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-// import $ from 'jquery';
+import $ from 'jquery';
 
 export default class DownloadMobile extends Component {
     send (event) {

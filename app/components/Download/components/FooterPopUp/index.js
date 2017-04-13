@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-// import $ from 'jquery';
+import $ from 'jquery';
+require("jquery-ui-browserify");
 
 export default class FooterPopUp extends Component {
     handleClosePopUp (e) {
-        const popUp = $('.popup');
         e.preventDefault();
+        const popUp = $('.popup');
         popUp.fadeOut(500);
     }
 

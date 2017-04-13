@@ -9,7 +9,6 @@ export default class BorderRadius extends Component {
 
     hangeChangeBorder (e){
         const BorderRadius = e.target.value;
-        // AppActions.changeBorder(BorderRadius);
         this.props.hangeChangeBorder(BorderRadius);
     }
 

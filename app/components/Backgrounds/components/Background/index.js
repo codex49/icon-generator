@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
-// import $ from 'jquery';
+import $ from 'jquery';
 
 export default class Background extends Component {
     constructor() {
@@ -9,11 +8,11 @@ export default class Background extends Component {
         this.handleChangeBackground = this.handleChangeBackground.bind(this);
     }
 
-    handleChangeBackground (){
-        const bgImg = $(ReactDOM.findDOMNode(this)).find('img').attr('src');
-        $('.board-resultat').css('background-color', 'transparent');
+    handleChangeBackground (event){
+        const bgImg = $(event.target).find('img').attr('src');
+        // $('.board-resultat').css('background-color', 'transparent');
         $('.board-resultat').css({
-            'background': 'url('+bgImg+') center center',
+            'background-image': 'url('+bgImg+')',
             'background-size': 'cover'
         });
     }

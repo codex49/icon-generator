@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import dragDrop from '../../../lib/drop-drag';
 
 import Outils from './components/Outils';
 
@@ -16,29 +17,9 @@ export default class Board extends Component {
         this.handleShowGrid = this.handleShowGrid.bind(this);
     }
 
-    componentDidMount () {
-        const that = this;
-        $('.board-resultat').droppable({
-            drop: function(event, ui) {
-                if(!$(ui.draggable).hasClass('svg-drag')){
-                    $(this).append($(ui.draggable).addClass('svg-drag').clone());
-                }
-                $('.catagories .item').removeClass('svg-drag');
-
-                const $item = $('.board-resultat .item');
-
-                $item.draggable({
-                    drag: function(e){
-                        // const id = $(this).find('svg').attr('id');
-                        // AppActions.iconChecked(id);
-                        that.setState({
-                            iconDroped: e.target,
-                        });
-                    }
-                });
-                $item.resizable();
-            }
-        });
+    componentDidMount() {
+        // update icon in each moved
+        dragDrop(this);
     }
 
     handleShowGrid (showGrid) {

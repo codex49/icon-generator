@@ -13,11 +13,11 @@ function handleError(err) {
     this.emit('end');
 }
 
-const processors = [
-    require('postcss-csso')
-];
-
 gulp.task('sass', () => {
+    const processors = [
+        require('postcss-csso')
+    ];
+
     return gulp.src("app/styles/**/*.scss", { sourcemaps: true })
         .pipe(sourcemaps.init())
         .pipe(sass())
@@ -28,7 +28,7 @@ gulp.task('sass', () => {
 
 gulp.task('browserify', () => {
     browserify('./app/main')
-        .transform(babelify, {presets: ["es2017", "react"]})
+        .transform(babelify, {presets: ["es2016", "react"]})
         .bundle()
         .on('error', handleError)
         .pipe(source('main.js'))
@@ -42,7 +42,7 @@ gulp.task('copy', () => {
     gulp.src('app/public/img/icons/*.*').pipe(gulp.dest('dist/img/icons'));
     gulp.src('app/public/img/bg/*.*').pipe(gulp.dest('dist/img/bg'));
 
-    gulp.src('lib/vendors/*.*').pipe(gulp.dest('dist/js'));
+    // gulp.src('lib/vendors/*.*').pipe(gulp.dest('dist/js'));
 
     gulp.src('app/public/img/svg/*.*')
         .pipe(svgmin())
@@ -60,5 +60,8 @@ gulp.task('webserver', function() {
 });
 
 gulp.task('default', ['browserify', 'copy', 'webserver', 'sass'], () => {
-    return gulp.watch('app/**/*.*', ['browserify', 'copy', 'sass']);
+    return gulp.watch(
+        ['app/**/*.*', 'lib/**/*.*'],
+        ['browserify', 'copy', 'sass']
+    );
 });

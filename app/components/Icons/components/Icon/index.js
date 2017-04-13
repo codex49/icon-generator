@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-// import $ from 'jquery';
-// import { draggable } from 'jquery-ui';
+import $ from 'jquery';
 
 export default class Icon extends Component {
     componentDidMount () {
