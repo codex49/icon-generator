@@ -9,9 +9,10 @@ export default class Background extends Component {
     }
 
     handleChangeBackground (event){
-        const bgImg = $(event.target).find('img').attr('src');
-        // $('.board-resultat').css('background-color', 'transparent');
+        const bgImg = $(event.target).attr('src');
+
         $('.board-resultat').css({
+            'background-color': 'transparent',
             'background-image': 'url('+bgImg+')',
             'background-size': 'cover'
         });
