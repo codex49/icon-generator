@@ -1,11 +1,11 @@
-import { combinReducers }  from 'redux';
+import { combineReducers }  from 'redux';
 
+import backgrounds from './Backgrounds';
+import board from './Board';
 import icons from './Icons';
-import Backgrounds from './Backgrounds';
-import Board from './Board';
 
-export default rootReducer = combinReducers({
+export default combineReducers({
+    backgrounds,
+    board,
     icons,
-    Backgrounds,
-    Board,
 });
