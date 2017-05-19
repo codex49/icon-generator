@@ -1,17 +1,9 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { changeBorder } from '../../../../../../redux/actions';
 
-export default class BorderRadius extends Component {
-    constructor() {
-        super();
-
-        this.hangeChangeBorder = this.hangeChangeBorder.bind(this);
-    }
-
-    hangeChangeBorder (e){
-        const BorderRadius = e.target.value;
-        this.props.hangeChangeBorder(BorderRadius);
-    }
-
+class BorderRadius extends Component {
     renderValuesBorder () {
       const ops = [];
 
@@ -23,10 +15,15 @@ export default class BorderRadius extends Component {
 
     render () {
         return (
-            <select onChange={this.hangeChangeBorder}>
+            <select onChange={ (e) => this.props.changeBorder(e.target.value) }>
                 <option>Radius</option>
                 {this.renderValuesBorder()}
             </select>
         );
     }
 }
+const mapDispatchToProps = dispatch => ({
+    changeBorder: bindActionCreators(changeBorder, dispatch),
+});
+
+export default connect(null, mapDispatchToProps)(BorderRadius);

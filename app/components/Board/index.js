@@ -1,23 +1,16 @@
 import React, { Component } from 'react';
 import dragDrop from '../../../lib/drop-drag';
-import { bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
-import { showGrid } from '../../redux/actions';
 
 import Outils from './components/Outils';
+import { connect } from 'react-redux';
 
 class Board extends Component {
     constructor() {
         super();
 
         this.state = {
-            showGrid: false,
-            valueBorder: 0,
             iconDroped: false,
         };
-
-        this.hangeChangeBorder = this.hangeChangeBorder.bind(this);
-        this.handleShowGrid = this.handleShowGrid.bind(this);
     }
 
     componentDidMount() {
@@ -25,20 +18,8 @@ class Board extends Component {
         dragDrop(this);
     }
 
-    handleShowGrid (showGrid) {
-        this.setState({
-            showGrid,
-        });
-    }
-
-    hangeChangeBorder (valueBorder) {
-        this.setState({
-            valueBorder,
-        });
-    };
-
     renderGrid () {
-        if (!this.state.showGrid) return null;
+        if (!this.props.toggleGrid) return null;
 
         return (
             <div className="lines-grid">
@@ -68,10 +49,9 @@ class Board extends Component {
     }
 
     render () {
-        console.log('state');
         const style = {
             backgroundImage: this.getBackGroundBoad(),
-            borderRadius: this.state.valueBorder+'px',
+            borderRadius: this.props.valueBorder+'px',
         };
 
         return (
@@ -84,8 +64,6 @@ class Board extends Component {
                     </div>
                 </div>
                 <Outils
-                    handleShowGrid={this.handleShowGrid}
-                    hangeChangeBorder={this.hangeChangeBorder}
                     getIconDroped={this.state.iconDroped}
                 />
             </div>
@@ -93,17 +71,9 @@ class Board extends Component {
     }
 }
 
-function mapStateToProps(state) {
-    console.log('state', state);
-    return {
-        showGrid: state.showGrid,
-    }
-}
+const mapStateToProps = state => ({
+    toggleGrid: state.board.toggleGrid,
+    valueBorder: state.board.valueBorder,
+});
 
-function mapDispatchToProps(dispatch) {
-    return {
-        action: bindActionCreators(showGrid, dispatch)
-    }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Board);
+export default connect(mapStateToProps)(Board);

@@ -3,18 +3,21 @@ import React, { Component } from 'react';
 import BorderRadius from './components/BorderRadius';
 import SketchPicker from 'react-color';
 
-export default class Outils extends Component {
-    constructor(props) {
-        super(props);
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import { showGrid, changeBorder } from '../../../../redux/actions';
+
+
+class Outils extends Component {
+    constructor() {
+        super();
 
         this.state = {
-            displayGrid: props.showGrid,
             displayColorPicker: false,
         };
 
         this.handleOpenSketchPicker = this.handleOpenSketchPicker.bind(this);
         this.handleClose = this.handleClose.bind(this);
-        this.handleShowGrid = this.handleShowGrid.bind(this);
         this.handleChangeColor = this.handleChangeColor.bind(this);
         this.handleRemoveIcon = this.handleRemoveIcon.bind(this);
     }
@@ -31,11 +34,6 @@ export default class Outils extends Component {
         const idIconCheked = $(".board").find(this.props.getIconDroped).find('path');
         const c = color.rgb;
         idIconCheked.css('fill', 'rgba('+c.r+', '+c.g+', '+c.b+','+c.a+')');
-    }
-
-    handleShowGrid () {
-        this.setState({ displayGrid: !this.state.displayGrid });
-        this.props.handleShowGrid(!this.state.displayGrid);
     }
 
     handleRemoveIcon (event) {
@@ -60,16 +58,29 @@ export default class Outils extends Component {
         return (
             <div className="outils">
                 <div className="left">
-                    <a onClick={ this.handleOpenSketchPicker } className="color btn-green"><i className="color-icon"></i>Color</a>
+                    <a onClick={ this.handleOpenSketchPicker } className="color btn-green">
+                        <i className="color-icon" />
+                        Color
+                    </a>
                     {this.renderBlockColor()}
-                    <button onClick={this.handleRemoveIcon} className="delete"><i className="delete-icons"></i></button>
+                    <button onClick={this.handleRemoveIcon} className="delete">
+                        <i className="delete-icons" />
+                    </button>
                 </div>
                 <div className="right">
-                    <i className="icons-radius"></i>
-                    <BorderRadius hangeChangeBorder={this.props.hangeChangeBorder} />
-                    <button onClick={this.handleShowGrid} className="grid"><i className="lignes"></i></button>
+                    <i className="icons-radius" />
+                    <BorderRadius />
+                    <button onClick={() => this.props.showGrid() } className="grid">
+                        <i className="lignes" />
+                    </button>
                 </div>
             </div>
         );
     }
 }
+
+const mapDispatchToProps = dispatch => ({
+    showGrid: bindActionCreators(showGrid, dispatch),
+});
+
+export default connect(null, mapDispatchToProps)(Outils);
