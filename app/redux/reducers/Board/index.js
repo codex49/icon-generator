@@ -8,7 +8,7 @@ const initialState = {
 export default (state=initialState, action) => {
     switch (action.type) {
         case SHOW_GRID:
-            return Object.assign({}, state, { toggleGrid: !action.toggleGrid });
+            return Object.assign({}, state, { toggleGrid: !state.toggleGrid });
         case CHANGE_BORDER:
             return Object.assign({}, state, { valueBorder: action.valueBorder });
         default:

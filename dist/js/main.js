@@ -2073,7 +2073,7 @@ exports.default = function () {
 
     switch (action.type) {
         case _actionTypes.SHOW_GRID:
-            return Object.assign({}, state, { toggleGrid: !action.toggleGrid });
+            return Object.assign({}, state, { toggleGrid: !state.toggleGrid });
         case _actionTypes.CHANGE_BORDER:
             return Object.assign({}, state, { valueBorder: action.valueBorder });
         default:
