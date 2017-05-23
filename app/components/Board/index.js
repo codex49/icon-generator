@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
 import dragDrop from '../../../lib/drop-drag';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import { showGrid } from '../../redux/actions';
 
 import Outils from './components/Outils';
 
-export default class Board extends Component {
+class Board extends Component {
     constructor() {
         super();
 
@@ -65,6 +68,7 @@ export default class Board extends Component {
     }
 
     render () {
+        console.log('state');
         const style = {
             backgroundImage: this.getBackGroundBoad(),
             borderRadius: this.state.valueBorder+'px',
@@ -88,3 +92,18 @@ export default class Board extends Component {
         );
     }
 }
+
+function mapStateToProps(state) {
+    console.log('state', state);
+    return {
+        showGrid: state.showGrid,
+    }
+}
+
+function mapDispatchToProps(dispatch) {
+    return {
+        action: bindActionCreators(showGrid, dispatch)
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Board);

@@ -49,7 +49,6 @@ gulp.task('copy', () => {
         .pipe(gulp.dest('dist/img/svg'));
 });
 
-
 gulp.task('webserver', function() {
     gulp.src('dist')
         .pipe(webserver({
