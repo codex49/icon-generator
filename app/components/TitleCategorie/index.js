@@ -1,33 +1,18 @@
 import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
 import $ from 'jquery';
+
+import openMenu from '../../../lib/open-menu';
 
 export default class TitleCategorie extends Component {
     constructor() {
         super();
-
-        this.state = {
-            isOpenMenu: -1,
-        };
-
         this.showMenu = this.showMenu.bind(this);
     }
 
     showMenu (event) {
-        event.preventDefault();
-
-        const that = $(event.target);
-        const isOpenMenu = this.state.isOpenMenu;
-
-        if(isOpenMenu != -1 && !that.is(isOpenMenu)){
-            isOpenMenu.next().slideUp(500);
-        }
-
-        that.next().slideToggle(500);
-        this.setState({isOpenMenu : that});
-
-        that.delay(150).queue(function(){
-            $(this).toggleClass('active').clearQueue();
-        });
+        const elem = $(ReactDOM.findDOMNode(this));
+        openMenu(elem, event);
     }
 
     render () {
