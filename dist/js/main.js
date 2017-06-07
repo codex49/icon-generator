@@ -892,7 +892,7 @@ var Board = function (_Component) {
         var _this = _possibleConstructorReturn(this, (Board.__proto__ || Object.getPrototypeOf(Board)).call(this));
 
         _this.state = {
-            iconDroped: false
+            iconDropped: false
         };
         return _this;
     }
@@ -968,7 +968,7 @@ var Board = function (_Component) {
                     )
                 ),
                 _react2.default.createElement(_Outils2.default, {
-                    getIconDroped: this.state.iconDroped
+                    getIconDroped: this.state.iconDropped
                 })
             );
         }
@@ -2351,6 +2351,7 @@ exports.default = function (state) {
     (0, _jquery2.default)('.board-resultat').droppable({
         drop: function drop(event, ui) {
             var $icon = (0, _jquery2.default)(ui.draggable);
+            var iconDropped = void 0;
 
             var offset = (0, _jquery2.default)(this).offset();
             var relX = event.pageX - offset.left + (0, _jquery2.default)(this).scrollLeft() - $icon.innerHeight() / 2;
@@ -2362,7 +2363,8 @@ exports.default = function (state) {
             };
 
             if (!$icon.hasClass('svg-drag')) {
-                (0, _jquery2.default)(this).append($icon.addClass('svg-drag').clone().css(positionMouse));
+                iconDropped = $icon.addClass('svg-drag').clone().css(positionMouse);
+                (0, _jquery2.default)(this).append(iconDropped);
             }
             (0, _jquery2.default)('.catagories .item').removeClass('svg-drag');
 
@@ -2372,7 +2374,7 @@ exports.default = function (state) {
                 drag: function drag(e) {
                     // return icon moved in board
                     state.setState({
-                        iconDroped: e.target
+                        iconDropped: e.target
                     });
                 }
             });

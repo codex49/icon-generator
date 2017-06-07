@@ -9,7 +9,7 @@ class Board extends Component {
         super();
 
         this.state = {
-            iconDroped: false,
+            iconDropped: false,
         };
     }
 
@@ -64,7 +64,7 @@ class Board extends Component {
                     </div>
                 </div>
                 <Outils
-                    getIconDroped={this.state.iconDroped}
+                    getIconDroped={this.state.iconDropped}
                 />
             </div>
         );
