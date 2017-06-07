@@ -1,9 +1,16 @@
-import { SHOW_GRID } from '../../actionTypes';
+import { SHOW_GRID, CHANGE_BORDER } from '../../actionTypes';
 
-export default (state=[], payload) => {
-    switch (payload) {
+const initialState = {
+    toggleGrid: false,
+    valueBorder: 0,
+}
+
+export default (state=initialState, action) => {
+    switch (action.type) {
         case SHOW_GRID:
-            return [...state, payload.etat];
+            return Object.assign({}, state, { toggleGrid: !state.toggleGrid });
+        case CHANGE_BORDER:
+            return Object.assign({}, state, { valueBorder: action.valueBorder });
         default:
             return state;
     }

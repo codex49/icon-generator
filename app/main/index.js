@@ -5,10 +5,10 @@ import App from '../components/App';
 import { Provider } from 'react-redux';
 import Store from '../redux/store';
 
-const storeInstance = Store();
+const store = Store();
 
-ReactDOM.render(
-    <Provider store={storeInstance}>
+ReactDOM.render (
+    <Provider store={store}>
         <App />
     </Provider>,
     document.getElementById('app')

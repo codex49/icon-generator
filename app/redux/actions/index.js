@@ -1,13 +1,10 @@
-import { SHOW_GRID } from '../actionTypes';
+import { SHOW_GRID, CHANGE_BORDER } from '../actionTypes';
 
+export const showGrid = () => ({
+    type: SHOW_GRID,
+});
 
-export const showGrid = etat => {
-    console.log('etat', etat);
-
-    return {
-        type: SHOW_GRID,
-        etat
-    }
-    /* type: SHOW_GRID,
-    etat, */
-};
+export const changeBorder = (valueBorder) => ({
+    type: CHANGE_BORDER,
+    valueBorder,
+});

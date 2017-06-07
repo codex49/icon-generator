@@ -17,7 +17,7 @@ export default class Background extends Component {
             'background-size': 'cover'
         });
     }
-
+    
     render (){
         return (
             <li className="item" onClick={this.handleChangeBackground}>
