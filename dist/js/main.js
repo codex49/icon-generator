@@ -2351,29 +2351,22 @@ exports.default = function (state) {
     (0, _jquery2.default)('.board-resultat').droppable({
         drop: function drop(event, ui) {
             var $icon = (0, _jquery2.default)(ui.draggable);
-            var iconDropped = void 0;
-
             var offset = (0, _jquery2.default)(this).offset();
-            var relX = event.pageX - offset.left + (0, _jquery2.default)(this).scrollLeft() - $icon.innerHeight() / 2;
-            var relY = event.pageY - offset.top + (0, _jquery2.default)(this).scrollTop() - $icon.innerWidth() / 2;
-
             var positionMouse = {
-                left: relX,
-                top: relY
+                left: event.pageX - offset.left + (0, _jquery2.default)(this).scrollLeft() - $icon.innerHeight() / 2,
+                top: event.pageY - offset.top + (0, _jquery2.default)(this).scrollTop() - $icon.innerWidth() / 2
             };
 
             if (!$icon.hasClass('svg-drag')) {
-                iconDropped = $icon.clone().addClass('svg-drag').css(positionMouse);
+                var iconDropped = $icon.clone().addClass('svg-drag').css(positionMouse);
                 (0, _jquery2.default)(this).append(iconDropped);
+                state.setState({ iconDropped: iconDropped });
             }
 
             var $item = (0, _jquery2.default)('.board-resultat .item');
             $item.draggable({
                 drag: function drag(e) {
-                    // return icon moved in board
-                    state.setState({
-                        iconDropped: e.target
-                    });
+                    state.setState({ iconDropped: e.target });
                 }
             });
             $item.resizable();
