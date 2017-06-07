@@ -2363,13 +2363,11 @@ exports.default = function (state) {
             };
 
             if (!$icon.hasClass('svg-drag')) {
-                iconDropped = $icon.addClass('svg-drag').clone().css(positionMouse);
+                iconDropped = $icon.clone().addClass('svg-drag').css(positionMouse);
                 (0, _jquery2.default)(this).append(iconDropped);
             }
-            (0, _jquery2.default)('.catagories .item').removeClass('svg-drag');
 
             var $item = (0, _jquery2.default)('.board-resultat .item');
-
             $item.draggable({
                 drag: function drag(e) {
                     // return icon moved in board
