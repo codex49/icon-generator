@@ -2350,16 +2350,17 @@ require("jquery-ui-browserify");
 exports.default = function (state) {
     (0, _jquery2.default)('.board-resultat').droppable({
         drop: function drop(event, ui) {
+            var that = (0, _jquery2.default)(this);
             var $icon = (0, _jquery2.default)(ui.draggable);
-            var offset = (0, _jquery2.default)(this).offset();
+            var offset = that.offset();
             var positionMouse = {
-                left: event.pageX - offset.left + (0, _jquery2.default)(this).scrollLeft() - $icon.innerHeight() / 2,
-                top: event.pageY - offset.top + (0, _jquery2.default)(this).scrollTop() - $icon.innerWidth() / 2
+                left: event.pageX - offset.left + that.scrollLeft() - $icon.innerHeight() / 2,
+                top: event.pageY - offset.top + that.scrollTop() - $icon.innerWidth() / 2
             };
 
             if (!$icon.hasClass('svg-drag')) {
                 var iconDropped = $icon.clone().addClass('svg-drag').css(positionMouse);
-                (0, _jquery2.default)(this).append(iconDropped);
+                that.append(iconDropped);
                 state.setState({ iconDropped: iconDropped });
             }
 
