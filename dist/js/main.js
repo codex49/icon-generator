@@ -2350,9 +2350,19 @@ require("jquery-ui-browserify");
 exports.default = function (state) {
     (0, _jquery2.default)('.board-resultat').droppable({
         drop: function drop(event, ui) {
+            var $icon = (0, _jquery2.default)(ui.draggable);
 
-            if (!(0, _jquery2.default)(ui.draggable).hasClass('svg-drag')) {
-                (0, _jquery2.default)(this).append((0, _jquery2.default)(ui.draggable).addClass('svg-drag').clone());
+            var offset = (0, _jquery2.default)(this).offset();
+            var relX = event.pageX - offset.left + (0, _jquery2.default)(this).scrollLeft() - $icon.innerHeight() / 2;
+            var relY = event.pageY - offset.top + (0, _jquery2.default)(this).scrollTop() - $icon.innerWidth() / 2;
+
+            var positionMouse = {
+                left: relX,
+                top: relY
+            };
+
+            if (!$icon.hasClass('svg-drag')) {
+                (0, _jquery2.default)(this).append($icon.addClass('svg-drag').clone().css(positionMouse));
             }
             (0, _jquery2.default)('.catagories .item').removeClass('svg-drag');
 
