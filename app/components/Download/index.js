@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+
 import downloadIcon from '../../../lib/canvas-to-image';
 import SocialMedia from './components/SocialMedia';
 import FooterPopUp from './components/FooterPopUp';
@@ -9,20 +11,13 @@ export default class Download extends Component {
 
         this.state = {
             size: 1024,
+            showButtonSendIcon: true,
+            showInputSendIcon: false,
         };
 
         this.handleChooseSize = this.handleChooseSize.bind(this);
         this.handleDownloadIcon = this.handleDownloadIcon.bind(this);
-    }
-
-    renderSocialMedia () {
-        return this.props.socialsMedia.map((social) =>
-            <SocialMedia
-                key={social.url}
-                link={social.url}>
-                {social.children}
-            </SocialMedia>
-        )
+        this.handleSendIcon = this.handleSendIcon.bind(this);
     }
 
     handleDownloadIcon (e) {
@@ -34,9 +29,14 @@ export default class Download extends Component {
 
     handleSendIcon (event) {
         event.preventDefault();
-        $('.btn-download-mobile').fadeOut(60);
+        /* $('.btn-download-mobile').fadeOut(60);
         const sendIcons = $('.send-icon');
-        sendIcons.fadeIn(300);
+        sendIcons.fadeIn(300); */
+        this.setState({
+            showButtonSendIcon: false,
+            showInputSendIcon: true,
+        });
+        console.log('this.state.showInputSendIcon', this.state.showInputSendIcon);
     }
 
     handleChooseSize (size) {
@@ -45,15 +45,16 @@ export default class Download extends Component {
         });
     }
 
-    renderSendIcon () {
-        return (
-			<div className="send-icon">
-				<form>
-					<input type="text" className="text" rel="email" placeholder="Write your email to recive the icons"/>
-					<input type="submit" className="btn-green" value="Send"/>
-				</form>
-			</div>
-        );
+    renderSocialMedia () {
+        if (!this.props.socialsMedia) return null;
+
+        return this.props.socialsMedia.map((social) =>
+            <SocialMedia
+                key={social.url}
+                link={social.url}>
+                {social.children}
+            </SocialMedia>
+        )
     }
 
     renderMobileIcon () {
@@ -85,6 +86,30 @@ export default class Download extends Component {
         );
     }
 
+    renderButtonSendIcon () {
+        if (!this.state.showButtonSendIcon) return null;
+
+        return (
+            <a href="" className="btn-download-mobile" onClick={this.handleSendIcon}>
+                For iOS & Android
+                <em>All the necessary sizes</em>
+            </a>
+        )
+    }
+
+    renderInputSendIcon () {
+        if (!this.state.showInputSendIcon) return null;
+
+        return (
+            <div className="send-icon">
+                <form>
+                    <input type="text" className="text" rel="email" placeholder="Write your email to receive the icons"/>
+                    <input type="submit" className="btn-green" value="Send"/>
+                </form>
+            </div>
+        );
+    }
+
     render () {
         return (
 			<div className="popup">
@@ -107,11 +132,8 @@ export default class Download extends Component {
 					<p className="description">Download the necessary sizes for Android and iOS</p>
                     {this.renderMobileIcon()}
 					<div className="block-mobile">
-                        <a href="" className="btn-download-mobile" onClick={this.handleSendIcon}>
-                            For iOS & Android
-                            <em>All the necessary sizes</em>
-                        </a>
-                        {this.renderSendIcon()}
+                        {this.renderButtonSendIcon()}
+                        {this.renderInputSendIcon()}
 					</div>
 					<FooterPopUp />
 				</div>
