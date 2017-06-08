@@ -5,7 +5,7 @@ import SketchPicker from 'react-color';
 
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { showGrid, changeBorder } from '../../../../redux/actions';
+import { showGrid } from '../../../../redux/actions';
 
 
 class Outils extends Component {
@@ -23,7 +23,7 @@ class Outils extends Component {
     }
 
     handleOpenSketchPicker () {
-        this.setState(() => ({ displayColorPicker: !this.state.displayColorPicker }));
+        this.setState({ displayColorPicker: !this.state.displayColorPicker });
     }
 
     handleClose () {
@@ -31,16 +31,13 @@ class Outils extends Component {
     }
 
     handleChangeColor (color) {
-        const idIconCheked = $(".board").find(this.props.getIconDroped).find('path');
+        const iconChecked = $(".board").find(this.props.getIconDroped).find('path');
         const c = color.rgb;
-        idIconCheked.css('fill', 'rgba('+c.r+', '+c.g+', '+c.b+','+c.a+')');
+        iconChecked.css('fill', `rgba(${c.r}, ${c.g}, ${c.b},${c.a})`);
     }
 
-    handleRemoveIcon (event) {
-        event.preventDefault();
-
-        const idIconCheked = $(".board").find(this.props.getIconDroped);
-        idIconCheked.fadeOut(100);
+    handleRemoveIcon () {
+        $(".board").find(this.props.getIconDroped).fadeOut(100);
     }
 
     renderBlockColor () {

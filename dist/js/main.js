@@ -561,18 +561,21 @@ var Backgrounds = function (_Component) {
     }
 
     _createClass(Backgrounds, [{
-        key: 'renderListCategorie',
-        value: function renderListCategorie() {
+        key: 'getCategoryItems',
+        value: function getCategoryItems() {}
+    }, {
+        key: 'renderListCategory',
+        value: function renderListCategory() {
             var renderCustomGradient = _react2.default.createElement(_CustomGradient2.default, {
                 handleChangeBgTop: this.props.handleChangeBgTop,
                 handleChangeBgBottom: this.props.handleChangeBgBottom
             });
 
-            return this.props.listCategories.map(function (catagorie, i) {
-                var items = catagorie.items.map(function (item, f) {
+            return this.props.listCategories.map(function (category, i) {
+                var items = category.items.map(function (item, f) {
                     var background = [];
 
-                    if (catagorie.name === 'Gradients' && f == 0) {
+                    if (category.name === 'Gradients' && f === 0) {
                         background.push(renderCustomGradient);
                     }
                     background.push(_react2.default.createElement(_Background2.default, { key: f, link: item }));
@@ -583,8 +586,8 @@ var Backgrounds = function (_Component) {
                     { key: i, className: 'catagorie' },
                     _react2.default.createElement(
                         _TitleCategorie2.default,
-                        { link: catagorie.iconCat },
-                        catagorie.name
+                        { link: category.iconCat },
+                        category.name
                     ),
                     _react2.default.createElement(
                         'ul',
@@ -613,7 +616,7 @@ var Backgrounds = function (_Component) {
                         link: 'img/icons/upload.png',
                         handleChangeBackground: this.props.handleChangeBackground
                     }),
-                    this.renderListCategorie()
+                    this.renderListCategory()
                 )
             );
         }
@@ -762,11 +765,7 @@ var Outils = function (_Component) {
     _createClass(Outils, [{
         key: 'handleOpenSketchPicker',
         value: function handleOpenSketchPicker() {
-            var _this2 = this;
-
-            this.setState(function () {
-                return { displayColorPicker: !_this2.state.displayColorPicker };
-            });
+            this.setState({ displayColorPicker: !this.state.displayColorPicker });
         }
     }, {
         key: 'handleClose',
@@ -776,17 +775,14 @@ var Outils = function (_Component) {
     }, {
         key: 'handleChangeColor',
         value: function handleChangeColor(color) {
-            var idIconCheked = $(".board").find(this.props.getIconDroped).find('path');
+            var iconChecked = $(".board").find(this.props.getIconDroped).find('path');
             var c = color.rgb;
-            idIconCheked.css('fill', 'rgba(' + c.r + ', ' + c.g + ', ' + c.b + ',' + c.a + ')');
+            iconChecked.css('fill', 'rgba(' + c.r + ', ' + c.g + ', ' + c.b + ',' + c.a + ')');
         }
     }, {
         key: 'handleRemoveIcon',
-        value: function handleRemoveIcon(event) {
-            event.preventDefault();
-
-            var idIconCheked = $(".board").find(this.props.getIconDroped);
-            idIconCheked.fadeOut(100);
+        value: function handleRemoveIcon() {
+            $(".board").find(this.props.getIconDroped).fadeOut(100);
         }
     }, {
         key: 'renderBlockColor',
@@ -803,7 +799,7 @@ var Outils = function (_Component) {
     }, {
         key: 'render',
         value: function render() {
-            var _this3 = this;
+            var _this2 = this;
 
             return _react2.default.createElement(
                 'div',
@@ -832,7 +828,7 @@ var Outils = function (_Component) {
                     _react2.default.createElement(
                         'button',
                         { onClick: function onClick() {
-                                return _this3.props.showGrid();
+                                return _this2.props.showGrid();
                             }, className: 'grid' },
                         _react2.default.createElement('i', { className: 'lignes' })
                     )
@@ -928,7 +924,7 @@ var Board = function (_Component) {
         value: function renderBorderStyle() {
             var positions = ['top-left', 'top-right', 'bottom-right', 'bottom-left'];
             return positions.map(function (position) {
-                return _react2.default.createElement('span', { className: 'border ' + position });
+                return _react2.default.createElement('span', { key: position, className: 'border ' + position });
             });
         }
     }, {

@@ -6,28 +6,27 @@ import CustomGradient from './components/CustomGradient';
 import TitleCategori from '../TitleCategorie';
 
 export default class Backgrounds extends Component {
-    renderListCategorie () {
+    getCategoryItems () {}
+    renderListCategory () {
         const renderCustomGradient = <CustomGradient
             handleChangeBgTop={this.props.handleChangeBgTop}
             handleChangeBgBottom={this.props.handleChangeBgBottom}
         />;
 
         return (
-            this.props.listCategories.map(function(catagorie, i){
-                const items = catagorie.items.map(function(item, f){
+            this.props.listCategories.map(function(category, i) {
+                const items = category.items.map(function(item, f) {
                     const background = [];
 
-                    if(catagorie.name === 'Gradients' && f == 0){
-                         background.push(
-                             renderCustomGradient
-                         );
+                    if(category.name === 'Gradients' && f === 0) {
+                         background.push( renderCustomGradient );
                      }
                     background.push(<Background key={f} link={item}/>);
                     return background;
                 });
                 return (
                     <li key={i} className="catagorie">
-                        <TitleCategori link={catagorie.iconCat}>{catagorie.name}</TitleCategori>
+                        <TitleCategori link={category.iconCat}>{category.name}</TitleCategori>
                         <ul className="items">{items}</ul>
                     </li>
                 );
@@ -44,7 +43,7 @@ export default class Backgrounds extends Component {
                         link="img/icons/upload.png"
                         handleChangeBackground={this.props.handleChangeBackground}
                     />
-                    {this.renderListCategorie()}
+                    {this.renderListCategory()}
                 </ul>
             </div>
         );
