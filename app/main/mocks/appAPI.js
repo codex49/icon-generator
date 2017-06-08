@@ -20,7 +20,6 @@ module.exports = {
                 'name': 'All',
                 'iconCat': 'img/icons/all.png',
                 'items': [
-
                     'img/svg/add-button-inside-black-circle.svg',
                     'img/svg/apple-black-logo.svg',
                     'img/svg/apple-black-silhouette-with-a-leaf.svg',

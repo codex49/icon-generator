@@ -14,7 +14,6 @@ class Board extends Component {
     }
 
     componentDidMount() {
-        // update icon in each moved
         dragDrop(this);
     }
 
@@ -29,29 +28,23 @@ class Board extends Component {
         );
     }
 
-    getBackGroundBoad () {
-        let background = 'linear-gradient('+this.props.bgBoardTop+', '+this.props.bgBoardBottom+')';
+    getBackGroundBoard () {
+        let background = `linear-gradient(${this.props.bgBoardTop}, ${this.props.bgBoardBottom})`;
 
-        if (this.props.bgImage) background = 'url('+this.props.bgImage+')';
+        if (this.props.bgImage) background = `url(${this.props.bgImage})`;
 
         return background;
     }
 
     renderBorderStyle () {
-        return (
-            <div>
-                <span className="border top-left"></span>
-                <span className="border top-right"></span>
-                <span className="border bottom-right"></span>
-                <span className="border bottom-left"></span>
-            </div>
-        );
+        const positions = ['top-left', 'top-right', 'bottom-right', 'bottom-left'];
+        return positions.map ( position =>  <span className={`border ${position}`} /> );
     }
 
     render () {
         const style = {
-            backgroundImage: this.getBackGroundBoad(),
-            borderRadius: this.props.valueBorder+'px',
+            backgroundImage: this.getBackGroundBoard(),
+            borderRadius: this.props.valueBorder,
         };
 
         return (

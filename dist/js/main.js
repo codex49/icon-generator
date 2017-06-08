@@ -900,7 +900,6 @@ var Board = function (_Component) {
     _createClass(Board, [{
         key: 'componentDidMount',
         value: function componentDidMount() {
-            // update icon in each moved
             (0, _dropDrag2.default)(this);
         }
     }, {
@@ -916,8 +915,8 @@ var Board = function (_Component) {
             );
         }
     }, {
-        key: 'getBackGroundBoad',
-        value: function getBackGroundBoad() {
+        key: 'getBackGroundBoard',
+        value: function getBackGroundBoard() {
             var background = 'linear-gradient(' + this.props.bgBoardTop + ', ' + this.props.bgBoardBottom + ')';
 
             if (this.props.bgImage) background = 'url(' + this.props.bgImage + ')';
@@ -927,21 +926,17 @@ var Board = function (_Component) {
     }, {
         key: 'renderBorderStyle',
         value: function renderBorderStyle() {
-            return _react2.default.createElement(
-                'div',
-                null,
-                _react2.default.createElement('span', { className: 'border top-left' }),
-                _react2.default.createElement('span', { className: 'border top-right' }),
-                _react2.default.createElement('span', { className: 'border bottom-right' }),
-                _react2.default.createElement('span', { className: 'border bottom-left' })
-            );
+            var positions = ['top-left', 'top-right', 'bottom-right', 'bottom-left'];
+            return positions.map(function (position) {
+                return _react2.default.createElement('span', { className: 'border ' + position });
+            });
         }
     }, {
         key: 'render',
         value: function render() {
             var style = {
-                backgroundImage: this.getBackGroundBoad(),
-                borderRadius: this.props.valueBorder + 'px'
+                backgroundImage: this.getBackGroundBoard(),
+                borderRadius: this.props.valueBorder
             };
 
             return _react2.default.createElement(
@@ -2350,30 +2345,24 @@ require("jquery-ui-browserify");
 exports.default = function (state) {
     (0, _jquery2.default)('.board-resultat').droppable({
         drop: function drop(event, ui) {
+            var that = (0, _jquery2.default)(this);
             var $icon = (0, _jquery2.default)(ui.draggable);
-            var iconDropped = void 0;
-
-            var offset = (0, _jquery2.default)(this).offset();
-            var relX = event.pageX - offset.left + (0, _jquery2.default)(this).scrollLeft() - $icon.innerHeight() / 2;
-            var relY = event.pageY - offset.top + (0, _jquery2.default)(this).scrollTop() - $icon.innerWidth() / 2;
-
+            var offset = that.offset();
             var positionMouse = {
-                left: relX,
-                top: relY
+                left: event.pageX - offset.left + that.scrollLeft() - $icon.innerHeight() / 2,
+                top: event.pageY - offset.top + that.scrollTop() - $icon.innerWidth() / 2
             };
 
             if (!$icon.hasClass('svg-drag')) {
-                iconDropped = $icon.clone().addClass('svg-drag').css(positionMouse);
-                (0, _jquery2.default)(this).append(iconDropped);
+                var iconDropped = $icon.clone().addClass('svg-drag').css(positionMouse);
+                that.append(iconDropped);
+                state.setState({ iconDropped: iconDropped });
             }
 
             var $item = (0, _jquery2.default)('.board-resultat .item');
             $item.draggable({
                 drag: function drag(e) {
-                    // return icon moved in board
-                    state.setState({
-                        iconDropped: e.target
-                    });
+                    state.setState({ iconDropped: e.target });
                 }
             });
             $item.resizable();
