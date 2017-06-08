@@ -561,18 +561,21 @@ var Backgrounds = function (_Component) {
     }
 
     _createClass(Backgrounds, [{
-        key: 'renderListCategorie',
-        value: function renderListCategorie() {
+        key: 'getCategoryItems',
+        value: function getCategoryItems() {}
+    }, {
+        key: 'renderListCategory',
+        value: function renderListCategory() {
             var renderCustomGradient = _react2.default.createElement(_CustomGradient2.default, {
                 handleChangeBgTop: this.props.handleChangeBgTop,
                 handleChangeBgBottom: this.props.handleChangeBgBottom
             });
 
-            return this.props.listCategories.map(function (catagorie, i) {
-                var items = catagorie.items.map(function (item, f) {
+            return this.props.listCategories.map(function (category, i) {
+                var items = category.items.map(function (item, f) {
                     var background = [];
 
-                    if (catagorie.name === 'Gradients' && f == 0) {
+                    if (category.name === 'Gradients' && f === 0) {
                         background.push(renderCustomGradient);
                     }
                     background.push(_react2.default.createElement(_Background2.default, { key: f, link: item }));
@@ -583,8 +586,8 @@ var Backgrounds = function (_Component) {
                     { key: i, className: 'catagorie' },
                     _react2.default.createElement(
                         _TitleCategorie2.default,
-                        { link: catagorie.iconCat },
-                        catagorie.name
+                        { link: category.iconCat },
+                        category.name
                     ),
                     _react2.default.createElement(
                         'ul',
@@ -613,7 +616,7 @@ var Backgrounds = function (_Component) {
                         link: 'img/icons/upload.png',
                         handleChangeBackground: this.props.handleChangeBackground
                     }),
-                    this.renderListCategorie()
+                    this.renderListCategory()
                 )
             );
         }
@@ -762,11 +765,7 @@ var Outils = function (_Component) {
     _createClass(Outils, [{
         key: 'handleOpenSketchPicker',
         value: function handleOpenSketchPicker() {
-            var _this2 = this;
-
-            this.setState(function () {
-                return { displayColorPicker: !_this2.state.displayColorPicker };
-            });
+            this.setState({ displayColorPicker: !this.state.displayColorPicker });
         }
     }, {
         key: 'handleClose',
@@ -776,17 +775,14 @@ var Outils = function (_Component) {
     }, {
         key: 'handleChangeColor',
         value: function handleChangeColor(color) {
-            var idIconCheked = $(".board").find(this.props.getIconDroped).find('path');
+            var iconChecked = $(".board").find(this.props.getIconDroped).find('path');
             var c = color.rgb;
-            idIconCheked.css('fill', 'rgba(' + c.r + ', ' + c.g + ', ' + c.b + ',' + c.a + ')');
+            iconChecked.css('fill', 'rgba(' + c.r + ', ' + c.g + ', ' + c.b + ',' + c.a + ')');
         }
     }, {
         key: 'handleRemoveIcon',
-        value: function handleRemoveIcon(event) {
-            event.preventDefault();
-
-            var idIconCheked = $(".board").find(this.props.getIconDroped);
-            idIconCheked.fadeOut(100);
+        value: function handleRemoveIcon() {
+            $(".board").find(this.props.getIconDroped).fadeOut(100);
         }
     }, {
         key: 'renderBlockColor',
@@ -803,7 +799,7 @@ var Outils = function (_Component) {
     }, {
         key: 'render',
         value: function render() {
-            var _this3 = this;
+            var _this2 = this;
 
             return _react2.default.createElement(
                 'div',
@@ -832,7 +828,7 @@ var Outils = function (_Component) {
                     _react2.default.createElement(
                         'button',
                         { onClick: function onClick() {
-                                return _this3.props.showGrid();
+                                return _this2.props.showGrid();
                             }, className: 'grid' },
                         _react2.default.createElement('i', { className: 'lignes' })
                     )
@@ -928,7 +924,7 @@ var Board = function (_Component) {
         value: function renderBorderStyle() {
             var positions = ['top-left', 'top-right', 'bottom-right', 'bottom-left'];
             return positions.map(function (position) {
-                return _react2.default.createElement('span', { className: 'border ' + position });
+                return _react2.default.createElement('span', { key: position, className: 'border ' + position });
             });
         }
     }, {
@@ -1217,13 +1213,10 @@ var Download = function (_Component) {
         var _this = _possibleConstructorReturn(this, (Download.__proto__ || Object.getPrototypeOf(Download)).call(this));
 
         _this.state = {
-            size: 1024,
-            stl_1024: true,
-            stl_512: false
+            size: 1024
         };
 
-        _this.fc_1024 = _this.fc_1024.bind(_this);
-        _this.fc_512 = _this.fc_512.bind(_this);
+        _this.handleChooseSize = _this.handleChooseSize.bind(_this);
         _this.handleDownloadIcon = _this.handleDownloadIcon.bind(_this);
         return _this;
     }
@@ -1238,24 +1231,6 @@ var Download = function (_Component) {
                     link: social.url },
                 social.children
             );
-        }
-    }, {
-        key: 'fc_1024',
-        value: function fc_1024() {
-            this.setState({
-                size: 1024,
-                stl_1024: true,
-                stl_512: false
-            });
-        }
-    }, {
-        key: 'fc_512',
-        value: function fc_512() {
-            this.setState({
-                size: 512,
-                stl_1024: false,
-                stl_512: true
-            });
         }
     }, {
         key: 'handleDownloadIcon',
@@ -1308,10 +1283,19 @@ var Download = function (_Component) {
             );
         }
     }, {
+        key: 'handleChooseSize',
+        value: function handleChooseSize(size) {
+            this.setState({
+                size: size
+            });
+        }
+    }, {
         key: 'renderButtonsSize',
         value: function renderButtonsSize() {
-            var sizeBig = this.state.stl_1024 && 'btn-size';
-            var sizeSmall = this.state.stl_512 && 'btn-size';
+            var _this2 = this;
+
+            var sizeBig = this.state.size === 1024 && 'btn-size';
+            var sizeSmall = this.state.size === 512 && 'btn-size';
 
             return _react2.default.createElement(
                 'div',
@@ -1320,14 +1304,18 @@ var Download = function (_Component) {
                     'button',
                     {
                         className: sizeBig,
-                        onClick: this.fc_1024 },
+                        onClick: function onClick() {
+                            return _this2.handleChooseSize(1024);
+                        } },
                     '1024px'
                 ),
                 _react2.default.createElement(
                     'button',
                     {
                         className: sizeSmall,
-                        onClick: this.fc_512 },
+                        onClick: function onClick() {
+                            return _this2.handleChooseSize(512);
+                        } },
                     '512px'
                 )
             );

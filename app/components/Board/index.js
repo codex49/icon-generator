@@ -38,7 +38,7 @@ class Board extends Component {
 
     renderBorderStyle () {
         const positions = ['top-left', 'top-right', 'bottom-right', 'bottom-left'];
-        return positions.map ( position =>  <span className={`border ${position}`} /> );
+        return positions.map ( position =>  <span key={position} className={`border ${position}`} /> );
     }
 
     render () {
