@@ -900,7 +900,6 @@ var Board = function (_Component) {
     _createClass(Board, [{
         key: 'componentDidMount',
         value: function componentDidMount() {
-            // update icon in each moved
             (0, _dropDrag2.default)(this);
         }
     }, {
@@ -916,8 +915,8 @@ var Board = function (_Component) {
             );
         }
     }, {
-        key: 'getBackGroundBoad',
-        value: function getBackGroundBoad() {
+        key: 'getBackGroundBoard',
+        value: function getBackGroundBoard() {
             var background = 'linear-gradient(' + this.props.bgBoardTop + ', ' + this.props.bgBoardBottom + ')';
 
             if (this.props.bgImage) background = 'url(' + this.props.bgImage + ')';
@@ -927,21 +926,17 @@ var Board = function (_Component) {
     }, {
         key: 'renderBorderStyle',
         value: function renderBorderStyle() {
-            return _react2.default.createElement(
-                'div',
-                null,
-                _react2.default.createElement('span', { className: 'border top-left' }),
-                _react2.default.createElement('span', { className: 'border top-right' }),
-                _react2.default.createElement('span', { className: 'border bottom-right' }),
-                _react2.default.createElement('span', { className: 'border bottom-left' })
-            );
+            var positions = ['top-left', 'top-right', 'bottom-right', 'bottom-left'];
+            return positions.map(function (position) {
+                return _react2.default.createElement('span', { className: 'border ' + position });
+            });
         }
     }, {
         key: 'render',
         value: function render() {
             var style = {
-                backgroundImage: this.getBackGroundBoad(),
-                borderRadius: this.props.valueBorder + 'px'
+                backgroundImage: this.getBackGroundBoard(),
+                borderRadius: this.props.valueBorder
             };
 
             return _react2.default.createElement(
