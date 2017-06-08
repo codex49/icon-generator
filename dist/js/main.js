@@ -1213,13 +1213,10 @@ var Download = function (_Component) {
         var _this = _possibleConstructorReturn(this, (Download.__proto__ || Object.getPrototypeOf(Download)).call(this));
 
         _this.state = {
-            size: 1024,
-            stl_1024: true,
-            stl_512: false
+            size: 1024
         };
 
-        _this.fc_1024 = _this.fc_1024.bind(_this);
-        _this.fc_512 = _this.fc_512.bind(_this);
+        _this.handleChooseSize = _this.handleChooseSize.bind(_this);
         _this.handleDownloadIcon = _this.handleDownloadIcon.bind(_this);
         return _this;
     }
@@ -1234,24 +1231,6 @@ var Download = function (_Component) {
                     link: social.url },
                 social.children
             );
-        }
-    }, {
-        key: 'fc_1024',
-        value: function fc_1024() {
-            this.setState({
-                size: 1024,
-                stl_1024: true,
-                stl_512: false
-            });
-        }
-    }, {
-        key: 'fc_512',
-        value: function fc_512() {
-            this.setState({
-                size: 512,
-                stl_1024: false,
-                stl_512: true
-            });
         }
     }, {
         key: 'handleDownloadIcon',
@@ -1304,10 +1283,19 @@ var Download = function (_Component) {
             );
         }
     }, {
+        key: 'handleChooseSize',
+        value: function handleChooseSize(size) {
+            this.setState({
+                size: size
+            });
+        }
+    }, {
         key: 'renderButtonsSize',
         value: function renderButtonsSize() {
-            var sizeBig = this.state.stl_1024 && 'btn-size';
-            var sizeSmall = this.state.stl_512 && 'btn-size';
+            var _this2 = this;
+
+            var sizeBig = this.state.size === 1024 && 'btn-size';
+            var sizeSmall = this.state.size === 512 && 'btn-size';
 
             return _react2.default.createElement(
                 'div',
@@ -1316,14 +1304,18 @@ var Download = function (_Component) {
                     'button',
                     {
                         className: sizeBig,
-                        onClick: this.fc_1024 },
+                        onClick: function onClick() {
+                            return _this2.handleChooseSize(1024);
+                        } },
                     '1024px'
                 ),
                 _react2.default.createElement(
                     'button',
                     {
                         className: sizeSmall,
-                        onClick: this.fc_512 },
+                        onClick: function onClick() {
+                            return _this2.handleChooseSize(512);
+                        } },
                     '512px'
                 )
             );

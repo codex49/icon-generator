@@ -9,13 +9,10 @@ export default class Download extends Component {
         super();
 
         this.state = {
-            size     : 1024,
-            stl_1024 : true,
-            stl_512  : false,
+            size: 1024,
         };
 
-        this.fc_1024 = this.fc_1024.bind(this);
-        this.fc_512 = this.fc_512.bind(this);
+        this.handleChooseSize = this.handleChooseSize.bind(this);
         this.handleDownloadIcon = this.handleDownloadIcon.bind(this);
     }
 
@@ -27,22 +24,6 @@ export default class Download extends Component {
                 {social.children}
 			</SocialMedia>
         );
-    }
-
-    fc_1024 () {
-        this.setState({
-            size: 1024,
-            stl_1024: true,
-            stl_512: false
-        });
-    }
-
-    fc_512 () {
-        this.setState({
-            size: 512,
-            stl_1024: false,
-            stl_512: true
-        });
     }
 
     handleDownloadIcon (e) {
@@ -74,20 +55,26 @@ export default class Download extends Component {
         );
     }
 
+    handleChooseSize (size) {
+        this.setState({
+            size: size,
+        });
+    }
+
     renderButtonsSize () {
-        const sizeBig = this.state.stl_1024 && 'btn-size';
-        const sizeSmall = this.state.stl_512 && 'btn-size';
+        const sizeBig = this.state.size === 1024 && 'btn-size';
+        const sizeSmall = this.state.size  === 512  && 'btn-size';
 
         return (
             <div className="btns-size">
                 <button
                     className={sizeBig}
-                    onClick={this.fc_1024}>
+                    onClick={() => this.handleChooseSize(1024)}>
                     1024px
                 </button>
                 <button
                     className={sizeSmall}
-                    onClick={this.fc_512}>
+                    onClick={() => this.handleChooseSize(512)}>
                     512px
                 </button>
             </div>
