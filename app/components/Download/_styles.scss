@@ -1,4 +1,4 @@
-.popup{
+.popup {
 	display: none;
 	top: 0;
 	width: 100%;
@@ -6,7 +6,7 @@
 	background-color: rgba(68, 78, 76, 0.83);
 	z-index: 1;
 	position: fixed;
-	.block-download{
+	.block-download {
 		width: 760px;
 		min-height: 673px;
 		background: $white;
@@ -14,40 +14,40 @@
 		margin: 97px auto;
 		text-align: center;
 	}
-	.title-popup{
+	.title-popup {
 		font-size: 54px;
 		font-family: $SanFranciscoTextSemibold;
 		color: #333;
 		margin-top: 18px;
 		display: inline-block;
-	}	
-	.description{
+	}
+	.description {
 		font-family: $SanFranciscoTextMedium;
 		font-size: 14px;
 		color: #333;
 		margin-top: 7px;
 	}
-	.slink{
+	.slink {
 		margin: 12px 0 11px;
-		.social-media{
+		.social-media {
 			width: 37px;
 			height: 37px;
 			display: inline-block;
 			margin-right: 7px;
-		}		
+		}
 	}
-	.icon{
+	.icon {
 		width: 152px;
 		height: 152px;
 		margin: 2px auto 0;
-		canvas{
+		canvas {
 			width: 152px;
 			height: 152px;
 		}
 	}
-	.btns-size{
+	.btns-size {
 		margin-top: 15px;
-		button{
+		button {
 			background: #009cfa;
 			margin-right: 10px;
 			cursor: pointer;
@@ -56,19 +56,19 @@
 			border-radius: 4px;
 			color: #fff;
 			text-decoration: none;
-			&:last-child{
+			&:last-child {
 				margin-right: 0;
 			}
-			&:hover{
+			&:hover {
 				background: #065b8e;
 			}
-			&.btn-size{
+			&.btn-size {
 				background: #065b8e;
 			}
 		}
-	}	
+	}
 
-	.btn-download{
+	.btn-download {
 		font-size: 24px;
 		width: 264px;
 		height: 57px;
@@ -79,43 +79,43 @@
 		margin-top: 18px;
 		border-radius: 3px;
 
-		em{
+		em {
 			font-size: 12px;
 			color: #57784b;
 			font-family: $SanFranciscoTextMedium;
 			display: block;
 		}
 
-		&:hover{
+		&:hover {
 			border: 1px solid #81aa05;
 			cursor: pointer;
 		}
 	}
-	.ligne{
+	.ligne {
 		width: 130px;
 		border-top: 1px solid #e6e6e6;
-		border-left: 1px solid #e6e6e6; 
+		border-left: 1px solid #e6e6e6;
 		margin: 23px auto 20px;
 	}
-	.download-mobile{
+	.download-mobile {
 		margin: 10px 0;
-		.android{
+		.android {
 			display: inline-block;
 			width: 30px;
 			height: 34px;
 			margin-right: 13px;
 		}
-		.ios{
+		.ios {
 			display: inline-block;
 			width: 31px;
 			height: 38px;
 		}
 	}
-	.block-mobile{
+	.block-mobile {
 		height: 55px;
 	}
-	.btn-download-mobile{
-		&:hover{
+	.btn-download-mobile {
+		&:hover {
 			border: 1px solid #999;
 		}
 		width: 214px;
@@ -131,16 +131,15 @@
 		color: #333;
 		text-decoration: none;
 		padding-top: 13px;
-		em{
+		em {
 			font-family: $SanFranciscoTextMedium;
 			font-size: 12px;
 			color: #808080;
 			display: block;
 		}
 	}
-	.send-icon{
-		display: none;
-		.text{
+	.send-icon {
+		.text {
 			width: 250px;
 			height: 40px;
 			border-radius: 4px 0 0 4px;
@@ -149,7 +148,7 @@
 			outline: 0;
 			box-shadow: inset 0 1px 2px rgba(204, 204, 204, 0.8);
 		}
-		.btn-green{
+		.btn-green {
 			width: 80px;
 			height: 44px;
 			border: 1px solid #a9e000;
@@ -164,30 +163,30 @@
 			vertical-align: top;
 		}
 	}
-	.footer{
+	.footer {
 		margin-top: 23px;
-		.like-fb{
+		.like-fb {
 			float: left;
-			margin-left: 21px;		
+			margin-left: 21px;
 			font-family: $SanFranciscoTextRegular;
 			font-size: 12px;
 			color: #333;
 			text-decoration: none;
-			.btn-like{
+			.btn-like {
 				width: 51px;
 				height: 20px;
 				display: inline-block;
 				margin-right: 6px;
 				vertical-align: text-bottom;
-			}		
-		}	
-		.close{
+			}
+		}
+		.close {
 			float: right;
 			font-family: $SanFranciscoTextRegular;
 			font-size: 14px;
 			color: #0090ff;
 			margin: 5px 33px 0 0;
 			text-decoration: none;
-		}	
+		}
 	}
 }

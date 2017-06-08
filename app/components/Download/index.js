@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+
 import downloadIcon from '../../../lib/canvas-to-image';
 import SocialMedia from './components/SocialMedia';
-import DownloadMobile from './components/DownloadMobile';
 import FooterPopUp from './components/FooterPopUp';
 
 export default class Download extends Component {
@@ -10,40 +11,50 @@ export default class Download extends Component {
 
         this.state = {
             size: 1024,
+            showButtonSendIcon: true,
+            showInputSendIcon: false,
         };
 
         this.handleChooseSize = this.handleChooseSize.bind(this);
         this.handleDownloadIcon = this.handleDownloadIcon.bind(this);
-    }
-
-    socialMedia (social, i) {
-        return (
-			<SocialMedia
-				key={i}
-				link={social.url}>
-                {social.children}
-			</SocialMedia>
-        );
+        this.handleSendIcon = this.handleSendIcon.bind(this);
     }
 
     handleDownloadIcon (e) {
         e.preventDefault();
-
         const canvas = this.props.canvas;
         const size = this.state.size;
-
         downloadIcon(canvas, size);
     }
 
-    renderSendIcon () {
-        return (
-			<div className="send-icon">
-				<form>
-					<input type="text" className="text" rel="email" placeholder="Write your email to recive the icons"/>
-					<input type="submit" className="btn-green" value="Send"/>
-				</form>
-			</div>
-        );
+    handleSendIcon (event) {
+        event.preventDefault();
+        /* $('.btn-download-mobile').fadeOut(60);
+        const sendIcons = $('.send-icon');
+        sendIcons.fadeIn(300); */
+        this.setState({
+            showButtonSendIcon: false,
+            showInputSendIcon: true,
+        });
+        console.log('this.state.showInputSendIcon', this.state.showInputSendIcon);
+    }
+
+    handleChooseSize (size) {
+        this.setState({
+            size: size,
+        });
+    }
+
+    renderSocialMedia () {
+        if (!this.props.socialsMedia) return null;
+
+        return this.props.socialsMedia.map((social) =>
+            <SocialMedia
+                key={social.url}
+                link={social.url}>
+                {social.children}
+            </SocialMedia>
+        )
     }
 
     renderMobileIcon () {
@@ -53,12 +64,6 @@ export default class Download extends Component {
 				<li className="ios"><a href=""><img src="img/icons/ios.png"/></a></li>
 			</ul>
         );
-    }
-
-    handleChooseSize (size) {
-        this.setState({
-            size: size,
-        });
     }
 
     renderButtonsSize () {
@@ -81,6 +86,30 @@ export default class Download extends Component {
         );
     }
 
+    renderButtonSendIcon () {
+        if (!this.state.showButtonSendIcon) return null;
+
+        return (
+            <a href="" className="btn-download-mobile" onClick={this.handleSendIcon}>
+                For iOS & Android
+                <em>All the necessary sizes</em>
+            </a>
+        )
+    }
+
+    renderInputSendIcon () {
+        if (!this.state.showInputSendIcon) return null;
+
+        return (
+            <div className="send-icon">
+                <form>
+                    <input type="text" className="text" rel="email" placeholder="Write your email to receive the icons"/>
+                    <input type="submit" className="btn-green" value="Send"/>
+                </form>
+            </div>
+        );
+    }
+
     render () {
         return (
 			<div className="popup">
@@ -88,7 +117,7 @@ export default class Download extends Component {
 					<h1 className="title-popup">Thank you!</h1>
 					<p className="description">Now it's time to brag about your new icon</p>
 					<ul className="slink">
-                        { this.props.socialsMedia.map(this.socialMedia) }
+                        { this.renderSocialMedia() }
 					</ul>
 					<div className="icon" id="icon-result">
 						<img src="img/icons/pdf.png"/>
@@ -103,8 +132,8 @@ export default class Download extends Component {
 					<p className="description">Download the necessary sizes for Android and iOS</p>
                     {this.renderMobileIcon()}
 					<div className="block-mobile">
-						<DownloadMobile />
-                        {this.renderSendIcon()}
+                        {this.renderButtonSendIcon()}
+                        {this.renderInputSendIcon()}
 					</div>
 					<FooterPopUp />
 				</div>
