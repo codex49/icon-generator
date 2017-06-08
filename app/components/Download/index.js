@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import downloadIcon from '../../../lib/canvas-to-image';
 import SocialMedia from './components/SocialMedia';
-import DownloadMobile from './components/DownloadMobile';
 import FooterPopUp from './components/FooterPopUp';
 
 export default class Download extends Component {
@@ -16,23 +15,34 @@ export default class Download extends Component {
         this.handleDownloadIcon = this.handleDownloadIcon.bind(this);
     }
 
-    socialMedia (social, i) {
-        return (
-			<SocialMedia
-				key={i}
-				link={social.url}>
+    renderSocialMedia () {
+        return this.props.socialsMedia.map((social) =>
+            <SocialMedia
+                key={social.url}
+                link={social.url}>
                 {social.children}
-			</SocialMedia>
-        );
+            </SocialMedia>
+        )
     }
 
     handleDownloadIcon (e) {
         e.preventDefault();
-
         const canvas = this.props.canvas;
         const size = this.state.size;
-
         downloadIcon(canvas, size);
+    }
+
+    handleSendIcon (event) {
+        event.preventDefault();
+        $('.btn-download-mobile').fadeOut(60);
+        const sendIcons = $('.send-icon');
+        sendIcons.fadeIn(300);
+    }
+
+    handleChooseSize (size) {
+        this.setState({
+            size: size,
+        });
     }
 
     renderSendIcon () {
@@ -53,12 +63,6 @@ export default class Download extends Component {
 				<li className="ios"><a href=""><img src="img/icons/ios.png"/></a></li>
 			</ul>
         );
-    }
-
-    handleChooseSize (size) {
-        this.setState({
-            size: size,
-        });
     }
 
     renderButtonsSize () {
@@ -88,7 +92,7 @@ export default class Download extends Component {
 					<h1 className="title-popup">Thank you!</h1>
 					<p className="description">Now it's time to brag about your new icon</p>
 					<ul className="slink">
-                        { this.props.socialsMedia.map(this.socialMedia) }
+                        { this.renderSocialMedia() }
 					</ul>
 					<div className="icon" id="icon-result">
 						<img src="img/icons/pdf.png"/>
@@ -103,7 +107,10 @@ export default class Download extends Component {
 					<p className="description">Download the necessary sizes for Android and iOS</p>
                     {this.renderMobileIcon()}
 					<div className="block-mobile">
-						<DownloadMobile />
+                        <a href="" className="btn-download-mobile" onClick={this.handleSendIcon}>
+                            For iOS & Android
+                            <em>All the necessary sizes</em>
+                        </a>
                         {this.renderSendIcon()}
 					</div>
 					<FooterPopUp />
