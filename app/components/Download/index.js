@@ -43,13 +43,15 @@ export default class Download extends Component {
     renderSocialMedia () {
         if (!this.props.socialsMedia) return null;
 
-        return this.props.socialsMedia.map( social =>
-            <SocialMedia
-                key={social.url}
-                link={social.url}>
-                {social.children}
-            </SocialMedia>
-        )
+        return ( <ul className="slink"> {
+            this.props.socialsMedia.map( social =>
+                <SocialMedia
+                    key={social.url}
+                    link={social.url}>
+                    {social.children}
+                </SocialMedia>)
+            }
+        </ul> )
     }
 
     renderMobileIcon () {
@@ -111,13 +113,11 @@ export default class Download extends Component {
 				<div className="block-download">
 					<h1 className="title-popup">Thank you!</h1>
 					<p className="description">Now it's time to brag about your new icon</p>
-					<ul className="slink">
-                        { this.renderSocialMedia() }
-					</ul>
+                    { this.renderSocialMedia() }
 					<div className="icon" id="icon-result">
 						<img src="img/icons/pdf.png"/>
 					</div>
-                    {this.renderButtonsSize()}
+                    { this.renderButtonsSize() }
 					<a onClick={this.handleDownloadIcon}
                        className="btn-download btn-green">
                         Download icon
