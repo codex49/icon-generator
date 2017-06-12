@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+import classNames from 'classnames';
 
 import downloadIcon from '../../../lib/canvas-to-image';
 import SocialMedia from './components/SocialMedia';
@@ -29,9 +29,6 @@ export default class Download extends Component {
 
     handleSendIcon (event) {
         event.preventDefault();
-        /* $('.btn-download-mobile').fadeOut(60);
-        const sendIcons = $('.send-icon');
-        sendIcons.fadeIn(300); */
         this.setState({
             showButtonSendIcon: false,
             showInputSendIcon: true,
@@ -40,15 +37,13 @@ export default class Download extends Component {
     }
 
     handleChooseSize (size) {
-        this.setState({
-            size: size,
-        });
+        this.setState({ size });
     }
 
     renderSocialMedia () {
         if (!this.props.socialsMedia) return null;
 
-        return this.props.socialsMedia.map((social) =>
+        return this.props.socialsMedia.map( social =>
             <SocialMedia
                 key={social.url}
                 link={social.url}>
@@ -67,8 +62,8 @@ export default class Download extends Component {
     }
 
     renderButtonsSize () {
-        const sizeBig = this.state.size === 1024 && 'btn-size';
-        const sizeSmall = this.state.size  === 512  && 'btn-size';
+        const sizeBig = classNames({ 'btn-size': this.state.size === 1024 });
+        const sizeSmall = classNames({ 'btn-size': this.state.size === 512 });
 
         return (
             <div className="btns-size">

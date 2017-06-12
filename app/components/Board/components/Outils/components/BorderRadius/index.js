@@ -7,7 +7,7 @@ class BorderRadius extends Component {
     renderValuesBorder () {
       const ops = [];
 
-      for (let i=0; i<600; i+=20){
+      for (let i=0; i<600; i+=20) {
           ops.push(<option key={i}>{i}</option>);
       }
       return ops;
