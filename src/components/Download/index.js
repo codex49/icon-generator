@@ -14,29 +14,24 @@ export default class Download extends Component {
             showButtonSendIcon: true,
             showInputSendIcon: false,
         };
-
-        this.handleChooseSize = this.handleChooseSize.bind(this);
-        this.handleDownloadIcon = this.handleDownloadIcon.bind(this);
-        this.handleSendIcon = this.handleSendIcon.bind(this);
     }
 
-    handleDownloadIcon (e) {
+    handleDownloadIcon = (e) => {
         e.preventDefault();
         const canvas = this.props.canvas;
         const size = this.state.size;
         downloadIcon(canvas, size);
     }
 
-    handleSendIcon (event) {
+    handleSendIcon = (event) => {
         event.preventDefault();
         this.setState({
             showButtonSendIcon: false,
             showInputSendIcon: true,
         });
-        console.log('this.state.showInputSendIcon', this.state.showInputSendIcon);
     }
 
-    handleChooseSize (size) {
+    handleChooseSize = (size) => {
         this.setState({ size });
     }
 

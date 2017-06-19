@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 
 import BorderRadius from './components/BorderRadius';
 import SketchPicker from 'react-color';
@@ -15,32 +15,27 @@ class Outils extends Component {
         this.state = {
             displayColorPicker: false,
         };
-
-        this.handleOpenSketchPicker = this.handleOpenSketchPicker.bind(this);
-        this.handleClose = this.handleClose.bind(this);
-        this.handleChangeColor = this.handleChangeColor.bind(this);
-        this.handleRemoveIcon = this.handleRemoveIcon.bind(this);
     }
 
-    handleOpenSketchPicker () {
+    handleOpenSketchPicker = () => {
         this.setState({ displayColorPicker: !this.state.displayColorPicker });
     }
 
-    handleClose () {
+    handleClose = () => {
         this.setState({ displayColorPicker: false })
     }
 
-    handleChangeColor (color) {
+    handleChangeColor = color => {
         const iconChecked = $(".board").find(this.props.getIconDroped).find('path');
         const c = color.rgb;
         iconChecked.css('fill', `rgba(${c.r}, ${c.g}, ${c.b},${c.a})`);
     }
 
-    handleRemoveIcon () {
+    handleRemoveIcon = () => {
         $(".board").find(this.props.getIconDroped).fadeOut(100);
     }
 
-    renderBlockColor () {
+    renderBlockColor = () => {
         if (!this.state.displayColorPicker) return null;
 
         return (
