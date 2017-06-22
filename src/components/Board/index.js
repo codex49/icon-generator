@@ -44,7 +44,7 @@ class Board extends Component {
     render () {
         const style = {
             backgroundImage: this.getBackGroundBoard(),
-            borderRadius: this.props.valueBorder,
+            borderRadius: `${this.props.valueBorder}px`,
         };
 
         return (
