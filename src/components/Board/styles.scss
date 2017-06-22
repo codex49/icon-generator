@@ -104,7 +104,7 @@
 		width: 285px;
 		height: 226px;
 		display: inline-block;
-		background-image: url('../img/icons/cloud.png');
+		background-image: url('../public/assets/img/icons/cloud.png');
 		margin-top: 144px;
 	}
 	.outils{
@@ -123,7 +123,7 @@
 			margin-right: 15px;
 			text-align: left;
 			.color-icon{
-				background-image: url('../img/icons/color.png');
+				background-image: url('../public/assets/img/icons/color.png');
 				width: 17px;
 				height: 17px;
 				display: inline-block;
@@ -146,14 +146,14 @@
 			text-align: center;
 			line-height: 39px;
 			.delete-icons{
-				background-image: url('../img/icons/delete.png');
+				background-image: url('../public/assets/img/icons/delete.png');
 				width: 14px;
 				height: 18px;
 				display: inline-block;
 			}
 		}
 		.icons-radius{
-			background-image: url('../img/icons/radius.png');
+			// background-image: url('../../images/icons/radius.png');
 			width: 20px;
 			height: 20px;
 			display: inline-block;
@@ -208,7 +208,7 @@
 			border: 0;
     		outline: 0;
 			.lignes{
-				background-image: url('../img/icons/grid.png');
+				background-image: url('../public/assets/img/icons/grid.png');
 				width: 16px;
 				height: 16px;
 				display: inline-block;

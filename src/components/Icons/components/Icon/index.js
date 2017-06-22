@@ -12,7 +12,7 @@ export default class Icon extends Component {
         });
     }
 
-    render (){
+    render () {
         return (
             <li className="item">
                 <img

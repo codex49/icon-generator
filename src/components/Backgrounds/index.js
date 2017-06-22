@@ -5,8 +5,10 @@ import BackgroundUpload from './components/BackgroundUpload';
 import CustomGradient from './components/CustomGradient';
 import TitleCategori from '../TitleCategorie';
 
+import uploadIcon from '../../public/assets/img/icons/upload.png';
+
 export default class Backgrounds extends Component {
-    renderListCategory () {
+    renderListCategory = () => {
         const renderCustomGradient = <CustomGradient
             handleChangeBgTop={this.props.handleChangeBgTop}
             handleChangeBgBottom={this.props.handleChangeBgBottom}
@@ -32,14 +34,14 @@ export default class Backgrounds extends Component {
             })
         );
     }
-    render (){
+    render () {
         return (
             <div className="nav-element backgrounds">
                 <h2 className="title-catagories">Backgrounds</h2>
                 <ul className="catagories">
                     <BackgroundUpload
                         active='active'
-                        link="img/icons/upload.png"
+                        link={uploadIcon}
                         handleChangeBackground={this.props.handleChangeBackground}
                     />
                     {this.renderListCategory()}

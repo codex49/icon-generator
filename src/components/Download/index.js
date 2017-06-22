@@ -5,6 +5,9 @@ import downloadIcon from '../../../lib/canvas-to-image';
 import SocialMedia from './components/SocialMedia';
 import FooterPopUp from './components/FooterPopUp';
 
+import androidIcon from '../../public/assets/img/icons/android.png';
+import iosIcon from '../../public/assets/img/icons/ios.png';
+
 export default class Download extends Component {
     constructor() {
         super();
@@ -52,8 +55,8 @@ export default class Download extends Component {
     renderMobileIcon () {
         return (
 			<ul className="download-mobile">
-				<li className="android"><a href=""><img src="img/icons/android.png"/></a></li>
-				<li className="ios"><a href=""><img src="img/icons/ios.png"/></a></li>
+				<li className="android"><a href=""><img src={androidIcon}/></a></li>
+				<li className="ios"><a href=""><img src={iosIcon}/></a></li>
 			</ul>
         );
     }
@@ -110,7 +113,7 @@ export default class Download extends Component {
 					<p className="description">Now it's time to brag about your new icon</p>
                     { this.renderSocialMedia() }
 					<div className="icon" id="icon-result">
-						<img src="img/icons/pdf.png"/>
+						<img src=""/>
 					</div>
                     { this.renderButtonsSize() }
 					<a onClick={this.handleDownloadIcon}

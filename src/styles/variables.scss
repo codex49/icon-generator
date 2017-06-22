@@ -1,5 +1,5 @@
 @mixin font-face($style-name, $file, $weight) {
-  $filepath: "fonts/" + $file;
+  $filepath: "../public/assets/fonts/" + $file;
   @font-face {
     font-family: #{$style-name};
     src:  url($filepath + ".eot");

@@ -2,10 +2,12 @@ import React, { Component } from 'react';
 
 import Icon from './components/Icon';
 import Upload from '../Upload';
-import TitleCategorie from '../TitleCategorie';
+import TitleCategory from '../TitleCategorie';
+
+import uploadIcon from '../../public/assets/img/icons/upload.png';
 
 export default class Icons extends Component {
-    renderListIcons () {
+    renderListIcons = () => {
         return(
             this.props.listCategories.map(function(catagorie, i){
                 const items = catagorie.items.map(function(item, f){
@@ -18,7 +20,7 @@ export default class Icons extends Component {
                 });
                 return (
                     <li key={i} className="catagorie">
-                        <TitleCategorie link={catagorie.iconCat}>{catagorie.name}</TitleCategorie>
+                        <TitleCategory link={catagorie.iconCat}>{catagorie.name}</TitleCategory>
                         <ul className="items">{items}</ul>
                     </li>
                 );
@@ -26,14 +28,14 @@ export default class Icons extends Component {
         );
     }
 
-    render (){
+    render () {
         return (
             <div className="nav-element">
                 <h2 className="title-catagories">Design Elements</h2>
                 <ul className="catagories">
                     <Upload
                         active='active'
-                        link="img/icons/upload.png"
+                        link={uploadIcon}
                     />
                     {this.renderListIcons()}
                 </ul>

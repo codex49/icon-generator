@@ -4,13 +4,13 @@ import upload from '../../../lib/Upload';
 import Icon from '../icons/components/Icon';
 
 export default class Upload extends Component {
-    uploadIcon (e) {
+    uploadIcon = e => {
         const link = e.target;
         const elem = '.upload-elment';
         upload(link, elem);
     }
 
-    render (){
+    render () {
         return (
             <div className="upload-block">
                 <a className={"title-catagorie " + this.props.active}>

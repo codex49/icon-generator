@@ -1,22 +1,23 @@
-const path = require('path');
-const webpack = require('webpack');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+var path = require('path');
+var HtmlWebpackPlugin = require('html-webpack-plugin');
+var webpack = require('webpack');
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
-const idProd = process.env.NODE_ENV === 'production';
-
-const cssDev = ['style-loader', 'css-loader', 'sass-loader?sourceMap'];
-const cssProd = ExtractTextPlugin.extract({
+var idProd = process.env.NODE_ENV === 'production';
+var cssDev = ['style-loader', 'css-loader?sourceMap', 'sass-loader'];
+var cssProd = ExtractTextPlugin.extract({
     fallback: "style-loader",
-    use: ['css-loader', 'sass-loader'],
-    publicPath: "/dist"
+    use: ["css-loader", "sass-loader"],
 });
-const cssConfig = idProd ? cssProd : cssDev;
+
+var cssConfig = idProd ? cssProd : cssDev;
 
 module.exports = {
-    entry: './src/main/index.js',
+    entry: {
+        app: './src/main/index.js',
+    },
     output: {
-        path: path.resolve(__dirname, 'build'),
+        path: path.resolve(__dirname, 'dist'),
         filename: 'bundle.js'
     },
     module: {
@@ -31,20 +32,20 @@ module.exports = {
                 exclude: /node_modules/
             },
             {
-                test: /\.(jpe?g|gif|svg|png)$/i,
-                use: [
-                    //'file-loader?name=[name].[ext]&outputPath=images/&publicPath=images/',
-                    'file-loader?name=[name].[ext]&outputPath=images/',
-                    'image-webpack-loader'
-                ]
+                test: /\.(jpe?g|gif|png|svg)$/,
+                loader: 'file-loader',
+                options: {
+                    // limit: 40000,
+                    name: 'images/[name].[ext]'
+                }
             },
             {
-                test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-                use: 'url-loader?limit=10000&mimetype=application/font-woff'
-            },
-            {
-                test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-                use: 'file-loader'
+                test: /\.(eot|ttf|woff(2)?)$/,
+                loader: 'url-loader',
+                options: {
+                    // limit: 100000,
+                    name: 'fonts/[name].[ext]'
+                }
             }
         ]
     },
@@ -57,7 +58,7 @@ module.exports = {
     },
     plugins: [
         new HtmlWebpackPlugin({
-            title: 'Icons',
+            title: 'Web pack Application',
             //minify: {
             // collapseWhitespace: true
             //},
