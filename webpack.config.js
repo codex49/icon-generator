@@ -8,6 +8,7 @@ var cssDev = ['style-loader', 'css-loader?sourceMap', 'sass-loader'];
 var cssProd = ExtractTextPlugin.extract({
     fallback: "style-loader",
     use: ["css-loader", "sass-loader"],
+    publicPath: '/dist',
 });
 
 var cssConfig = idProd ? cssProd : cssDev;

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import $ from 'jquery';
-require("jquery-ui-browserify");
+// require("jquery-ui-browserify");
 
 import fbIcon from '../../../../public/assets/img/icons/fb-like.png';
 
