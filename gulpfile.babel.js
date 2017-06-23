@@ -18,7 +18,7 @@ gulp.task('sass', () => {
         require('postcss-csso')
     ];
 
-    return gulp.src("app/styles/**/*.scss", { sourcemaps: true })
+    return gulp.src("src/styles/**/*.scss", { sourcemaps: true })
         .pipe(sourcemaps.init())
         .pipe(sass())
         .pipe(postcss(processors))
@@ -27,7 +27,7 @@ gulp.task('sass', () => {
 });
 
 gulp.task('browserify', () => {
-    browserify('./app/main')
+    browserify('./src/main')
         .transform(babelify, {presets: ["es2015", "react"]})
         .bundle()
         .on('error', handleError)
@@ -36,15 +36,15 @@ gulp.task('browserify', () => {
 });
 
 gulp.task('copy', () => {
-    gulp.src('app/public/index.html').pipe(gulp.dest('dist'));
-    gulp.src('app/public/fonts/*.*').pipe(gulp.dest('dist/css/fonts'));
+    gulp.src('src/public/index.html').pipe(gulp.dest('dist'));
+    gulp.src('src/public/fonts/*.*').pipe(gulp.dest('dist/css/fonts'));
 
-    gulp.src('app/public/img/icons/*.*').pipe(gulp.dest('dist/img/icons'));
-    gulp.src('app/public/img/bg/*.*').pipe(gulp.dest('dist/img/bg'));
+    gulp.src('src/public/img/icons/*.*').pipe(gulp.dest('dist/img/icons'));
+    gulp.src('src/public/img/bg/*.*').pipe(gulp.dest('dist/img/bg'));
 
     // gulp.src('lib/vendors/*.*').pipe(gulp.dest('dist/js'));
 
-    gulp.src('app/public/img/svg/*.*')
+    gulp.src('src/public/img/svg/*.*')
         .pipe(svgmin())
         .pipe(gulp.dest('dist/img/svg'));
 });
@@ -60,7 +60,7 @@ gulp.task('webserver', function() {
 
 gulp.task('default', ['browserify', 'copy', 'webserver', 'sass'], () => {
     return gulp.watch(
-        ['app/**/*.*', 'lib/**/*.*'],
+        ['src/**/*.*', 'lib/**/*.*'],
         ['browserify', 'copy', 'sass']
     );
 });
