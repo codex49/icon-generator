@@ -8,7 +8,6 @@ var cssDev = ['style-loader', 'css-loader?sourceMap', 'sass-loader'];
 var cssProd = ExtractTextPlugin.extract({
     fallback: "style-loader",
     use: ["css-loader", "sass-loader"],
-    publicPath: '/dist',
 });
 
 var cssConfig = idProd ? cssProd : cssDev;
@@ -34,11 +33,8 @@ module.exports = {
             },
             {
                 test: /\.(jpe?g|gif|png|svg)$/,
-                loader: 'file-loader',
-                options: {
-                    // limit: 40000,
-                    name: 'images/[name].[ext]'
-                }
+                loader: 'file-loader?limit=10000&name=images/[hash:12].[ext]',
+                exclude: /node_modules/
             },
             {
                 test: /\.(eot|ttf|woff(2)?)$/,
