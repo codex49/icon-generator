@@ -19,9 +19,6 @@ export default class App extends Component {
         super();
 
         this.state = {
-            bgBoardTop: '#b3b3b3',
-            bgBoardBottom: '#b3b3b3',
-            bgImage: false,
             canvas: null,
         };
     }
@@ -30,47 +27,20 @@ export default class App extends Component {
         drawSvgIcons();
     }
 
-    handleChangeBgTop = bgBoardTop => {
-        this.setState({
-            bgBoardTop,
-        });
-    }
-
-    handleChangeBgBottom = bgBoardBottom => {
-        this.setState({
-            bgBoardBottom,
-        });
-    }
-
-    handleChangeBackground = bgImage => {
-        this.setState({
-            bgImage,
-        });
-    }
-
     getCanvasToDownload = canvas => {
         this.setState({
             canvas,
         });
     }
 
-    render (){
+    render () {
         return (
             <div className="content">
                 <Header menu={MenuItems}/>
                 <main className="main">
                     <Icons listCategories={ListIcons}/>
-                    <Board
-                        bgBoardTop={this.state.bgBoardTop}
-                        bgBoardBottom={this.state.bgBoardBottom}
-                        bgImage={this.state.bgImage}
-                    />
-                    <Backgrounds
-                        handleChangeBgTop={this.handleChangeBgTop}
-                        handleChangeBgBottom={this.handleChangeBgBottom}
-                        handleChangeBackground={this.handleChangeBackground}
-                        listCategories={ListBackgrounds}
-                    />
+                    <Board />
+                    <Backgrounds listCategories={ListBackgrounds} />
                 </main>
                 <Footer getCanvasToDownload={this.getCanvasToDownload}/>
                 <Download

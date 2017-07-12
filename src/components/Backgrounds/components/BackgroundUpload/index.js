@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 
+import { changeBackgroundBoard } from '../../../../redux/actions';
 import upload from '../../../../../lib/Upload';
 
-export default class BackgroundUpload extends Component {
+class BackgroundUpload extends Component {
     handleUploadBackground = e => {
         const link = e.target;
         const elem = '.upload-bg';
@@ -12,14 +15,14 @@ export default class BackgroundUpload extends Component {
 
     handleChangeBackground = () => {
         const bgImg = $(ReactDOM.findDOMNode(this)).find('.up-bg').attr('src');
-        this.props.handleChangeBackground(bgImg);
+        this.props.changeBackgroundBoard(bgImg, 'image');
     }
 
     render () {
         return (
             <div className="upload-block">
-                <a className="title-catagorie">
-                    <img className="icon-categorie" src={this.props.link} alt=""/>
+                <a className="title-category">
+                    <img className="icon-category" src={this.props.link} alt=""/>
                     <span className="label">Upload</span>
                 </a>
                 <div className="upload-elment">
@@ -35,3 +38,9 @@ export default class BackgroundUpload extends Component {
         );
     }
 }
+
+const mapDispatchToProps = dispatch => ({
+    changeBackgroundBoard: bindActionCreators(changeBackgroundBoard, dispatch),
+});
+
+export default connect(null, mapDispatchToProps)(BackgroundUpload);

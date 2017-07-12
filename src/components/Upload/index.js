@@ -13,8 +13,8 @@ export default class Upload extends Component {
     render () {
         return (
             <div className="upload-block">
-                <a className={"title-catagorie " + this.props.active}>
-                    <img className="icon-categorie" src={this.props.link} alt=""/>
+                <a className={"title-category" + this.props.active}>
+                    <img className="icon-category" src={this.props.link} alt=""/>
                     <span className="label">Upload</span>
                 </a>
                 <div className="upload-elment">

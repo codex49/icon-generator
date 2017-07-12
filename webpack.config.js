@@ -41,7 +41,6 @@ module.exports = {
                 test: /\.(eot|ttf|woff(2)?)$/,
                 loader: 'url-loader',
                 options: {
-                    // limit: 100000,
                     name: 'fonts/[name].[ext]'
                 }
             }
@@ -56,7 +55,7 @@ module.exports = {
     },
     plugins: [
         new HtmlWebpackPlugin({
-            title: 'Web pack Application',
+            title: 'Icon generator',
             hash: true,
             template: './src/public/index.html'
         }),
@@ -67,5 +66,6 @@ module.exports = {
         }),
         new webpack.HotModuleReplacementPlugin(),
         new webpack.NamedModulesPlugin(),
+        new webpack.optimize.DedupePlugin(),
     ]
 }
