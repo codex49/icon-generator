@@ -29,11 +29,22 @@ class Board extends Component {
     }
 
     getBackGroundBoard () {
-        let background = `linear-gradient(${this.props.bgBoardTop}, ${this.props.bgBoardBottom})`;
+        let style = {
+            borderRadius: `${this.props.valueBorder}px`,
+            background: `linear-gradient(${this.props.bgBoardTop}, ${this.props.bgBoardBottom})`,
+        }
 
-        if (this.props.bgImage) background = `url(${this.props.bgImage})`;
+        // let background = `linear-gradient(${this.props.bgBoardTop}, ${this.props.bgBoardBottom})`;
 
-        return background;
+        if (this.props.backgroundBoard) // background = `url(${this.props.backgroundBoard})`;
+
+        style = {
+            borderRadius: `${this.props.valueBorder}px`,
+            backgroundImage: `url(${this.props.backgroundBoard})`,
+            backgroundColor: 'transparent',
+        }
+
+        return style;
     }
 
     renderBorderStyle () {
@@ -42,17 +53,17 @@ class Board extends Component {
     }
 
     render () {
-        const style = {
-            backgroundImage: this.getBackGroundBoard(),
+        /*const style = {
+            background: this.getBackGroundBoard(),
             borderRadius: `${this.props.valueBorder}px`,
-        };
+        };*/
 
         return (
             <div className="board">
                 {this.renderBorderStyle()}
                 <p>Artboard <span className="text-regular">1024 x 1024 px (50%)</span></p>
                 <div className="parent-board">
-                    <div style={style} className="board-resultat" id="board">
+                    <div style={this.getBackGroundBoard()} className="board-resultat" id="board">
                         {this.renderGrid()}
                     </div>
                 </div>
@@ -67,6 +78,7 @@ class Board extends Component {
 const mapStateToProps = state => ({
     toggleGrid: state.board.toggleGrid,
     valueBorder: state.board.valueBorder,
+    backgroundBoard: state.board.backgroundBoard,
 });
 
 export default connect(mapStateToProps)(Board);

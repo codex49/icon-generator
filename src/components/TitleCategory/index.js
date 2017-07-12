@@ -4,7 +4,7 @@ import $ from 'jquery';
 
 import openMenu from '../../../lib/open-menu';
 
-export default class TitleCategorie extends Component {
+export default class TitleCategory extends Component {
     showMenu = event => {
         const elem = $(ReactDOM.findDOMNode(this));
         openMenu(elem, event);

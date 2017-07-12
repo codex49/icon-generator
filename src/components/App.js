@@ -21,7 +21,6 @@ export default class App extends Component {
         this.state = {
             bgBoardTop: '#b3b3b3',
             bgBoardBottom: '#b3b3b3',
-            bgImage: false,
             canvas: null,
         };
     }
@@ -63,7 +62,6 @@ export default class App extends Component {
                     <Board
                         bgBoardTop={this.state.bgBoardTop}
                         bgBoardBottom={this.state.bgBoardBottom}
-                        bgImage={this.state.bgImage}
                     />
                     <Backgrounds
                         handleChangeBgTop={this.handleChangeBgTop}

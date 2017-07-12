@@ -1,15 +1,12 @@
 import React, { Component } from 'react';
-import $ from 'jquery';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import { changeBackgroundBoard } from '../../../../redux/actions';
 
-export default class Background extends Component {
+class Background extends Component {
     handleChangeBackground = event => {
         const bgImg = $(event.target).attr('src');
-
-        $('.board-resultat').css({
-            'background-color': 'transparent',
-            'background-image': `url(${bgImg})`,
-            'background-size': 'cover'
-        });
+        this.props.changeBackgroundBoard(bgImg);
     }
     
     render (){
@@ -20,3 +17,9 @@ export default class Background extends Component {
         );
     }
 }
+
+const mapDispatchToProps = dispatch => ({
+    changeBackgroundBoard: bindActionCreators(changeBackgroundBoard, dispatch),
+});
+
+export default connect(null, mapDispatchToProps)(Background);

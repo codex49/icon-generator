@@ -1,4 +1,4 @@
-import { SHOW_GRID, CHANGE_BORDER } from '../../actionTypes';
+import { SHOW_GRID, CHANGE_BORDER, CHANGE_BACKGROUND_BOARD } from '../../actionTypes';
 
 const initialState = {
     toggleGrid: false,
@@ -11,6 +11,8 @@ export default (state=initialState, action) => {
             return { ...state, toggleGrid: !state.toggleGrid, };
         case CHANGE_BORDER:
             return { ...state, valueBorder: action.valueBorder };
+        case CHANGE_BACKGROUND_BOARD:
+            return { ...state, backgroundBoard: action.backgroundBoard };
         default:
             return state;
     }
