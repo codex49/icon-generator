@@ -6,7 +6,7 @@ import { changeBackgroundBoard } from '../../../../redux/actions';
 class Background extends Component {
     handleChangeBackground = event => {
         const bgImg = $(event.target).attr('src');
-        this.props.changeBackgroundBoard(bgImg);
+        this.props.changeBackgroundBoard(bgImg, 'image');
     }
     
     render (){

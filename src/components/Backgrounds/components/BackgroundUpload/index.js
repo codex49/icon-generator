@@ -15,7 +15,7 @@ class BackgroundUpload extends Component {
 
     handleChangeBackground = () => {
         const bgImg = $(ReactDOM.findDOMNode(this)).find('.up-bg').attr('src');
-        this.props.changeBackgroundBoard(bgImg);
+        this.props.changeBackgroundBoard(bgImg, 'image');
     }
 
     render () {

@@ -19,14 +19,14 @@ export default class Download extends Component {
         };
     }
 
-    handleDownloadIcon = (e) => {
+    handleDownloadIcon = e => {
         e.preventDefault();
         const canvas = this.props.canvas;
         const size = this.state.size;
         downloadIcon(canvas, size);
     }
 
-    handleSendIcon = (event) => {
+    handleSendIcon = event => {
         event.preventDefault();
         this.setState({
             showButtonSendIcon: false,
@@ -34,11 +34,11 @@ export default class Download extends Component {
         });
     }
 
-    handleChooseSize = (size) => {
+    handleChooseSize = size => {
         this.setState({ size });
     }
 
-    renderSocialMedia () {
+    renderSocialMedia = () => {
         if (!this.props.socialsMedia) return null;
 
         return ( <ul className="slink"> {
@@ -52,7 +52,7 @@ export default class Download extends Component {
         </ul> )
     }
 
-    renderMobileIcon () {
+    renderMobileIcon = () => {
         return (
 			<ul className="download-mobile">
 				<li className="android"><a href=""><img src={androidIcon}/></a></li>
@@ -61,7 +61,7 @@ export default class Download extends Component {
         );
     }
 
-    renderButtonsSize () {
+    renderButtonsSize = () => {
         const sizeBig = classNames({ 'btn-size': this.state.size === 1024 });
         const sizeSmall = classNames({ 'btn-size': this.state.size === 512 });
 
@@ -81,7 +81,7 @@ export default class Download extends Component {
         );
     }
 
-    renderButtonSendIcon () {
+    renderButtonSendIcon = () => {
         if (!this.state.showButtonSendIcon) return null;
 
         return (
@@ -92,7 +92,7 @@ export default class Download extends Component {
         )
     }
 
-    renderInputSendIcon () {
+    renderInputSendIcon = () => {
         if (!this.state.showInputSendIcon) return null;
 
         return (

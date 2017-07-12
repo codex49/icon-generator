@@ -31,19 +31,16 @@ class Board extends Component {
     getBackGroundBoard () {
         let style = {
             borderRadius: `${this.props.valueBorder}px`,
-            background: `linear-gradient(${this.props.bgBoardTop}, ${this.props.bgBoardBottom})`,
+            background: `linear-gradient(${this.props.gradientBoardTop}, ${this.props.gradientBoardBottom})`,
         }
 
-        // let background = `linear-gradient(${this.props.bgBoardTop}, ${this.props.bgBoardBottom})`;
-
-        if (this.props.backgroundBoard) // background = `url(${this.props.backgroundBoard})`;
-
-        style = {
-            borderRadius: `${this.props.valueBorder}px`,
-            backgroundImage: `url(${this.props.backgroundBoard})`,
-            backgroundColor: 'transparent',
+        if (this.props.typeBg === 'image') {
+            style = {
+                borderRadius: `${this.props.valueBorder}px`,
+                backgroundImage: `url(${this.props.backgroundBoard})`,
+                backgroundColor: 'transparent',
+            }
         }
-
         return style;
     }
 
@@ -53,11 +50,6 @@ class Board extends Component {
     }
 
     render () {
-        /*const style = {
-            background: this.getBackGroundBoard(),
-            borderRadius: `${this.props.valueBorder}px`,
-        };*/
-
         return (
             <div className="board">
                 {this.renderBorderStyle()}
@@ -79,6 +71,9 @@ const mapStateToProps = state => ({
     toggleGrid: state.board.toggleGrid,
     valueBorder: state.board.valueBorder,
     backgroundBoard: state.board.backgroundBoard,
+    gradientBoardTop: state.board.gradientBoardTop,
+    gradientBoardBottom: state.board.gradientBoardBottom,
+    typeBg: state.board.typeBg,
 });
 
 export default connect(mapStateToProps)(Board);

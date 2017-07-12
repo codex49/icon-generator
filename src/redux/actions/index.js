@@ -1,4 +1,10 @@
-import { SHOW_GRID, CHANGE_BORDER, CHANGE_BACKGROUND_BOARD  } from '../actionTypes';
+import {
+    SHOW_GRID,
+    CHANGE_BORDER,
+    CHANGE_BACKGROUND_BOARD,
+    CHANGE_GRADIENT_BOARD_TOP,
+    CHANGE_BACKGROUND_BOARD_BOTTOM,
+} from '../actionTypes';
 
 export const showGrid = () => ({
     type: SHOW_GRID,
@@ -9,7 +15,20 @@ export const changeBorder = (valueBorder) => ({
     valueBorder,
 });
 
-export const changeBackgroundBoard = (backgroundBoard) => ({
+export const changeBackgroundBoard = (backgroundBoard, typeBg) => ({
     type: CHANGE_BACKGROUND_BOARD,
     backgroundBoard,
+    typeBg,
+});
+
+export const changeGradientBoardTop = (gradientBoardTop, typeBg) => ({
+    type: CHANGE_GRADIENT_BOARD_TOP,
+    gradientBoardTop,
+    typeBg,
+});
+
+export const changeGradientBoardBottom = (gradientBoardBottom, typeBg) => ({
+    type: CHANGE_BACKGROUND_BOARD_BOTTOM,
+    gradientBoardBottom,
+    typeBg,
 });
