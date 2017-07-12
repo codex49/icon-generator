@@ -26,7 +26,7 @@ export default class Backgrounds extends Component {
                     return background;
                 });
                 return (
-                    <li key={category.name} className="catagorie">
+                    <li key={category.name} className="category">
                         <TitleCategori link={category.iconCat}>{category.name}</TitleCategori>
                         <ul className="items">{items}</ul>
                     </li>

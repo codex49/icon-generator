@@ -9,18 +9,20 @@ import uploadIcon from '../../public/assets/img/icons/upload.png';
 export default class Icons extends Component {
     renderListIcons = () => {
         return(
-            this.props.listCategories.map(function(catagorie, i){
-                const items = catagorie.items.map(function(item, f){
+            this.props.listCategories.map(function(category){
+                const items = category.items.map((item, f) => {
                     return(
                         <Icon
-                            id={catagorie.name+f}
+                            id={f}
                             key={f}
-                            link={item}/>
+                            link={item}
+                        />
                     );
                 });
+
                 return (
-                    <li key={i} className="catagorie">
-                        <TitleCategory link={catagorie.iconCat}>{catagorie.name}</TitleCategory>
+                    <li key={category.name} className="category">
+                        <TitleCategory link={category.iconCat}>{category.name}</TitleCategory>
                         <ul className="items">{items}</ul>
                     </li>
                 );
