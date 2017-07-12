@@ -1,16 +1,17 @@
-var path = require('path');
-var HtmlWebpackPlugin = require('html-webpack-plugin');
-var webpack = require('webpack');
-var ExtractTextPlugin = require('extract-text-webpack-plugin');
+const path = require('path');
+const glob = require('glob');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const webpack = require('webpack');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
-var idProd = process.env.NODE_ENV === 'production';
-var cssDev = ['style-loader', 'css-loader?sourceMap', 'sass-loader'];
-var cssProd = ExtractTextPlugin.extract({
+const idProd = process.env.NODE_ENV === 'production';
+const cssDev = ['style-loader', 'css-loader?sourceMap', 'sass-loader'];
+const cssProd = ExtractTextPlugin.extract({
     fallback: "style-loader",
     use: ["css-loader", "sass-loader"],
 });
 
-var cssConfig = idProd ? cssProd : cssDev;
+const cssConfig = idProd ? cssProd : cssDev;
 
 module.exports = {
     entry: {
@@ -33,7 +34,7 @@ module.exports = {
             },
             {
                 test: /\.(jpe?g|gif|png|svg)$/,
-                loader: 'file-loader?limit=10000&name=images/[hash:12].[ext]',
+                loader: 'url-loader?limit=10000&name=images/[hash:12].[ext]',
                 exclude: /node_modules/
             },
             {
@@ -56,9 +57,6 @@ module.exports = {
     plugins: [
         new HtmlWebpackPlugin({
             title: 'Web pack Application',
-            //minify: {
-            // collapseWhitespace: true
-            //},
             hash: true,
             template: './src/public/index.html'
         }),

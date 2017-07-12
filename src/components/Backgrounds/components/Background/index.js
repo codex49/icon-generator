@@ -2,12 +2,6 @@ import React, { Component } from 'react';
 import $ from 'jquery';
 
 export default class Background extends Component {
-    constructor() {
-        super();
-
-        this.handleChangeBackground = this.handleChangeBackground.bind(this);
-    }
-
     handleChangeBackground = event => {
         const bgImg = $(event.target).attr('src');
 

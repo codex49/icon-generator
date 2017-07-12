@@ -9,19 +9,16 @@ export default class CustomGradient extends Component {
             topColor: '#b3b3b3',
             bottomColor: '#b3b3b3',
         };
-
-        this.handleChangeBgTop = this.handleChangeBgTop.bind(this);
-        this.handleChangeColorBottom = this.handleChangeColorBottom.bind(this);
     }
 
-    handleChangeBgTop (topColor) {
+    handleChangeBgTop = topColor => {
         this.setState({
             topColor,
         });
         this.props.handleChangeBgTop(topColor);
     }
 
-    handleChangeColorBottom (bottomColor) {
+    handleChangeColorBottom = bottomColor => {
         this.setState({
             bottomColor
         });
@@ -30,7 +27,7 @@ export default class CustomGradient extends Component {
 
     render () {
         const backgroundGradient = {
-            background: 'linear-gradient('+this.state.topColor+', '+this.state.bottomColor+')'
+            background: `linear-gradient(${this.state.topColor}, ${this.state.bottomColor})`
         };
 
         return (

@@ -9,7 +9,6 @@
 	top: 46%;
 	left: 50%;
 	transform: translate(-50%, -50%);
-
 	.border {
 		width: 12px;
 		height: 12px;
@@ -48,22 +47,14 @@
 			color: #b2b2b2;
 		}
 	}
-	.parent-board{
-		/*width: 512px;
-		height: 512px;
-		overflow: scroll;
-		margin-left: 30px;*/
-	}
 	.board-resultat{	
 		position: relative;
 		width: 512px;
 		height: 512px;
 		background-color: #b3b3b3;
 		margin: 10px auto 0;
-		/*@include gradient(#ff0000, #c20000);*/
-		background-size: cover;
+		background-size: 100% 100%;
 		background-repeat: no-repeat;
-		// background-attachment: fixed;
 		background-position: top left;
 		text-align: center;
 		overflow: hidden;

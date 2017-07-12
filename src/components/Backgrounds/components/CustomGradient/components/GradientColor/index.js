@@ -10,32 +10,28 @@ export default class extends Component {
             displayColorPicker: false,
             color: '#b3b3b3'
         };
-
-        this.handleClick = this.handleClick.bind(this);
-        this.handleChangeColor = this.handleChangeColor.bind(this);
-        this.handleCloseColorPicker = this.handleCloseColorPicker.bind(this);
     }
 
-    handleClick () {
+    handleClick = () => {
         this.setState({
             displayColorPicker: !this.state.displayColorPicker
         });
     }
 
-    handleChangeColor (color) {
+    handleChangeColor = color => {
         this.setState({
             color: color.hex
         });
         this.props.handleChangeColor(color.hex);
     }
 
-    handleCloseColorPicker () {
+    handleCloseColorPicker = () => {
         this.setState({
             displayColorPicker: false
         });
     }
 
-    renderColorPicker () {
+    renderColorPicker = () => {
         if (!this.state.displayColorPicker) return null;
 
         return (
@@ -53,7 +49,7 @@ export default class extends Component {
 
         return (
             <div>
-                <div className={"swatch "+this.props.class} onClick={ this.handleClick }>
+                <div className={`swatch ${this.props.class}`} onClick={ this.handleClick }>
                     <div style={background} className="color" />
                 </div>
                 {this.renderColorPicker()}

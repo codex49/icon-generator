@@ -24,36 +24,31 @@ export default class App extends Component {
             bgImage: false,
             canvas: null,
         };
-
-        this.handleChangeBgTop = this.handleChangeBgTop.bind(this);
-        this.handleChangeBgBottom = this.handleChangeBgBottom.bind(this);
-        this.handleChangeBackground = this.handleChangeBackground.bind(this);
-        this.getCanvasToDownload = this.getCanvasToDownload.bind(this);
     }
 
     componentDidMount () {
         drawSvgIcons();
     }
 
-    handleChangeBgTop (bgBoardTop) {
+    handleChangeBgTop = bgBoardTop => {
         this.setState({
             bgBoardTop,
         });
     }
 
-    handleChangeBgBottom (bgBoardBottom) {
+    handleChangeBgBottom = bgBoardBottom => {
         this.setState({
             bgBoardBottom,
         });
     }
 
-    handleChangeBackground (bgImage) {
+    handleChangeBackground = bgImage => {
         this.setState({
             bgImage,
         });
     }
 
-    getCanvasToDownload (canvas) {
+    getCanvasToDownload = canvas => {
         this.setState({
             canvas,
         });
