@@ -15,7 +15,7 @@ export default class Backgrounds extends Component {
         />;
 
         return (
-            this.props.listCategories.map( category => {
+            this.props.listCategories.map(category => {
                 const items = category.items.map( (item, f) => {
                     const background = [];
 
