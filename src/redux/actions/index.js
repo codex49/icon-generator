@@ -4,6 +4,7 @@ import {
     CHANGE_BACKGROUND_BOARD,
     CHANGE_GRADIENT_BOARD_TOP,
     CHANGE_BACKGROUND_BOARD_BOTTOM,
+    SHOW_POPUP_DOWNLOAD,
 } from '../actionTypes';
 
 export const showGrid = () => ({
@@ -31,4 +32,9 @@ export const changeGradientBoardBottom = (gradientBoardBottom, typeBg) => ({
     type: CHANGE_BACKGROUND_BOARD_BOTTOM,
     gradientBoardBottom,
     typeBg,
+});
+
+export const showPopupDownload = (showPopup) => ({
+    type: SHOW_POPUP_DOWNLOAD,
+    showPopup,
 });

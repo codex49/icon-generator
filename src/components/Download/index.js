@@ -1,15 +1,18 @@
 import React, { Component } from 'react';
 import classNames from 'classnames';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
 import downloadIcon from '../../../lib/canvas-to-image';
 import SocialMedia from './components/SocialMedia';
 import FooterPopUp from './components/FooterPopUp';
+import { showPopupDownload } from '../../../src/redux/actions';
 
 import androidIcon from '../../public/assets/img/icons/android.png';
 import iosIcon from '../../public/assets/img/icons/ios.png';
 
-export default class Download extends Component {
-    constructor() {
+class Download extends Component {
+    constructor () {
         super();
 
         this.state = {
@@ -38,18 +41,22 @@ export default class Download extends Component {
         this.setState({ size });
     }
 
+    renderSocialsMedia = social => (
+        <SocialMedia
+            key={social.url}
+            link={social.url}>
+            {social.children}
+        </SocialMedia>
+    )
+
     renderSocialMedia = () => {
         if (!this.props.socialsMedia) return null;
 
-        return ( <ul className="slink"> {
-            this.props.socialsMedia.map( social =>
-                <SocialMedia
-                    key={social.url}
-                    link={social.url}>
-                    {social.children}
-                </SocialMedia>)
-            }
-        </ul> )
+        return (
+            <ul className="slink">
+                { this.props.socialsMedia.map(this.renderSocialsMedia) }
+            </ul>
+        )
     }
 
     renderMobileIcon = () => {
@@ -106,8 +113,11 @@ export default class Download extends Component {
     }
 
     render () {
+        if (!this.props.showPopup) return null;
+
         return (
 			<div className="popup">
+                <div className="popupClose" onClick={() => this.props.showPopupDownload(false)} />
 				<div className="block-download">
 					<h1 className="title-popup">Thank you!</h1>
 					<p className="description">Now it's time to brag about your new icon</p>
@@ -134,3 +144,13 @@ export default class Download extends Component {
         );
     }
 }
+
+const mapStateToProps = state => ({
+    showPopup: state.board.showPopup,
+});
+
+const mapDispatchToProps = dispatch => ({
+    showPopupDownload: bindActionCreators(showPopupDownload, dispatch),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Download);
