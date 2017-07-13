@@ -1,17 +1,14 @@
 import React, { Component } from 'react';
 import html2canvas from '../../../lib/html2canvas';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import { showPopupDownload } from '../../../src/redux/actions';
 
-export default class Footer extends Component {
-    constructor() {
-        super();
-
-        this.openPopUp = this.openPopUp.bind(this);
-    }
-    openPopUp (event) {
+class Footer extends Component {
+    openPopUp = event => {
         event.preventDefault();
 
-        const popUp = $('.popup');
-        popUp.fadeIn(500);
+        this.props.showPopupDownload(true);
 
         html2canvas(this.props);
     }
@@ -25,3 +22,9 @@ export default class Footer extends Component {
         );
     }
 }
+
+const mapDispatchToProps = dispatch => ({
+    showPopupDownload: bindActionCreators(showPopupDownload, dispatch),
+});
+
+export default connect(null, mapDispatchToProps)(Footer);

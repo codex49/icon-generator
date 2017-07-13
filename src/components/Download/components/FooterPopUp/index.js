@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
-import $ from 'jquery';
-// require("jquery-ui-browserify");
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import { showPopupDownload } from '../../../../redux/actions';
 
 import fbIcon from '../../../../public/assets/img/icons/fb-like.png';
 
-export default class FooterPopUp extends Component {
-    handleClosePopUp (e) {
+class FooterPopUp extends Component {
+    handleClosePopUp = e => {
         e.preventDefault();
-        const popUp = $('.popup');
-        popUp.fadeOut(500);
+        this.props.showPopupDownload(false);
     }
 
     render () {
@@ -23,3 +23,9 @@ export default class FooterPopUp extends Component {
         );
     }
 }
+
+const mapDispatchToProps = dispatch => ({
+    showPopupDownload: bindActionCreators(showPopupDownload, dispatch),
+});
+
+export default connect(null, mapDispatchToProps)(FooterPopUp);
