@@ -18,8 +18,10 @@ export default class Icon extends Component {
                 <img
                     id={this.props.id}
                     className="icon-svg"
-                    src={this.props.link} alt=""/>
+                    src={this.props.link}
+                    alt={this.props.item}/>
             </li>
+
         );
     }
 }
