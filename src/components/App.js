@@ -9,7 +9,8 @@ import Backgrounds from './Backgrounds';
 import Footer from './Footer';
 import Download from './Download';
 
-const MenuItems = AppAPI.getMenuItems();
+// const MenuItems = AppAPI.getMenuItems();
+import MenuItems from'../main/mocks/Menu.mock';
 const ListIcons = AppAPI.getIcons();
 const ListBackgrounds = AppAPI.getBackgrounds();
 const SocialsMedia = AppAPI.getSocialsMedia();
@@ -34,6 +35,7 @@ export default class App extends Component {
     }
 
     render () {
+        console.log('MenuItems', MenuItems);
         return (
             <div className="content">
                 <Header menu={MenuItems}/>

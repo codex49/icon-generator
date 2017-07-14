@@ -11,7 +11,7 @@ export default class Backgrounds extends Component {
     renderListCategory = () => {
         return (
             this.props.listCategories.map(category => {
-                const items = category.items.map( (item, f) => {
+                const items = category.items.map((item, f) => {
                     const background = [];
 
                     if(category.name === 'Gradients' && f === 0) {

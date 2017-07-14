@@ -7,9 +7,7 @@ import { showPopupDownload } from '../../../src/redux/actions';
 class Footer extends Component {
     openPopUp = event => {
         event.preventDefault();
-
         this.props.showPopupDownload(true);
-
         html2canvas(this.props);
     }
 

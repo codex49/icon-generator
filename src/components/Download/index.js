@@ -37,9 +37,7 @@ class Download extends Component {
         });
     }
 
-    handleChooseSize = size => {
-        this.setState({ size });
-    }
+    handleChooseSize = size =>  this.setState({ size });
 
     renderSocialsMedia = social => (
         <SocialMedia
@@ -59,14 +57,12 @@ class Download extends Component {
         )
     }
 
-    renderMobileIcon = () => {
-        return (
-			<ul className="download-mobile">
-				<li className="android"><a href=""><img src={androidIcon}/></a></li>
-				<li className="ios"><a href=""><img src={iosIcon}/></a></li>
-			</ul>
-        );
-    }
+    renderMobileIcon = () => (
+        <ul className="download-mobile">
+            <li className="android"><a href=""><img src={androidIcon}/></a></li>
+            <li className="ios"><a href=""><img src={iosIcon}/></a></li>
+        </ul>
+    );
 
     renderButtonsSize = () => {
         const sizeBig = classNames({ 'btn-size': this.state.size === 1024 });

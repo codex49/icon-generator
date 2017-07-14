@@ -8,7 +8,7 @@ class Background extends Component {
         const bgImg = $(event.target).attr('src');
         this.props.changeBackgroundBoard(bgImg, 'image');
     }
-    
+
     render (){
         return (
             <li className="item" onClick={this.handleChangeBackground}>
