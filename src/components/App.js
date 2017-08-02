@@ -9,7 +9,7 @@ import Backgrounds from './Backgrounds';
 import Footer from './Footer';
 import Download from './Download';
 
-const MenuItems = AppAPI.getMenuItems();
+
 const ListIcons = AppAPI.getIcons();
 const ListBackgrounds = AppAPI.getBackgrounds();
 const SocialsMedia = AppAPI.getSocialsMedia();
@@ -36,7 +36,7 @@ export default class App extends Component {
     render () {
         return (
             <div className="content">
-                <Header menu={MenuItems}/>
+                <Header />
                 <main className="main">
                     <Icons listCategories={ListIcons}/>
                     <Board />

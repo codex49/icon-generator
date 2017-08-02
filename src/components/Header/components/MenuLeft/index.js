@@ -8,7 +8,7 @@ const getMenu = item => (
 
 const MenuLeft = props => (
     <ul className='useful-links'>
-        {props.menu.map(getMenu)}
+        { props.menu.map(getMenu) }
     </ul>
 );
 

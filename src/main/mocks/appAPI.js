@@ -1,23 +1,6 @@
-// import blackCircle from '../../public/assets/img/svg/add-button-inside-black-circle.svg';
-
-module.exports = {
-    upload: function(link, elem){
-        var fReader = new FileReader();
-        fReader.readAsDataURL(link.files[0]);
-        $(fReader).on('loadend', function(){
-            var img = $(elem).find('img')[0];
-            img.src = event.target.result;
-        }); 
-    },
-    getMenuItems: function() {
-        var menuItems = [
-            {item: 'Useful link', url: 'http://www.google.com'},
-            {item: 'An other useful website', url: 'http://www.yahoo.com'}
-        ];
-        return menuItems;
-    },
+export default {
     getIcons: function() {
-        var icons = [
+        return [
             {
                 'name': 'All',
                 'iconCat': require('../../public/assets/img/icons/all.png'),
@@ -46,10 +29,9 @@ module.exports = {
                 ]
             }
         ];
-        return icons;
     },
     getBackgrounds: function() {
-        var backgrounds = [
+        return [
             {
                 'name': 'All',
                 'iconCat': require('../../public/assets/img/icons/all.png'),
@@ -69,18 +51,13 @@ module.exports = {
                   ]
             }
         ];
-        return backgrounds;
     },
     getSocialsMedia: function() {
-        var socialsMedia = [
+        return [
             {url: require('../../public/assets/img/icons/facebook.png'), text: 'Facebook'},
             {url: require('../../public/assets/img/icons/twitter.png'), text: 'Twitter'},
             {url: require('../../public/assets/img/icons/google.png'), text: 'Google'},
             {url: require('../../public/assets/img/icons/pinterest.png'), text: 'Pinterest'}
         ];
-        return socialsMedia;
     },
-    getNumberBorderRadius: function(){
-        return 600;
-    }
 };

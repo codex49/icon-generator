@@ -33,6 +33,10 @@ module.exports = {
                 exclude: /node_modules/
             },
             {
+                test: /\.json$/,
+                loader: 'json'
+            },
+            {
                 test: /\.(jpe?g|gif|png|svg)$/,
                 loader: 'url-loader?limit=10000&name=images/[hash:12].[ext]',
                 exclude: /node_modules/

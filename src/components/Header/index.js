@@ -1,12 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import MenuLeft from './components/MenuLeft';
+import  MenuItems from '../../main/mocks/Menu.mock.json';
 
 const Header = props => (
     <header>
         <div className='other-links'>
             <p className=''>Other links: </p>
-            <MenuLeft menu={props.menu} />
+            <MenuLeft menu={MenuItems} />
         </div>
         <h1 className='logo'>App Icon <span className='green'>Generator</span></h1>
         <ul className='social-media'></ul>
