@@ -9,45 +9,41 @@ import Backgrounds from './Backgrounds';
 import Footer from './Footer';
 import Download from './Download';
 
-
 const ListIcons = AppAPI.getIcons();
 const ListBackgrounds = AppAPI.getBackgrounds();
 const SocialsMedia = AppAPI.getSocialsMedia();
 
 export default class App extends Component {
-    constructor() {
-        super();
+  constructor() {
+    super();
 
-        this.state = {
-            canvas: null,
-        };
-    }
+    this.state = {
+      canvas: null,
+    };
+  }
 
-    componentDidMount () {
-        drawSvgIcons();
-    }
+  componentDidMount() {
+    drawSvgIcons();
+  }
 
-    getCanvasToDownload = canvas => {
-        this.setState({
-            canvas,
-        });
-    }
+  getCanvasToDownload = canvas => {
+    this.setState({
+      canvas,
+    });
+  };
 
-    render () {
-        return (
-            <div className="content">
-                <Header />
-                <main className="main">
-                    <Icons listCategories={ListIcons}/>
-                    <Board />
-                    <Backgrounds listCategories={ListBackgrounds} />
-                </main>
-                <Footer getCanvasToDownload={this.getCanvasToDownload}/>
-                <Download
-                    socialsMedia={SocialsMedia}
-                    canvas={this.state.canvas}
-                />
-            </div>
-        );
-    }
+  render() {
+    return (
+      <div className="content">
+        <Header />
+        <main className="main">
+          <Icons listCategories={ListIcons} />
+          <Board />
+          <Backgrounds listCategories={ListBackgrounds} />
+        </main>
+        <Footer getCanvasToDownload={this.getCanvasToDownload} />
+        <Download socialsMedia={SocialsMedia} canvas={this.state.canvas} />
+      </div>
+    );
+  }
 }
