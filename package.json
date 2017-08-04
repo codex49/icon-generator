@@ -2,7 +2,7 @@
   "name": "icon-generator",
   "version": "1.0.0",
   "description": "",
-  "main": "webpack.js",
+  "main": "src/main/index.js",
   "dependencies": {
     "jquery": "^3.2.1",
     "jquery-ui-browserify": "^1.11.0-pre-seelio"
