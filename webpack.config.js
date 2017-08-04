@@ -18,7 +18,7 @@ module.exports = {
         app: './src/main/index.js',
     },
     output: {
-        path: path.resolve(__dirname, 'dist'),
+        path: path.resolve(__dirname, 'build'),
         filename: 'bundle.js'
     },
     module: {
@@ -51,7 +51,7 @@ module.exports = {
         ]
     },
     devServer: {
-        contentBase: path.join(__dirname, "dist"),
+        contentBase: path.join(__dirname, "build"),
         compress: true,
         hot: true,
         stats: "errors-only",

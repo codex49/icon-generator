@@ -13,13 +13,13 @@ yarn
 Start dev server:
 
 ```shell
-yarn dev
+yarn start
 ```
 
 Build for production:
 
 ```shell
-yarn prod
+yarn build
 ```
 
 ## License
