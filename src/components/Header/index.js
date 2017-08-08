@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import MenuLeft from './components/MenuLeft';
 import MenuItems from '../../main/mocks/Menu.mock.json';
 
-const Header = props =>
-  <header>
+const Header = () =>
+  (<header>
     <div className="other-links">
       <p className="">Other links: </p>
       <MenuLeft menu={MenuItems} />
@@ -13,7 +13,7 @@ const Header = props =>
       App Icon <span className="green">Generator</span>
     </h1>
     <ul className="social-media" />
-  </header>;
+  </header>);
 
 Header.defaultProps = {
   menu: null,

@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import dragDrop from '../../../lib/drop-drag';
-
-import Outils from './components/Outils';
 import { connect } from 'react-redux';
+import dragDrop from '../../../lib/drop-drag';
+import Outils from './components/Outils';
 
 class Board extends Component {
   constructor() {
@@ -17,22 +16,10 @@ class Board extends Component {
     dragDrop(this);
   }
 
-  renderGrid() {
-    if (!this.props.toggleGrid) return null;
-
-    return (
-      <div className="lines-grid">
-        <hr className="verticale" />
-        <hr className="horizontale" />
-      </div>
-    );
-  }
-
-  getBackGroundBoard() {
+  getBackGroundBoard = () => {
     let style = {
       borderRadius: `${this.props.valueBorder}px`,
-      background: `linear-gradient(${this.props.gradientBoardTop}, ${this.props
-        .gradientBoardBottom})`,
+      background: `linear-gradient(${this.props.gradientBoardTop}, ${this.props.gradientBoardBottom})`,
     };
 
     if (this.props.typeBg === 'image') {
@@ -45,7 +32,18 @@ class Board extends Component {
     return style;
   }
 
-  renderBorderStyle() {
+  renderGrid = () => {
+    if (!this.props.toggleGrid) return null;
+
+    return (
+      <div className="lines-grid">
+        <hr className="verticale" />
+        <hr className="horizontale" />
+      </div>
+    );
+  }
+
+  renderBorderStyle = () => {
     const positions = ['top-left', 'top-right', 'bottom-right', 'bottom-left'];
     return positions.map(position =>
       <span key={position} className={`border ${position}`} />,

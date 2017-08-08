@@ -7,12 +7,12 @@ import TitleCategory from '../TitleCategory';
 
 import uploadIcon from '../../public/assets/img/icons/upload.png';
 
-const renderBackground = category => {
+const renderBackground = (category) => {
   const items = category.items.map((item, f) => {
     const background = [];
 
     if (category.name === 'Gradients' && f === 0) {
-      background.push( <CustomGradient /> );
+      background.push(<CustomGradient />);
     }
     background.push(<Background key={f} link={item} />);
     return background;
@@ -32,12 +32,12 @@ const renderBackground = category => {
 const renderListCategory = props => props.listCategories.map(renderBackground);
 
 const Backgrounds = props =>
-  <div className="nav-element backgrounds">
+  (<div className="nav-element backgrounds">
     <h2 className="title-categories">Backgrounds</h2>
     <ul className="categories">
       <BackgroundUpload active="active" link={uploadIcon} />
       {renderListCategory(props)}
     </ul>
-  </div>;
+  </div>);
 
 export default Backgrounds;

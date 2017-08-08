@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import { changeBorder } from '../../../../../../redux/actions';
 
 class BorderRadius extends Component {
-  renderValuesBorder() {
+  renderValuesBorder = () => {
     const ops = [];
 
     for (let i = 0; i < 600; i += 20) {

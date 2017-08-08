@@ -6,7 +6,7 @@ import Icon from '../icons/components/Icon';
 export default class Upload extends Component {
   uploadIcon = e => {
     const link = e.target;
-    const elem = '.upload-elment';
+    const elem = '.upload-element';
     upload(link, elem);
   };
 
@@ -17,7 +17,7 @@ export default class Upload extends Component {
           <img className="icon-category" src={this.props.link} alt="" />
           <span className="label">Upload</span>
         </a>
-        <div className="upload-elment">
+        <div className="upload-element">
           <div className="icon-upload">
             <Icon link="" id="icon-upload" />
           </div>
