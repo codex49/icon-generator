@@ -55,7 +55,7 @@ module.exports = {
         compress: true,
         hot: true,
         stats: "errors-only",
-        // open: true
+        open: true
     },
     plugins: [
         new HtmlWebpackPlugin({
