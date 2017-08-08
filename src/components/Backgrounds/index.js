@@ -12,14 +12,14 @@ const renderBackground = category => {
     const background = [];
 
     if (category.name === 'Gradients' && f === 0) {
-      background.push(<CustomGradient />);
+      background.push( <CustomGradient /> );
     }
     background.push(<Background key={f} link={item} />);
     return background;
   });
   return (
     <li key={category.name} className="category">
-      <TitleCategory link={category.iconCat}>
+      <TitleCategory link={category.iconCategory}>
         {category.name}
       </TitleCategory>
       <ul className="items">

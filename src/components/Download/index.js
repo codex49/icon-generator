@@ -22,8 +22,8 @@ class Download extends Component {
     };
   }
 
-  handleDownloadIcon = e => {
-    e.preventDefault();
+  handleDownloadIcon = event => {
+    event.preventDefault();
     const canvas = this.props.canvas;
     const size = this.state.size;
     downloadIcon(canvas, size);

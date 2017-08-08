@@ -1,9 +1,10 @@
+/*eslint-disable */
 export default {
   getIcons: function() {
     return [
       {
         name: 'All',
-        iconCat: require('../../public/assets/img/icons/all.png'),
+        iconCategory: require('../../public/assets/img/icons/all.png'),
         items: [
           require('../../public/assets/img/svg/add-button-inside-black-circle.svg'),
           require('../../public/assets/img/svg/apple-black-logo.svg'),
@@ -18,7 +19,7 @@ export default {
       },
       {
         name: 'Shapes',
-        iconCat: require('../../public/assets/img/icons/categorie.png'),
+        iconCategory: require('../../public/assets/img/icons/categorie.png'),
         items: [
           require('../../public/assets/img/svg/question-mark-on-a-circular-black-background.svg'),
           require('../../public/assets/img/svg/tree-silhouette.svg'),
@@ -34,7 +35,7 @@ export default {
     return [
       {
         name: 'All',
-        iconCat: require('../../public/assets/img/icons/all.png'),
+        iconCategory: require('../../public/assets/img/icons/all.png'),
         items: [
           require('../../public/assets/img/bg/orange.png'),
           require('../../public/assets/img/bg/bleu.png'),
@@ -42,7 +43,7 @@ export default {
       },
       {
         name: 'Gradients',
-        iconCat: require('../../public/assets/img/icons/categorie-bg.png'),
+        iconCategory: require('../../public/assets/img/icons/categorie-bg.png'),
         items: [
           require('../../public/assets/img/bg/bleu.png'),
           require('../../public/assets/img/bg/orange.png'),
