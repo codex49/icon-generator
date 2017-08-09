@@ -26,7 +26,7 @@ export default class App extends Component {
     drawSvgIcons();
   }
 
-  getCanvasToDownload = canvas => {
+  getCanvasToDownload = (canvas) => {
     this.setState({
       canvas,
     });

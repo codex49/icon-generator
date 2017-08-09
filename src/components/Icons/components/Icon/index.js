@@ -14,7 +14,7 @@ export default class Icon extends Component {
   render() {
     return (
       <li className="item" ref={node => this.node = node}>
-        <img id={this.props.id} className="icon-svg" src={this.props.link} />
+        <img id={this.props.id} className="icon-svg" src={this.props.link} alt="" />
       </li>
     );
   }

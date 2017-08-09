@@ -1,9 +1,26 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+
 import dragDrop from '../../../lib/drop-drag';
 import Outils from './components/Outils';
 
 class Board extends Component {
+  static defaultProps = {
+    backgroundBoard: null,
+    gradientBoardBottom: null,
+    gradientBoardTop: null,
+    toggleGrid: false,
+    typeBg: null,
+  }
+
+  static propTypes = {
+    backgroundBoard: PropTypes.string,
+    gradientBoardBottom: PropTypes.string,
+    gradientBoardTop: PropTypes.string,
+    toggleGrid: PropTypes.bool,
+    typeBg: PropTypes.string,
+  }
   constructor() {
     super();
 

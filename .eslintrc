@@ -1,13 +1,15 @@
 {
-    "extends": "airbnb",
-    "rules": {
-      "import/no-named-as-default": 0,
-      "import/no-named-as-default-member": 0,
-      /* "no-return-assign": [ 0, "except-parens" ], */
-      "react/jsx-filename-extension": [1, { "extensions": [".js"] }]
-    },
-    "globals": {
-        "document": false,
-        "FileReader": false
-    }
+  "extends": "airbnb",
+  "parser": "babel-eslint",
+  "rules": {
+    "import/no-named-as-default": 0,
+    "import/no-named-as-default-member": 0,
+    "import/no-unresolved": 0,
+    "no-return-assign": 0,
+    "react/jsx-filename-extension": [1, { "extensions": [".js"] }]
+  },
+  "globals": {
+    "document": false,
+    "FileReader": false
+  }
 }

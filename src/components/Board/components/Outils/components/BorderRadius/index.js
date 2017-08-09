@@ -1,9 +1,19 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import PropTypes from 'prop-types';
+
 import { changeBorder } from '../../../../../../redux/actions';
 
 class BorderRadius extends Component {
+  static defaultProps = {
+    changeBorder: () => undefined,
+  }
+
+  static propTypes = {
+    changeBorder: PropTypes.func,
+  }
+
   renderValuesBorder = () => {
     const ops = [];
 

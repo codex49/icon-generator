@@ -1,11 +1,22 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import $ from 'jquery';
 
 import openMenu from '../../../lib/open-menu';
 
 export default class TitleCategory extends Component {
-  showMenu = event => {
+  static defaultProps = {
+    children: null,
+    link: null,
+  }
+
+  static propTypes = {
+    children: PropTypes.string,
+    link: PropTypes.string,
+  }
+
+  showMenu = (event) => {
     const elem = $(ReactDOM.findDOMNode(this));
     openMenu(elem, event);
   };

@@ -7,7 +7,7 @@ import { changeBackgroundBoard } from '../../../../redux/actions';
 import upload from '../../../../../lib/Upload';
 
 class BackgroundUpload extends Component {
-  handleUploadBackground = e => {
+  handleUploadBackground = (e) => {
     const link = e.target;
     const elem = '.upload-bg';
     upload(link, elem);
