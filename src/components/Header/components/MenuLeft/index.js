@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const getMenu = item =>
   (<li className="link" key={item.url}>
@@ -11,5 +12,18 @@ const MenuLeft = props =>
   (<ul className="useful-links">
     {props.menu.map(getMenu)}
   </ul>);
+
+MenuLeft.defaultProps = {
+  menu: null,
+};
+
+MenuLeft.propTypes = {
+  menu: PropTypes.arrayOf(
+    PropTypes.shape({
+      item: PropTypes.string,
+      url: PropTypes.string,
+    }),
+  ),
+};
 
 export default MenuLeft;

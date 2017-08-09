@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import Icon from './components/Icon';
 import Upload from '../Upload';
@@ -23,13 +24,28 @@ const renderCategoriesIcon = (category) => {
   );
 };
 
-const Icons = props =>
-  (<div className="nav-element">
+const Icons = props => (
+  <div className="nav-element">
     <h2 className="title-categories">Design Elements</h2>
     <ul className="categories">
       <Upload active="active" link={uploadIcon} />
       {props.listCategories.map(renderCategoriesIcon)}
     </ul>
-  </div>);
+  </div>
+);
+
+Icons.defaultProps = {
+  listCategories: null,
+};
+
+Icons.propTypes = {
+  listCategories: PropTypes.arrayOf(
+    PropTypes.shape({
+      iconCategory: PropTypes.string,
+      items: PropTypes.array,
+      name: PropTypes.string,
+    }),
+  ),
+};
 
 export default Icons;

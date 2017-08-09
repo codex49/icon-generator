@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
 import $ from 'jquery';
 
 export default class Icon extends Component {
   componentDidMount() {
-    const $this = $(ReactDOM.findDOMNode(this));
+    const $this = $(this.node);
 
     $this.draggable({
       helper: 'clone',
@@ -14,8 +13,8 @@ export default class Icon extends Component {
 
   render() {
     return (
-      <li className="item">
-        <img id={this.props.id} className="icon-svg" src={this.props.link} alt="Icons" />
+      <li className="item" ref={node => this.node = node}>
+        <img id={this.props.id} className="icon-svg" src={this.props.link} />
       </li>
     );
   }
