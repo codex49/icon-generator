@@ -7,7 +7,7 @@ import TitleCategory from '../TitleCategory';
 
 import uploadIcon from '../../public/assets/img/icons/upload.png';
 
-const renderBackground = category => {
+const renderBackground = (category) => {
   const items = category.items.map((item, f) => {
     const background = [];
 
@@ -19,7 +19,7 @@ const renderBackground = category => {
   });
   return (
     <li key={category.name} className="category">
-      <TitleCategory link={category.iconCat}>
+      <TitleCategory link={category.iconCategory}>
         {category.name}
       </TitleCategory>
       <ul className="items">
@@ -32,12 +32,12 @@ const renderBackground = category => {
 const renderListCategory = props => props.listCategories.map(renderBackground);
 
 const Backgrounds = props =>
-  <div className="nav-element backgrounds">
+  (<div className="nav-element backgrounds">
     <h2 className="title-categories">Backgrounds</h2>
     <ul className="categories">
       <BackgroundUpload active="active" link={uploadIcon} />
       {renderListCategory(props)}
     </ul>
-  </div>;
+  </div>);
 
 export default Backgrounds;

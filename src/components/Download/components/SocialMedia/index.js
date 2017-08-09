@@ -1,13 +1,22 @@
-import React, { Component } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 
-export default class SocialMedia extends Component {
-  render() {
-    return (
-      <li className="social-media">
-        <a href="">
-          <img src={this.props.link} alt={this.props.children} />
-        </a>
-      </li>
-    );
-  }
-}
+const SocialMedia = props => (
+  <li className="social-media">
+    <a href="">
+      <img src={props.link} alt={props.children} />
+    </a>
+  </li>
+);
+
+SocialMedia.defaultProps = {
+  link: null,
+  children: null,
+};
+
+SocialMedia.propTypes = {
+  link: PropTypes.string,
+  children: PropTypes.string,
+};
+
+export default SocialMedia;

@@ -25,7 +25,7 @@ class BackgroundUpload extends Component {
           <img className="icon-category" src={this.props.link} alt="" />
           <span className="label">Upload</span>
         </a>
-        <div className="upload-elment">
+        <div className="upload-element">
           <div
             className="icon-upload upload-bg"
             onClick={this.handleChangeBackground}
