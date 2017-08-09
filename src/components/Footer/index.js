@@ -1,11 +1,21 @@
 import React, { Component } from 'react';
-import html2canvas from '../../../lib/html2canvas';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+
+import html2canvas from '../../../lib/html2canvas';
 import { showPopupDownload } from '../../../src/redux/actions';
 
 class Footer extends Component {
-  openPopUp = event => {
+  static defaultProps = {
+    showPopupDownload: () => undefined,
+  }
+
+  static propTypes = {
+    showPopupDownload: PropTypes.func,
+  }
+
+  openPopUp = (event) => {
     event.preventDefault();
 
     this.props.showPopupDownload(true);

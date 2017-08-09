@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import classNames from 'classnames';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import PropTypes from 'prop-types';
 
 import downloadIcon from '../../../lib/canvas-to-image';
 import SocialMedia from './components/SocialMedia';
@@ -12,6 +13,25 @@ import androidIcon from '../../public/assets/img/icons/android.png';
 import iosIcon from '../../public/assets/img/icons/ios.png';
 
 class Download extends Component {
+  static defaultProps = {
+    canvas: null,
+    socialsMedia: null,
+    showPopup: false,
+    showPopupDownload: () => undefined,
+  }
+
+  static propTypes = {
+    canvas: PropTypes.string,
+    socialsMedia: PropTypes.arrayOf(
+      PropTypes.shape({
+        text: PropTypes.string,
+        url: PropTypes.string,
+      }),
+    ),
+    showPopup: PropTypes.bool,
+    showPopupDownload: PropTypes.func,
+  }
+
   constructor() {
     super();
 
@@ -22,14 +42,14 @@ class Download extends Component {
     };
   }
 
-  handleDownloadIcon = event => {
+  handleDownloadIcon = (event) => {
     event.preventDefault();
     const canvas = this.props.canvas;
     const size = this.state.size;
     downloadIcon(canvas, size);
   };
 
-  handleSendIcon = event => {
+  handleSendIcon = (event) => {
     event.preventDefault();
     this.setState({
       showButtonSendIcon: false,
@@ -37,14 +57,14 @@ class Download extends Component {
     });
   };
 
-  handleChooseSize = size => {
+  handleChooseSize = (size) => {
     this.setState({ size });
   };
 
   renderSocialsMedia = social =>
-    <SocialMedia key={social.url} link={social.url}>
+    (<SocialMedia key={social.url} link={social.url}>
       {social.children}
-    </SocialMedia>;
+    </SocialMedia>);
 
   renderSocialMedia = () => {
     if (!this.props.socialsMedia) return null;
@@ -56,22 +76,20 @@ class Download extends Component {
     );
   };
 
-  renderMobileIcon = () => {
-    return (
-      <ul className="download-mobile">
-        <li className="android">
-          <a href="">
-            <img src={androidIcon} />
-          </a>
-        </li>
-        <li className="ios">
-          <a href="">
-            <img src={iosIcon} />
-          </a>
-        </li>
-      </ul>
-    );
-  };
+  renderMobileIcon = () => (
+    <ul className="download-mobile">
+      <li className="android">
+        <a href="">
+          <img src={androidIcon} alt="android icon" />
+        </a>
+      </li>
+      <li className="ios">
+        <a href="">
+          <img src={iosIcon} alt="ios icon" />
+        </a>
+      </li>
+    </ul>
+  );
 
   renderButtonsSize = () => {
     const sizeBig = classNames({ 'btn-size': this.state.size === 1024 });
@@ -133,11 +151,11 @@ class Download extends Component {
         <div className="block-download">
           <h1 className="title-popup">Thank you!</h1>
           <p className="description">
-            Now it's time to brag about your new icon
+            {"Now it's time to brag about your new icon"}
           </p>
           {this.renderSocialMedia()}
           <div className="icon" id="icon-result">
-            <img src="" />
+            <img src="" alt="" />
           </div>
           {this.renderButtonsSize()}
           <a

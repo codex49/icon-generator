@@ -18,7 +18,7 @@ export default class extends Component {
     });
   };
 
-  handleChangeColor = color => {
+  handleChangeColor = (color) => {
     this.setState({
       color: color.hex,
     });

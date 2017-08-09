@@ -1,10 +1,19 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import upload from '../../../lib/Upload';
 
 import Icon from '../icons/components/Icon';
 
 export default class Upload extends Component {
-  uploadIcon = e => {
+  static defaultProps = {
+    link: null,
+  }
+
+  static propTypes = {
+    link: PropTypes.string,
+  }
+
+  uploadIcon = (e) => {
     const link = e.target;
     const elem = '.upload-element';
     upload(link, elem);
@@ -23,12 +32,10 @@ export default class Upload extends Component {
           </div>
           <p>Use your own graphics</p>
           <form
-            ref="uploadForm"
             className="uploader"
             encType="multipart/form-data"
           >
             <input
-              ref="file"
               type="file"
               onChange={this.uploadIcon}
               className="btn-upload"

@@ -1,13 +1,24 @@
-import React, { Component, PropTypes } from 'react';
-
-import BorderRadius from './components/BorderRadius';
+import React, { Component } from 'react';
+import $ from 'jquery';
+import PropTypes from 'prop-types';
 import SketchPicker from 'react-color';
-
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+
+import BorderRadius from './components/BorderRadius';
 import { showGrid } from '../../../../redux/actions';
 
 class Outils extends Component {
+  static defaultProps = {
+    getIconDroped: null,
+    showGrid: () => undefined,
+  }
+
+  static propTypes = {
+    getIconDroped: PropTypes.string,
+    showGrid: PropTypes.func,
+  }
+
   constructor() {
     super();
 
@@ -24,7 +35,7 @@ class Outils extends Component {
     this.setState({ displayColorPicker: false });
   };
 
-  handleChangeColor = color => {
+  handleChangeColor = (color) => {
     const iconChecked = $('.board').find(this.props.getIconDroped).find('path');
     const c = color.rgb;
     iconChecked.css('fill', `rgba(${c.r}, ${c.g}, ${c.b},${c.a})`);

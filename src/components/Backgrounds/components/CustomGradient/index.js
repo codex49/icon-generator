@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import GradientColor from './components/GradientColor';
 
 import {
@@ -9,11 +10,25 @@ import {
 } from '../../../../redux/actions';
 
 class CustomGradient extends Component {
-  handleChangeBgTop = topColor => {
+  static defaultProps = {
+    changeGradientBoardTop: () => undefined,
+    changeGradientBoardBottom: () => undefined,
+    gradientBoardTop: null,
+    gradientBoardBottom: null,
+  }
+
+  static propTypes = {
+    changeGradientBoardTop: PropTypes.func,
+    changeGradientBoardBottom: PropTypes.func,
+    gradientBoardTop: PropTypes.string,
+    gradientBoardBottom: PropTypes.string,
+  }
+
+  handleChangeBgTop = (topColor) => {
     this.props.changeGradientBoardTop(topColor, 'gradient');
   };
 
-  handleChangeColorBottom = bottomColor => {
+  handleChangeColorBottom = (bottomColor) => {
     this.props.changeGradientBoardBottom(bottomColor, 'gradient');
   };
 
@@ -48,10 +63,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   changeGradientBoardTop: bindActionCreators(changeGradientBoardTop, dispatch),
-  changeGradientBoardBottom: bindActionCreators(
-    changeGradientBoardBottom,
-    dispatch,
-  ),
+  changeGradientBoardBottom: bindActionCreators(changeGradientBoardBottom, dispatch),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(CustomGradient);
