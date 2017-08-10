@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import ReactDOM from 'react-dom';
 import $ from 'jquery';
 
 import openMenu from '../../../lib/open-menu';
@@ -17,13 +16,13 @@ export default class TitleCategory extends Component {
   }
 
   showMenu = (event) => {
-    const elem = $(ReactDOM.findDOMNode(this));
+    const elem = $(this.node);
     openMenu(elem, event);
   };
 
   render() {
     return (
-      <a className="title-category" onClick={this.showMenu} href="">
+      <a className="title-category" onClick={this.showMenu} href="" ref={node => this.node = node}>
         <img className="icon-category" src={this.props.link} alt="" />
         <span className="label">
           {this.props.children}

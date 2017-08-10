@@ -14,7 +14,7 @@ const renderBackground = (category) => {
     if (category.name === 'Gradients' && f === 0) {
       background.push(<CustomGradient />);
     }
-    background.push(<Background key={f} link={item} />);
+    background.push(<Background key={item} link={item} />);
     return background;
   });
   return (
