@@ -1,8 +1,18 @@
-import React, { Component, propTypes } from 'react';
-
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import SketchPicker from 'react-color';
 
 export default class extends Component {
+  static defaultProps = {
+    class: null,
+    handleChangeColor: () => undefined,
+  }
+
+  static propTypes = {
+    class: PropTypes.string,
+    handleChangeColor: PropTypes.func,
+  }
+
   constructor() {
     super();
 

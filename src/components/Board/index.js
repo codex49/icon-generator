@@ -12,6 +12,7 @@ class Board extends Component {
     gradientBoardTop: null,
     toggleGrid: false,
     typeBg: null,
+    valueBorder: 0,
   }
 
   static propTypes = {
@@ -20,6 +21,7 @@ class Board extends Component {
     gradientBoardTop: PropTypes.string,
     toggleGrid: PropTypes.bool,
     typeBg: PropTypes.string,
+    valueBorder: PropTypes.number,
   }
   constructor() {
     super();

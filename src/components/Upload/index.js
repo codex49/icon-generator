@@ -22,7 +22,7 @@ export default class Upload extends Component {
   render() {
     return (
       <div className="upload-block">
-        <a className={'title-category active'}>
+        <a className="title-category active">
           <img className="icon-category" src={this.props.link} alt="" />
           <span className="label">Upload</span>
         </a>
@@ -31,15 +31,8 @@ export default class Upload extends Component {
             <Icon link="" id="icon-upload" />
           </div>
           <p>Use your own graphics</p>
-          <form
-            className="uploader"
-            encType="multipart/form-data"
-          >
-            <input
-              type="file"
-              onChange={this.uploadIcon}
-              className="btn-upload"
-            />
+          <form className="uploader" encType="multipart/form-data">
+            <input type="file" onChange={this.uploadIcon} className="btn-upload" />
           </form>
         </div>
       </div>
