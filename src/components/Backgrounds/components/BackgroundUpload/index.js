@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import $ from 'jquery';
 
 import { changeBackgroundBoard } from '../../../../redux/actions';
-import upload from '../../../../../lib/Upload';
+import upload from '../../../../../lib/upload';
 
 class BackgroundUpload extends Component {
   static defaultProps = {
