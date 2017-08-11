@@ -29,7 +29,7 @@ const renderBackground = (category) => {
   );
 };
 
-const renderListCategory = props => props.listCategories.map(renderBackground)
+const renderListCategory = props => props.listCategories.map(renderBackground);
 
 const Backgrounds = props =>
   (<div className="nav-element backgrounds">
