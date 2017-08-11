@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import upload from '../../../lib/Upload';
+import upload from '../../../lib/upload';
 
-import Icon from '../icons/components/Icon';
+import Icon from '../Icons/components/Icon';
 
 export default class Upload extends Component {
   static defaultProps = {
