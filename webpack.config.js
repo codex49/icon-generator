@@ -37,7 +37,7 @@ module.exports = {
       },
       {
         test: /\.(jpe?g|gif|png|svg)$/,
-        loader: 'url-loader?limit=10000&name=images/[hash:12].[ext]',
+        loader: 'url-loader?limit=40000&name=images/[hash:12].[ext]',
         exclude: /node_modules/,
       },
       {
@@ -45,6 +45,7 @@ module.exports = {
         loader: 'url-loader',
         options: {
           name: 'fonts/[name].[ext]',
+          limit: 40000
         },
       },
     ],
@@ -69,6 +70,6 @@ module.exports = {
     }),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NamedModulesPlugin(),
-    new webpack.optimize.DedupePlugin(),
+    new webpack.optimize.UglifyJsPlugin(),
   ],
 };
