@@ -38,6 +38,7 @@ export default {
         items: [
           require('../../public/assets/img/bg/orange.png'),
           require('../../public/assets/img/bg/bleu.png'),
+          require('../../public/assets/img/bg/gris.png'),
         ],
       },
       {
@@ -46,7 +47,6 @@ export default {
         items: [
           require('../../public/assets/img/bg/bleu.png'),
           require('../../public/assets/img/bg/orange.png'),
-          require('../../public/assets/img/bg/gris.png'),
         ],
       },
     ];
