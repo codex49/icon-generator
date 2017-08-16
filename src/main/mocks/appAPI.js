@@ -7,7 +7,6 @@ export default {
         iconCategory: require('../../public/assets/img/icons/all.png'),
         items: [
           require('../../public/assets/img/svg/add-button-inside-black-circle.svg'),
-          require('../../public/assets/img/svg/apple-black-logo.svg'),
           require('../../public/assets/img/svg/apple-black-silhouette-with-a-leaf.svg'),
           require('../../public/assets/img/svg/arrow-down-on-black-circular-background.svg'),
           require('../../public/assets/img/svg/black-back-closed-envelope-shape.svg'),
@@ -47,8 +46,7 @@ export default {
         items: [
           require('../../public/assets/img/bg/bleu.png'),
           require('../../public/assets/img/bg/orange.png'),
-          require('../../public/assets/img/bg/bleu.png'),
-          require('../../public/assets/img/bg/orange.png'),
+          require('../../public/assets/img/bg/gris.png'),
         ],
       },
     ];
